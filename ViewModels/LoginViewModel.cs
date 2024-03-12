@@ -26,7 +26,7 @@ namespace TriviaAppClean.ViewModels
             //Choose the way you want to blobk the page while indicating a server call
             InServerCall=true;
             //await Shell.Current.GoToAsync("connectingToServer");
-            User u  = await this.triviaService.LoginAsync("ofer@ofer.com", "1234");
+            User u  = await this.triviaService.LoginAsync(mail, pass);
             //await Shell.Current.Navigation.PopModalAsync();
             InServerCall = false;
 
@@ -42,7 +42,24 @@ namespace TriviaAppClean.ViewModels
                 await Shell.Current.DisplayAlert("Login", $"Login Succeed! for {u.Name} with {u.Questions.Count} Questions", "ok");
             }
         }
-
+        private string pass;
+        public string Pass
+        {
+            get { return pass; } set
+            {
+                pass = value;
+                OnPropertyChanged("Pass");
+            }
+        }
+        private string mail;
+        public string Mail
+        {
+            get { return mail; } set
+            {
+                mail = value;
+                OnPropertyChanged("Mail");
+            }
+        }
         private bool inServerCall;
         public bool InServerCall
         {
