@@ -6,9 +6,52 @@
     xmlns:views="clr-namespace:TriviaAppClean.Views"
     Shell.FlyoutBehavior="Disabled">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate views:LoginView}"
-        Route="MainPage" />
-
+    <FlyoutItem x:Name="PlayerItems" FlyoutDisplayOptions="AsMultipleItems" Route="tabs" Title="Domestic" >
+        <ShellContent
+          Title="Game" Icon="monkey.png"
+          ContentTemplate="{DataTemplate views:Monkeys}"
+          Route="Tab3" />
+        <ShellContent
+          Title="Profile" Icon="elephant.png"
+          ContentTemplate="{DataTemplate views:Elephants}"
+          Route="Tab4" />
+        <ShellContent
+          Title="Leaderboard" Icon="bear.png"
+          ContentTemplate="{DataTemplate views:Bears}"
+          Route="Tab4" />
+    </FlyoutItem>
+    <FlyoutItem x:Name="MasterItems" FlyoutDisplayOptions="AsMultipleItems" Route="tabs" Title="Domestic"  IsEnabled="{Binding}">
+        <!--normally no icon but if locked a locked icon-->
+        <ShellContent
+          Title="Game" Icon="{Binding }"
+          ContentTemplate="{DataTemplate views:Monkeys}"
+          Route="Tab3" />
+        <ShellContent
+          Title="Profile" Icon="{Binding}"
+          ContentTemplate="{DataTemplate views:Elephants}"
+          Route="Tab4" />
+        <ShellContent
+          Title="Leaderboard" Icon="{Binding}"
+          ContentTemplate="{DataTemplate views:Bears}"
+          Route="Tab4" />
+    </FlyoutItem>
+    <FlyoutItem x:Name="AdminItems" FlyoutDisplayOptions="AsMultipleItems" Route="tabs" Title="Domestic" IsVisible="{Binding}">
+        <ShellContent
+          Title="Game" Icon="monkey.png"
+          ContentTemplate="{DataTemplate views:Monkeys}"
+          Route="Tab3" />
+        <ShellContent
+          Title="Profile" Icon="elephant.png"
+          ContentTemplate="{DataTemplate views:Elephants}"
+          Route="Tab4" />
+        <ShellContent
+          Title="Leaderboard" Icon="bear.png"
+          ContentTemplate="{DataTemplate views:Bears}"
+          Route="Tab4" />
+    </FlyoutItem>
+    <MenuItem
+        Command="{Binding Logout}"
+        IconImageSource="help.png"
+        StyleClass=""
+        Text="Log out" />
 </Shell>
