@@ -6,47 +6,40 @@
     xmlns:views="clr-namespace:TriviaAppClean.Views"
     Shell.FlyoutBehavior="Disabled">
 
-    <FlyoutItem x:Name="PlayerItems" FlyoutDisplayOptions="AsMultipleItems" Route="tabs" Title="Domestic" >
+    <FlyoutItem x:Name="PlayerItems" FlyoutDisplayOptions="AsMultipleItems" Route="tabs" Title="PlayerItems" >
         <ShellContent
-          Title="Game" Icon="monkey.png"
-          ContentTemplate="{DataTemplate views:Monkeys}"
-          Route="Tab3" />
-        <ShellContent
-          Title="Profile" Icon="elephant.png"
-          ContentTemplate="{DataTemplate views:Elephants}"
+          Title="Profile" Icon="profile_icon.png"
+          ContentTemplate="{DataTemplate views:ProfileView}"
           Route="Tab4" />
         <ShellContent
-          Title="Leaderboard" Icon="bear.png"
-          ContentTemplate="{DataTemplate views:Bears}"
+          Title="Game" Icon="game_icon.png"
+          ContentTemplate="{DataTemplate views:GameView}"
+          Route="Tab3" />
+        <ShellContent
+          Title="Leaderboard" Icon="leaderboard_icon.png"
+          ContentTemplate="{DataTemplate views:LeaderboardView}"
           Route="Tab4" />
     </FlyoutItem>
-    <FlyoutItem x:Name="MasterItems" FlyoutDisplayOptions="AsMultipleItems" Route="tabs" Title="Domestic"  IsEnabled="{Binding}">
-        <!--normally no icon but if locked a locked icon-->
+    <FlyoutItem x:Name="MasterItems" FlyoutDisplayOptions="AsMultipleItems" Route="tabs" Title="MasterItems"  IsEnabled="True">
+       <!-- normally no icon but if locked a locked icon-->
         <ShellContent
-          Title="Game" Icon="{Binding }"
-          ContentTemplate="{DataTemplate views:Monkeys}"
+          Title="{Binding FlyoutTitleName}" Icon="{Binding IsFlyoutEnabled }"
+          ContentTemplate="{DataTemplate views:AddQuestionView}"
           Route="Tab3" />
         <ShellContent
-          Title="Profile" Icon="{Binding}"
-          ContentTemplate="{DataTemplate views:Elephants}"
-          Route="Tab4" />
-        <ShellContent
-          Title="Leaderboard" Icon="{Binding}"
-          ContentTemplate="{DataTemplate views:Bears}"
+          Title="{Binding FlyoutIcon}" Icon="{Binding IsFlyoutEnabled}"
+          ContentTemplate="{DataTemplate views:CheckDependingQuestionView}"
           Route="Tab4" />
     </FlyoutItem>
-    <FlyoutItem x:Name="AdminItems" FlyoutDisplayOptions="AsMultipleItems" Route="tabs" Title="Domestic" IsVisible="{Binding}">
+    <FlyoutItem x:Name="AdminItems" FlyoutDisplayOptions="AsMultipleItems" Route="tabs" Title="AdminItems" IsVisible="True">
+        <!--Not Sure about the icon-->
         <ShellContent
-          Title="Game" Icon="monkey.png"
-          ContentTemplate="{DataTemplate views:Monkeys}"
+          Title="PlayerList" Icon="list_icon.png"
+          ContentTemplate="{DataTemplate views:PlayerListView}"
           Route="Tab3" />
         <ShellContent
-          Title="Profile" Icon="elephant.png"
-          ContentTemplate="{DataTemplate views:Elephants}"
-          Route="Tab4" />
-        <ShellContent
-          Title="Leaderboard" Icon="bear.png"
-          ContentTemplate="{DataTemplate views:Bears}"
+          Title="Question List" Icon="list_icon.png"
+          ContentTemplate="{DataTemplate views:QuestionListView}"
           Route="Tab4" />
     </FlyoutItem>
     <MenuItem
