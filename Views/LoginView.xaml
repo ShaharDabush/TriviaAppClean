@@ -5,15 +5,19 @@
              Title="LoginView">
     <VerticalStackLayout VerticalOptions="Center">
         <Label 
-            Text="Press To Login!"
+            Text="Enter mail here:"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
         <Entry
             Text="{Binding Mail}"
             />
+        <Label 
+            Text="Enter password here:"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"/>
         <Entry
-    Text="{Binding Pass}"
-    />
+          Text="{Binding Pass}"
+          />
         <Button Text="Submit Login" Command="{Binding LoginCommand}" IsEnabled="{Binding NotInServerCall}"></Button>
         <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Red"></ActivityIndicator> 
     </VerticalStackLayout>
