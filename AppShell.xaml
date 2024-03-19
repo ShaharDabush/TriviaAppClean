@@ -4,43 +4,43 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:TriviaAppClean.Views"
-    Shell.FlyoutBehavior="Disabled">
+    Shell.FlyoutBehavior="Flyout">
 
     <FlyoutItem x:Name="PlayerItems" FlyoutDisplayOptions="AsMultipleItems" Route="tabs" Title="PlayerItems" >
         <ShellContent
           Title="Profile" Icon="profile_icon.png"
           ContentTemplate="{DataTemplate views:ProfileView}"
-          Route="Tab4" />
+          Route="Profile" />
         <ShellContent
           Title="Game" Icon="game_icon.png"
           ContentTemplate="{DataTemplate views:GameView}"
-          Route="Tab3" />
+          Route="Game" />
         <ShellContent
           Title="Leaderboard" Icon="leaderboard_icon.png"
           ContentTemplate="{DataTemplate views:LeaderboardView}"
-          Route="Tab4" />
+          Route="Leaderboard" />
     </FlyoutItem>
-    <FlyoutItem x:Name="MasterItems" FlyoutDisplayOptions="AsMultipleItems" Route="tabs" Title="MasterItems"  IsEnabled="True">
+    <FlyoutItem x:Name="MasterItems" FlyoutDisplayOptions="AsMultipleItems" Route="tabs" Title="MasterItems"  IsEnabled="{Binding IsFlyoutEnabled}">
        <!-- normally no icon but if locked a locked icon-->
         <ShellContent
-          Title="{Binding FlyoutTitleName}" Icon="{Binding IsFlyoutEnabled }"
+          Title="{Binding FlyoutTitleName}" Icon="{Binding FlyoutIcon }"
           ContentTemplate="{DataTemplate views:AddQuestionView}"
-          Route="Tab3" />
+          Route="AddQuestion" />
         <ShellContent
-          Title="{Binding FlyoutIcon}" Icon="{Binding IsFlyoutEnabled}"
+          Title="{Binding FlyoutTitleName}" Icon="{Binding FlyoutIcon}"
           ContentTemplate="{DataTemplate views:CheckDependingQuestionView}"
-          Route="Tab4" />
+          Route="CheckDependquestion" />
     </FlyoutItem>
-    <FlyoutItem x:Name="AdminItems" FlyoutDisplayOptions="AsMultipleItems" Route="tabs" Title="AdminItems" IsVisible="True">
+    <FlyoutItem x:Name="AdminItems" FlyoutDisplayOptions="AsMultipleItems" Route="tabs" Title="AdminItems" IsVisible="False">
         <!--Not Sure about the icon-->
         <ShellContent
           Title="PlayerList" Icon="list_icon.png"
           ContentTemplate="{DataTemplate views:PlayerListView}"
-          Route="Tab3" />
+          Route="PlayerList" />
         <ShellContent
           Title="Question List" Icon="list_icon.png"
           ContentTemplate="{DataTemplate views:QuestionListView}"
-          Route="Tab4" />
+          Route="Question" />
     </FlyoutItem>
     <MenuItem
         Command="{Binding Logout}"

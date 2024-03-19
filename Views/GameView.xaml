@@ -9,10 +9,10 @@
             Text="Welcome to .NET MAUI!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-        <Button
+        <!--<Button
             Text="Check"
             VerticalOptions="Center" 
             HorizontalOptions="Center" 
-            Command="{Binding SwichRanks}"/>
+            Command="{Binding SwichRanks}"/>-->
     </VerticalStackLayout>
 </ContentPage>
