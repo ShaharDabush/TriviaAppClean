@@ -4,12 +4,16 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using TriviaAppClean.Models;
+using TriviaAppClean.Services;
+using TriviaAppClean.ViewModels;
 
 namespace TriviaAppClean.ViewModels
 {
     internal class AddQuestionViewModel:ViewModelBase
     {
-        public string flyoutTitleName = "Locked";
+        public string flyoutTitleName;
 
         public string FlyoutTitleName
         {
@@ -21,7 +25,7 @@ namespace TriviaAppClean.ViewModels
             }
         }
 
-        public string flyoutIcon = "lock_icon.png";
+        public string flyoutIcon;
 
         public string FlyoutIcon
         {
@@ -44,8 +48,24 @@ namespace TriviaAppClean.ViewModels
             }
         }
         public Command SwichRanks { get; set; }
+        User u;
+        
         public AddQuestionViewModel()
         {
+            u = ((App)Application.Current).LoggedInUser;
+            if (u.Rank == 1)
+            {
+                this.FlyoutTitleName = "Locked";
+                this.FlyoutIcon = "lock_icon.png";
+                this.IsFlyoutEnabled = false;
+            }
+            else
+            {
+                this.flyoutTitleName = " Add Question";
+                this.flyoutIcon = "question_mark_icon.png";
+                this.IsFlyoutEnabled = true;
+            }
+
             SwichRanks = new Command(JustChecking);
             //JustChecking();
         }
@@ -55,14 +75,14 @@ namespace TriviaAppClean.ViewModels
             if(this.flyoutTitleName == "Locked")
             {
                 this.flyoutTitleName = " Add Question";
-                this.flyoutIcon = "game_icon.png";
-                this.IsFlyoutEnabled = false;
+                this.flyoutIcon = "question_mark_icon.png";
+                this.IsFlyoutEnabled = true;
             }
             else
             {
                 this.flyoutTitleName = "Locked";
                 this.flyoutIcon = "lock_icon.png";
-                this.IsFlyoutEnabled = true;
+                this.IsFlyoutEnabled = false;
             }
         }
     }
