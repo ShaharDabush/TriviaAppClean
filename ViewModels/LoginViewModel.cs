@@ -7,20 +7,25 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using TriviaAppClean.Models;
 using TriviaAppClean.Services;
+using TriviaAppClean.Views;
 
 namespace TriviaAppClean.ViewModels
 {
     public class LoginViewModel:ViewModelBase
     {
         private TriviaWebAPIProxy triviaService;
-        public LoginViewModel(TriviaWebAPIProxy service) 
+        private SighUpView sighupView;
+        public LoginViewModel(TriviaWebAPIProxy service,SighUpView sighUp) 
         {
             InServerCall = false;
+            this.sighupView = sighUp;
             this.triviaService = service;
             this.LoginCommand = new Command(OnLogin);
+            this.SighUpCommand = new Command(GoToSighUp);
         }
 
         public ICommand LoginCommand { get; set; }
+        public Command SighUpCommand{ protected set; get; }
         private async void OnLogin()
         {
             //Choose the way you want to blobk the page while indicating a server call
@@ -40,7 +45,12 @@ namespace TriviaAppClean.ViewModels
             else
             {
                 await Shell.Current.DisplayAlert("Login", $"Login Succeed! for {u.Name} with {u.Questions.Count} Questions", "ok");
+
             }
+        }
+        private async void GoToSighUp()
+        {
+            await App.Current.MainPage.Navigation.PushAsync(sighupView);
         }
         private string pass;
         public string Pass
