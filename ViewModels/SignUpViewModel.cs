@@ -13,7 +13,7 @@ using TriviaAppClean.ViewModels;
 
 namespace TriviaAppClean.ViewModels
 {
-    public class SighUpViewModel: ViewModelBase
+    public class SignUpViewModel: ViewModelBase
     {
         #region FormValidation
         #region שם
@@ -194,7 +194,7 @@ namespace TriviaAppClean.ViewModels
         #endregion
         public Command SaveDataCommand { protected set; get; }
         private TriviaWebAPIProxy triviaService;
-        public SighupViewModel(TriviaWebAPIProxy service)
+        public SignUpViewModel(TriviaWebAPIProxy service)
         {
             this.NameError = "This is must";
             this.ShowNameError = false;
