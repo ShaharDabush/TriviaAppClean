@@ -14,18 +14,18 @@ namespace TriviaAppClean.ViewModels
     public class LoginViewModel:ViewModelBase
     {
         private TriviaWebAPIProxy triviaService;
-        private SighUpView sighupView;
-        public LoginViewModel(TriviaWebAPIProxy service,SighUpView sighUp) 
+        private SignUpView signupView;
+        public LoginViewModel(TriviaWebAPIProxy service,SignUpView signUp) 
         {
             InServerCall = false;
-            this.sighupView = sighUp;
+            this.signupView = signUp;
             this.triviaService = service;
             this.LoginCommand = new Command(OnLogin);
-            this.SighUpCommand = new Command(GoToSighUp);
+            this.SignUpCommand = new Command(GoToSignUp);
         }
 
         public ICommand LoginCommand { get; set; }
-        public Command SighUpCommand{ protected set; get; }
+        public Command SignUpCommand{ protected set; get; }
         private async void OnLogin()
         {
             //Choose the way you want to blobk the page while indicating a server call
@@ -48,9 +48,9 @@ namespace TriviaAppClean.ViewModels
 
             }
         }
-        private async void GoToSighUp()
+        private async void GoToSignUp()
         {
-            await App.Current.MainPage.Navigation.PushAsync(sighupView);
+            await App.Current.MainPage.Navigation.PushAsync(signupView);
         }
         private string pass;
         public string Pass
