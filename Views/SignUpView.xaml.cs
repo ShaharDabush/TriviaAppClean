@@ -2,9 +2,9 @@ using TriviaAppClean.ViewModels;
 
 namespace TriviaAppClean.Views;
 
-public partial class SighUpView : ContentPage
+public partial class SignUpView : ContentPage
 {
-	public SighUpView(SignUpViewModel vm)
+	public SignUpView(SignUpViewModel vm)
 	{
 		this.BindingContext = vm;
 		InitializeComponent();
