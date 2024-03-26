@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Maui.ApplicationModel.Communication;
+using System;
 
 using System.Collections.Generic;
 using System.Linq;
@@ -139,7 +140,6 @@ namespace TriviaAppClean.ViewModels
         }
         private void ValidateEmail()
         {
-
             Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
             Match match = regex.Match(Email);
             if (match.Success)
