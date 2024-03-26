@@ -30,9 +30,21 @@ public static class MauiProgram
 
     public static MauiAppBuilder RegisterPages(this MauiAppBuilder builder)
     {
-        builder.Services.AddTransient<LoginView> ();
-        builder.Services.AddTransient<SighUpView>();
-        builder.Services.AddTransient<SighupViewModel>();
+        builder.Services.AddSingleton<LoginView> ();
+        builder.Services.AddSingleton<SighUpView>();
+        builder.Services.AddSingleton<GameView>();
+
+
+
+        builder.Services.AddTransient<AddQuestionView>();
+        builder.Services.AddTransient<CheckDependingQuestionView>();
+        builder.Services.AddTransient<GameRegularView>();
+        builder.Services.AddTransient<GameWithTimeView>();
+        builder.Services.AddTransient<LeaderboardView>();
+        builder.Services.AddTransient<PlayerListView>();
+        builder.Services.AddTransient<ProfileView>();
+        builder.Services.AddTransient<QuestionListView>();
+
 
         return builder;
     }
@@ -44,7 +56,10 @@ public static class MauiProgram
     }
     public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder builder)
     {
-        builder.Services.AddTransient<LoginViewModel>();
+        builder.Services.AddSingleton<LoginViewModel>();
+        builder.Services.AddSingleton<SighUpViewModel>();
+        builder.Services.AddSingleton<AddQuestionViewModel>();
+
         return builder;
     }
 }

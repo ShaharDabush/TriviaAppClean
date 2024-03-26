@@ -2,8 +2,11 @@ namespace TriviaAppClean.Views;
 
 public partial class GameWithTimeView : ContentPage
 {
-	public GameWithTimeView()
+	public GameWithTimeView(GameWithTimeView vm)
 	{
 		InitializeComponent();
-	}
+
+        this.BindingContext = vm;
+
+    }
 }

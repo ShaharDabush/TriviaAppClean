@@ -13,7 +13,7 @@ using TriviaAppClean.ViewModels;
 
 namespace TriviaAppClean.ViewModels
 {
-    internal class SighupViewModel: ViewModelBase
+    public class SighUpViewModel: ViewModelBase
     {
         #region FormValidation
         #region שם

@@ -11,7 +11,7 @@ using TriviaAppClean.ViewModels;
 
 namespace TriviaAppClean.ViewModels
 {
-    internal class AddQuestionViewModel:ViewModelBase
+    public class AddQuestionViewModel:ViewModelBase
     {
         public string flyoutTitleName;
 
