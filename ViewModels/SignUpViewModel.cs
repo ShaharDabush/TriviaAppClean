@@ -163,7 +163,7 @@ namespace TriviaAppClean.ViewModels
 
         public bool CheckBox
         {
-            get => CheckBox;
+            get => checkBox;
             set
             {
                 checkBox = value;
@@ -172,14 +172,14 @@ namespace TriviaAppClean.ViewModels
             }
         }
 
-        private string CheckBoxdError;
+        private string checkBoxError;
 
         public string CheckBoxError
         {
-            get => CheckBoxError;
+            get => checkBoxError;
             set
             {
-                CheckBoxError = value;
+                checkBoxError = value;
                 OnPropertyChanged("CheckBoxError");
             }
         }
