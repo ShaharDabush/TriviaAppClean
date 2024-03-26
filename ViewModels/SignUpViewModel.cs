@@ -126,14 +126,14 @@ namespace TriviaAppClean.ViewModels
             }
         }
 
-        private string emaildError;
+        private string emailError;
 
         public string EmailError
         {
-            get => EmailError;
+            get => emailError;
             set
             {
-                EmailError = value;
+                emailError = value;
                 OnPropertyChanged("EmailError");
             }
         }
