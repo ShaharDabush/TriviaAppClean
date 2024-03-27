@@ -39,7 +39,7 @@ namespace TriviaAppClean.ViewModels
                 AddedQuestion.Status = 0;
 
                 await _proxy.PostNewQuestion(AddedQuestion);
-            }                AddedQuestion.UserId = ((App)Application.Current).LoggedInUser.Id;
+            }                
             //need to exit to another page here
         }
     }
