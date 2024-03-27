@@ -13,77 +13,34 @@ namespace TriviaAppClean.ViewModels
 {
     public class AddQuestionViewModel:ViewModelBase
     {
-        public string flyoutTitleName;
-
-        public string FlyoutTitleName
+        private TriviaWebAPIProxy _proxy;
+        private AmericanQuestion addedQuestion;
+        public AmericanQuestion AddedQuestion
         {
-            get { return this.flyoutTitleName; }
+            get { return addedQuestion; }
             set
             {
-                this.flyoutTitleName = value;
-                OnPropertyChanged();
+                addedQuestion = value;
+                OnPropertyChanged("AddedQuestion");
             }
         }
 
-        public string flyoutIcon;
+        public ICommand SubmitCommand => new Command(OnSubmitting);
 
-        public string FlyoutIcon
+        async void OnSubmitting()
         {
-            get { return this.flyoutIcon; }
-            set
+            if (AddedQuestion != null)
             {
-                this.flyoutIcon = value;
-                OnPropertyChanged();
-            }
-        }
-        public bool isFlyoutEnabled;
+                if (AddedQuestion.QText ==null||AddedQuestion.CorrectAnswer==null|| AddedQuestion.Bad1 == null || AddedQuestion.Bad2 == null || AddedQuestion.Bad3 == null)
+                {
+                    return;
+                }
+                AddedQuestion.UserId = ((App)Application.Current).LoggedInUser.Id;
+                AddedQuestion.Status = 0;
 
-        public bool IsFlyoutEnabled
-        {
-            get { return this.isFlyoutEnabled; }
-            set
-            {
-                this.isFlyoutEnabled = value;
-                OnPropertyChanged();
-            }
-        }
-        public Command SwichRanks { get; set; }
-        User u;
-        
-        public AddQuestionViewModel()
-        {
-            u = ((App)Application.Current).LoggedInUser;
-            if (u.Rank == 1)
-            {
-                this.FlyoutTitleName = "Locked";
-                this.FlyoutIcon = "lock_icon.png";
-                this.IsFlyoutEnabled = false;
-            }
-            else
-            {
-                this.flyoutTitleName = " Add Question";
-                this.flyoutIcon = "question_mark_icon.png";
-                this.IsFlyoutEnabled = true;
-            }
-
-            SwichRanks = new Command(JustChecking);
-            //JustChecking();
-        }
-
-        public void JustChecking()
-        {
-            if(this.flyoutTitleName == "Locked")
-            {
-                this.flyoutTitleName = " Add Question";
-                this.flyoutIcon = "question_mark_icon.png";
-                this.IsFlyoutEnabled = true;
-            }
-            else
-            {
-                this.flyoutTitleName = "Locked";
-                this.flyoutIcon = "lock_icon.png";
-                this.IsFlyoutEnabled = false;
-            }
+                await _proxy.PostNewQuestion(AddedQuestion);
+            }                AddedQuestion.UserId = ((App)Application.Current).LoggedInUser.Id;
+            //need to exit to another page here
         }
     }
 }

@@ -5,14 +5,40 @@
              Title="AddQuestionView"
                Shell.FlyoutBehavior="Flyout">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-        <Button
-            Text="Check"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" 
-            Command="{Binding SwichRanks}"/>
+        <Grid Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="Start" RowSpacing="30">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"
+                Text="Add a Question and an answer!!!!!!" HorizontalOptions="Center"
+                FontAttributes="Bold"/>
+            <Entry Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
+                Text="{Binding CurrentQuestion.QText}" 
+                FontAttributes="Bold" HorizontalOptions="Center"/>
+            <Entry Grid.Column="0" Grid.Row="2"
+                Text="{Binding CurrentQuestion.CorrectAnswer}" 
+                FontAttributes="Bold" HorizontalOptions="Center"/>
+            <Entry Grid.Column="1" Grid.Row="2"
+                Text="{Binding CurrentQuestion.Bad1}"
+                HorizontalOptions="Center"/>
+            <Entry Grid.Column="0" Grid.Row="3"
+                Text="{Binding CurrentQuestion.Bad2}"
+                HorizontalOptions="Center"/>
+            <Entry Grid.Column="1" Grid.Row="3"
+                Text="{Binding CurrentQuestion.Bad3}"
+                HorizontalOptions="Center"/>
+            <Button Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2"
+                Text="Submit"
+                HorizontalOptions="Center"
+                Command="{Binding SubmitCommand}"/>
+        </Grid>
     </VerticalStackLayout>
 </ContentPage>
