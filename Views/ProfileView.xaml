@@ -5,9 +5,28 @@
              Title="ProfileView"
               Shell.FlyoutBehavior="Flyout">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Grid Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="Start" RowSpacing="30">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Grid.Row="0"
+                   Text="{Binding CurrentUser.Name}" HorizontalOptions="Center"
+                   FontAttributes="Bold"/>
+            <Label Grid.Column="0" Grid.Row="1"
+                   Text="{Binding CurrentUser.Email}" 
+                   FontAttributes="Bold" HorizontalOptions="Center"/>
+            <Label Grid.Column="0" Grid.Row="2"
+                   Text="{Binding CurrentUser.Password}" 
+                   FontAttributes="Bold" HorizontalOptions="Center"/>
+            <Label Grid.Column="0" Grid.Row="3"
+                   Text="{Binding CurrentUser.AddedQuestions}"
+                   HorizontalOptions="Center"/>
+        </Grid>
     </VerticalStackLayout>
 </ContentPage>
