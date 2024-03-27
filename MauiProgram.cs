@@ -32,6 +32,7 @@ public static class MauiProgram
     {
         builder.Services.AddSingleton<LoginView> ();
         builder.Services.AddSingleton<SignUpView>();
+        builder.Services.AddSingleton<AppShell>();
         builder.Services.AddSingleton<GameView>();
 
 

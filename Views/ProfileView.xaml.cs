@@ -2,11 +2,11 @@ namespace TriviaAppClean.Views;
 
 public partial class ProfileView : ContentPage
 {
-	public ProfileView(ProfileView vm)
+	public ProfileView()
 	{
 		InitializeComponent();
 
-        this.BindingContext = vm;
+        
 
     }
 }
