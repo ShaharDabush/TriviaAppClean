@@ -11,6 +11,10 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -18,15 +22,52 @@
             <Label Grid.Column="0" Grid.Row="0"
                    Text="{Binding CurrentUser.Name}" HorizontalOptions="Center"
                    FontAttributes="Bold"/>
+            
             <Label Grid.Column="0" Grid.Row="1"
                    Text="{Binding CurrentUser.Email}" 
                    FontAttributes="Bold" HorizontalOptions="Center"/>
+            
             <Label Grid.Column="0" Grid.Row="2"
                    Text="{Binding CurrentUser.Password}" 
                    FontAttributes="Bold" HorizontalOptions="Center"/>
+            
             <Label Grid.Column="0" Grid.Row="3"
                    Text="{Binding CurrentUser.AddedQuestions}"
                    HorizontalOptions="Center"/>
+            
+            <Entry Grid.Column="0" Grid.Row="4"
+                Placeholder="enter new email"
+                Text="{Binding NewEmail}"
+                HorizontalOptions="Center"/>
+            
+            <Button Grid.Column="1" Grid.Row="4"
+                Text="change email"
+                Command="{Binding ChangeCommand}"
+                CommandParameter="email"
+            />
+            
+            <Entry Grid.Column="0" Grid.Row="5"
+                Placeholder="enter new password"
+                Text="{Binding NewPass}"
+                HorizontalOptions="Center"/>
+
+            <Button Grid.Column="1" Grid.Row="5"
+                Text="change password"
+                Command="{Binding ChangeCommand}"
+                CommandParameter="pass"
+                />
+
+            <Entry Grid.Column="0" Grid.Row="6"
+                Placeholder="enter new nickname"
+                Text="{Binding NewName}"
+                HorizontalOptions="Center"/>
+
+            <Button Grid.Column="1" Grid.Row="6"
+                Text="change name"
+                Command="{Binding ChangeCommand}"
+                CommandParameter="name"
+                />
         </Grid>
+        
     </VerticalStackLayout>
 </ContentPage>
