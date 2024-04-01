@@ -10,11 +10,11 @@ using TriviaAppClean.Views;
 
 namespace TriviaAppClean.ViewModels
 {
-    internal class LeaderboardViewModle:ViewModelBase
+    public class LeaderboardViewModel:ViewModelBase
     {
         private TriviaWebAPIProxy triviaService;
         private Task<List<User>> leaderboardUsers;
-        public LeaderboardViewModle(TriviaWebAPIProxy triviaService)
+        public LeaderboardViewModel(TriviaWebAPIProxy triviaService)
         {
            this.triviaService = triviaService;
             this.LeaderboardUsers = GetListAsync();

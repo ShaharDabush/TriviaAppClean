@@ -1,3 +1,5 @@
+using TriviaAppClean.ViewModels;
+
 namespace TriviaAppClean.Views;
 
 public partial class AddQuestionView : ContentPage

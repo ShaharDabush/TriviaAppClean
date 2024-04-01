@@ -1,10 +1,9 @@
 using TriviaAppClean.ViewModels;
-
 namespace TriviaAppClean.Views;
 
-public partial class GameRegularView : ContentPage
+public partial class CheckpendingQuestionView : ContentPage
 {
-	public GameRegularView(GameRegularViewModel vm)
+	public CheckpendingQuestionView(CheckpendingQuestionViewModel vm)
 	{
 		InitializeComponent();
 
