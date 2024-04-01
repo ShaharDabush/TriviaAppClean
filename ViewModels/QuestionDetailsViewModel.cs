@@ -71,20 +71,20 @@ namespace TriviaAppClean.ViewModels
         private int id;
         public int Id
         {
-            get { return Id; }
+            get { return id; }
             set
             {
-                Id = value;
+                id = value;
                 OnPropertyChanged();
             }
         }
         private int status;
         public int Status
         {
-            get { return Status; }
+            get { return status; }
             set
             {
-                Status = value;
+                status = value;
                 OnPropertyChanged();
             }
         }
