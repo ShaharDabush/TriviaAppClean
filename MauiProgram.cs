@@ -38,7 +38,7 @@ public static class MauiProgram
 
 
         builder.Services.AddTransient<AddQuestionView>();
-        builder.Services.AddTransient<CheckDependingQuestionView>();
+        builder.Services.AddTransient<CheckpendingQuestionView>();
         builder.Services.AddTransient<GameRegularView>();
         builder.Services.AddTransient<GameWithTimeView>();
         builder.Services.AddTransient<LeaderboardView>();
@@ -60,7 +60,7 @@ public static class MauiProgram
         builder.Services.AddSingleton<LoginViewModel>();
         builder.Services.AddSingleton<SignUpViewModel>();
         builder.Services.AddSingleton<AddQuestionViewModel>();
-        builder.Services.AddSingleton<CheckDependingQuestionViewModel>();
+        builder.Services.AddSingleton<CheckpendingQuestionViewModel>();
         builder.Services.AddSingleton<GameViewModel>();
         builder.Services.AddSingleton<GameRegularViewModel>();
         builder.Services.AddSingleton<GameWithTimeViewModel>();
