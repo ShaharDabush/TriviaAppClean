@@ -64,7 +64,7 @@ namespace TriviaAppClean.ViewModels
             }
         }
 
-        public ICommand ChangeCommand => new Command(OnChangeCommand);
+      //  public ICommand ChangeCommand => new Command(OnChangeCommand);
 
 
 
