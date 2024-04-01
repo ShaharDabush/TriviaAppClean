@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using TriviaAppClean.Services;
 using TriviaAppClean.Models;
 using TriviaAppClean.Views;
+using Kotlin.Properties;
+using System.Collections.ObjectModel;
+using System.Diagnostics.Metrics;
 //using static Android.Content.ClipData;
 
 namespace TriviaAppClean.ViewModels
@@ -13,7 +16,7 @@ namespace TriviaAppClean.ViewModels
     public class LeaderboardViewModel:ViewModelBase
     {
         private TriviaWebAPIProxy triviaService;
-        private Task<List<User>> leaderboardUsers;
+        private Task<ObservableCollection<User>> leaderboardUsers;
         public LeaderboardViewModel(TriviaWebAPIProxy triviaService)
         {
            this.triviaService = triviaService;
@@ -21,7 +24,7 @@ namespace TriviaAppClean.ViewModels
            //LeaderboardUsers = triviaService.GetAllUsers();
            // var OrderedUsers = LeaderboardUsers.toList().OrderBy(x => x.Age).ThenBy(x => x.Salary).ToList();
         }
-        public Task<List<User>> LeaderboardUsers
+        public Task<ObservableCollection<User>> LeaderboardUsers
         {
             get { return this.leaderboardUsers; }
             set
@@ -51,11 +54,12 @@ namespace TriviaAppClean.ViewModels
                 OnPropertyChanged();
             }
         }
-        public async Task<List<User>> GetListAsync()
+        public async Task<ObservableCollection<User>> GetListAsync()
         {
-            List<User> list = await Task.Run(() => triviaService.GetAllUsers());
-            var OrderedUsers = list.OrderBy(x => x.Questions).ThenBy(x => x.Questions).ToList();
-            return OrderedUsers;
+            List<User> list = await triviaService.GetAllUsers();
+            var OrderedUsers = list.OrderBy(x => x.Questions).ToList();
+            ObservableCollection<User> obs = new ObservableCollection<User>(OrderedUsers);
+            return obs;
         }
 
 
