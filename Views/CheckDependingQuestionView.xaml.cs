@@ -1,3 +1,4 @@
+using TriviaAppClean.ViewModels;
 namespace TriviaAppClean.Views;
 
 public partial class CheckDependingQuestionView : ContentPage
