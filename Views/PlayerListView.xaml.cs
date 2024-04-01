@@ -2,7 +2,7 @@ namespace TriviaAppClean.Views;
 
 public partial class PlayerListView : ContentPage
 {
-	public PlayerListView(PlayerListView vm)
+	public PlayerListView(PlayerListViewModel vm)
 	{
 		InitializeComponent();
 

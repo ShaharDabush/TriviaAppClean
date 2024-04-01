@@ -2,7 +2,7 @@ namespace TriviaAppClean.Views;
 
 public partial class GameWithTimeView : ContentPage
 {
-	public GameWithTimeView(GameWithTimeView vm)
+	public GameWithTimeView(GameWithTimeViewModel vm)
 	{
 		InitializeComponent();
 

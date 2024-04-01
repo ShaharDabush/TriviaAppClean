@@ -2,7 +2,7 @@ namespace TriviaAppClean.Views;
 
 public partial class GameView : ContentPage
 {
-	public GameView(GameView vm)
+	public GameView(GameViewModel vm)
 	{
 		InitializeComponent();
 		this.BindingContext = vm;

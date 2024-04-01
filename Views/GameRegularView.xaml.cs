@@ -2,7 +2,7 @@ namespace TriviaAppClean.Views;
 
 public partial class GameRegularView : ContentPage
 {
-	public GameRegularView(GameRegularView vm)
+	public GameRegularView(GameRegularViewModel vm)
 	{
 		InitializeComponent();
 

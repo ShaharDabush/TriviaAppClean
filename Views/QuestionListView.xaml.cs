@@ -2,7 +2,7 @@ namespace TriviaAppClean.Views;
 
 public partial class QuestionListView : ContentPage
 {
-	public QuestionListView(QuestionListView vm)
+	public QuestionListView(QuestionListViewModel vm)
 	{
 		InitializeComponent();
 

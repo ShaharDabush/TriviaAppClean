@@ -1,8 +1,10 @@
+using TriviaAppClean.ViewModels;
+
 namespace TriviaAppClean.Views;
 
 public partial class LeaderboardView : ContentPage
 {
-	public LeaderboardView(LeaderboardView vm)
+	public LeaderboardView(LeaderboardViewModel vm)
 	{
 		InitializeComponent();
 
