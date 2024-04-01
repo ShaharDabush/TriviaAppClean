@@ -28,7 +28,7 @@
           Route="AddQuestion" />
         <ShellContent
           Title="{Binding FlyoutTitleName}" Icon="{Binding FlyoutIcon}"
-          ContentTemplate="{DataTemplate views:CheckDependingQuestionView}"
+          ContentTemplate="{DataTemplate views:CheckPendingQuestionView}"
           Route="CheckDependquestion" />
     </FlyoutItem>
     <FlyoutItem x:Name="AdminItems" FlyoutDisplayOptions="AsMultipleItems" Route="tabs" Title="AdminItems" IsVisible="False">

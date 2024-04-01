@@ -63,7 +63,7 @@
 
 	<ItemGroup>
 	  <Compile Update="Views\CheckpendingQuestionView.xaml.cs">
-	    <DependentUpon>CheckpendingQuestionView.xaml</DependentUpon>
+	    <DependentUpon>CheckPendingQuestionView.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Views\SignUpView.xaml.cs">
 	    <DependentUpon>SignUpView.xaml</DependentUpon>
@@ -74,7 +74,7 @@
 	  <MauiXaml Update="Views\AddQuestionView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\CheckpendingQuestionView.xaml">
+	  <MauiXaml Update="Views\CheckPendingQuestionView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ConnectingToServerView.xaml">
