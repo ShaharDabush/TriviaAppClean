@@ -8,7 +8,7 @@ using TriviaAppClean.Models;
 namespace TriviaAppClean.ViewModels
 {
     [QueryProperty(nameof(selctedQuestion), "selctedQuestion")]
-    internal class QuestionListViewModel : ViewModelBase
+    public class QuestionListViewModel : ViewModelBase
     {
         private List<AmericanQuestion> questions;
         public List<AmericanQuestion> Questions
