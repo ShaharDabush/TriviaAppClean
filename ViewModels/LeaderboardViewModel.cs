@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using TriviaAppClean.Services;
 using TriviaAppClean.Models;
 using TriviaAppClean.Views;
-using Kotlin.Properties;
 using System.Collections.ObjectModel;
 using System.Diagnostics.Metrics;
 //using static Android.Content.ClipData;
