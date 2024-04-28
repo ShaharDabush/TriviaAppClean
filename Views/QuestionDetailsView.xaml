@@ -4,10 +4,33 @@
              x:Class="TriviaAppClean.Views.QuestionDetailsView"
              Title="QuestionDetailsView">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
+        <Entry 
+            Text="{Binding QText}"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-        <Entry/>
+        <Label
+            Text="{Binding Bad1}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Start" />
+        <Label
+     Text="{Binding Bad2}"
+     VerticalOptions="Center" 
+     HorizontalOptions="Start" />
+        <Label
+     Text="{Binding Bad3}"
+     VerticalOptions="Center" 
+     HorizontalOptions="Start" />
+        <Label
+     Text="{Binding CorrectAnswer}"
+     VerticalOptions="Center" 
+     HorizontalOptions="Start" />
+        <Label
+Text="{Binding UserId}"
+VerticalOptions="Center" 
+HorizontalOptions="Start" />
+        <Label
+Text="{Binding QuestionId}"
+VerticalOptions="Center" 
+HorizontalOptions="Start" />
     </VerticalStackLayout>
 </ContentPage>

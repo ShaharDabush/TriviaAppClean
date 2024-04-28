@@ -21,7 +21,7 @@ namespace TriviaAppClean.ViewModels
         private string correctAnswer;
         public string CorrectAnswer
         {
-            get { return correctAnswer; }
+            get { return correctAnswer+"(correct)"; }
             set
             {
                 correctAnswer = value;
@@ -31,7 +31,7 @@ namespace TriviaAppClean.ViewModels
         private string bad1;
         public string Bad1
         {
-            get { return bad1; }
+            get { return bad1+"(wrong)"; }
             set
             {
                 bad1 = value;
@@ -41,7 +41,7 @@ namespace TriviaAppClean.ViewModels
         private string bad2;
         public string Bad2
         {
-            get { return bad2; }
+            get { return bad2 + "(wrong)"; }
             set
             {
                 bad2 = value;
@@ -51,7 +51,7 @@ namespace TriviaAppClean.ViewModels
         private string bad3;
         public string Bad3
         {
-            get { return bad3; }
+            get { return bad3 + "(wrong)"; }
             set
             {
                 bad3 = value;
@@ -59,32 +59,22 @@ namespace TriviaAppClean.ViewModels
             }
         }
         private int userId;
-        public int UserId
+        public string UserId
         {
-            get { return userId; }
+            get { return "User ID:"+userId; }
             set
             {
-                userId = value;
+                userId = int.Parse(value);
                 OnPropertyChanged();
             }
         }
         private int id;
-        public int Id
+        public string Id
         {
-            get { return id; }
+            get { return "Question ID:"+id; }
             set
             {
-                id = value;
-                OnPropertyChanged();
-            }
-        }
-        private int status;
-        public int Status
-        {
-            get { return status; }
-            set
-            {
-                status = value;
+                id = int.Parse(value);
                 OnPropertyChanged();
             }
         }
