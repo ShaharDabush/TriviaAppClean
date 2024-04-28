@@ -39,8 +39,8 @@ namespace TriviaAppClean.ViewModels
                 AddedQuestion.Status = 0;
 
                 await _proxy.PostNewQuestion(AddedQuestion);
-            }                
-            //need to exit to another page here
+            }
+            await Shell.Current.Navigation.PopAsync();
         }
     }
 }
