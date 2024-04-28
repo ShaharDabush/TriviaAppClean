@@ -53,7 +53,6 @@
 	  <None Remove="Resources\Images\leaderboard_icon.png" />
 	  <None Remove="Resources\Images\list_icon.png" />
 	  <None Remove="Resources\Images\lock_icon.png" />
-	  <None Remove="Resources\Images\profile_icon.png" />
 	  <None Remove="Resources\Images\question_mark_icon.png" />
 	</ItemGroup>
 

@@ -30,13 +30,12 @@ public static class MauiProgram
 
     public static MauiAppBuilder RegisterPages(this MauiAppBuilder builder)
     {
-        builder.Services.AddSingleton<LoginView> ();
-        builder.Services.AddSingleton<SignUpView>();
         builder.Services.AddSingleton<AppShell>();
         builder.Services.AddSingleton<GameView>();
 
 
-     
+        builder.Services.AddTransient<LoginView>();
+        builder.Services.AddTransient<SignUpView>();
         builder.Services.AddTransient<AddQuestionView>();
         builder.Services.AddTransient<CheckPendingQuestionView>();
         builder.Services.AddTransient<GameRegularView>();

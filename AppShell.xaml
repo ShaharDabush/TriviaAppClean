@@ -8,7 +8,7 @@
 
     <FlyoutItem x:Name="PlayerItems" FlyoutDisplayOptions="AsMultipleItems" Route="tabs" Title="PlayerItems" >
         <ShellContent
-          Title="Profile" Icon="profile_icon.png"
+          Title="Profile" Icon="Profile_icon_new.png"
           ContentTemplate="{DataTemplate views:ProfileView}"
           Route="Profile" />
         <ShellContent
@@ -43,8 +43,9 @@
           Route="Question" />
     </FlyoutItem>
     <MenuItem
-        Command="{Binding Logout}"
-        IconImageSource="help.png"
+        BindingContext="{Application}"
+        Command="{Binding LogoutCommand}"
+        IconImageSource="logout_icon.png"
         StyleClass=""
         Text="Log out" />
 </Shell>
