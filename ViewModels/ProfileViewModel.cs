@@ -119,24 +119,20 @@ namespace TriviaAppClean.ViewModels
             List<User> users = await triviaService.GetAllUsers();
             switch (param)
             {
-                case "email":
+                case "email"://change email and check if the same one already esit
                     foreach (User user in users)
                     {
                         if (user.Email == this.newEmail)
                         {
                             emailExist = true;
+                            await Shell.Current.DisplayAlert("Email", $"Email change failed! A user in the system already uses this mail", "ok");
+                            return;
                         }
                     }
                     currentUser.Email = this.newEmail;
+                    await Shell.Current.DisplayAlert("Email", $"Email change succeeded! reload the page to loke at your new profile", "ok");
                     break;
-                case "pass":
-                    foreach (User user in users)
-                    {
-                        if (user.Password == this.newPass)
-                        {
-                            passExist = true;
-                        }
-                    }
+                case "pass"://change password
                     currentUser.Password = this.newPass;
                     break;
                 case "name":
