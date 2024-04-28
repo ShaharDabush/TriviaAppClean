@@ -92,7 +92,7 @@ namespace TriviaAppClean.ViewModels
         }
         private bool ValidatePassword(string pass)
         {
-            return pass != null || pass.Length > 8; // need to inclode one letter  
+            return pass.Length > 8 && pass.Any(x => char.IsLetter(x)) ; // need to inclode one letter
         }
         #endregion
         async void OnChangeCommand(object param)
@@ -126,9 +126,14 @@ namespace TriviaAppClean.ViewModels
                     }
                     currentUser.Password = this.newPass;
                     break;
-                case "name":
+                case "name"://change name
                     foreach (User user in users)
                     {
+                        if (NewName == null)
+                        {
+                            await Shell.Current.DisplayAlert("Name", $"Name change failed! the name cannot be empty", "ok");
+                            return;
+                        }
                         if (user.Name == this.NewName)
                         {
                             await Shell.Current.DisplayAlert("Name", $"Name change failed! The name already exist please chose a different name", "ok");
