@@ -21,14 +21,14 @@
           Route="Leaderboard" />
     </FlyoutItem>
     <FlyoutItem x:Name="MasterItems" FlyoutDisplayOptions="AsMultipleItems" Route="tabs" Title="MasterItems"  IsEnabled="{Binding IsFlyoutEnabled}">
-       <!-- normally no icon but if locked a locked icon-->
+        <!-- normally no icon but if locked a locked icon-->
         <ShellContent
           Title="{Binding FlyoutTitleName}" Icon="{Binding FlyoutIcon }"
           ContentTemplate="{DataTemplate views:AddQuestionView}"
           Route="AddQuestion" />
         <ShellContent
           Title="{Binding FlyoutTitleName}" Icon="{Binding FlyoutIcon}"
-          ContentTemplate="{DataTemplate views:CheckPendingQuestionView}"
+          ContentTemplate="{DataTemplate views:QuestionListView}"
           Route="CheckDependquestion" />
     </FlyoutItem>
     <FlyoutItem x:Name="AdminItems" FlyoutDisplayOptions="AsMultipleItems" Route="tabs" Title="AdminItems" IsVisible="False">
