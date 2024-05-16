@@ -33,10 +33,19 @@ namespace TriviaAppClean.ViewModels
             {
                 var navParam = new Dictionary<string, object>()
                 {
-                    { "selectedMonkey",SelectedQuestion }
+                    { "selectedQuestion",SelectedQuestion }
                 };
-                await Shell.Current.GoToAsync($"monkeyDetails", navParam);
+                await Shell.Current.GoToAsync($"QuestionDetailsView", navParam);
                 SelectedQuestion = null;
+            }
+        }
+        public ICommand DeleteCommand => new Command<AmericanQuestion>(RemoveQuestion);
+
+        public void RemoveQuestion(AmericanQuestion americanQuestion)
+        {
+            if (Questions.Contains(americanQuestion))
+            {
+                Questions.Remove(americanQuestion);
             }
         }
     }
