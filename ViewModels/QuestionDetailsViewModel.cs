@@ -3,11 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TriviaAppClean.Models;
 
 namespace TriviaAppClean.ViewModels
 {
     public class QuestionDetailsViewModel:ViewModelBase
     {
+        private AmericanQuestion currentQuestion;
+        public AmericanQuestion CurrentQuestion
+        {
+            get { return currentQuestion; }
+            set
+            {
+                currentQuestion = value;
+                OnPropertyChanged();
+            }
+        }
         private string qText;
         public string QText 
         { 
