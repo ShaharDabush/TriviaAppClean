@@ -17,7 +17,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"
-            Text="Add a Question and an answer!!!!!!" HorizontalOptions="Center"
+            Text="You can edit this question" HorizontalOptions="Center"
             FontAttributes="Bold"/>
             <Entry Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
             Text="{Binding CurrentQuestion.QText}" 
@@ -34,10 +34,6 @@
             <Entry Grid.Column="1" Grid.Row="3"
             Text="{Binding CurrentQuestion.Bad3}"
             HorizontalOptions="Center"/>
-            <Button Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2"
-            Text="Submit"
-            HorizontalOptions="Center"
-            Command="{Binding SubmitCommand}"/>
         </Grid>
     </VerticalStackLayout>
 </ContentPage>

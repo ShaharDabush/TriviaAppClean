@@ -33,9 +33,9 @@ namespace TriviaAppClean.ViewModels
             {
                 var navParam = new Dictionary<string, object>()
                 {
-                    { "selectedMonkey",SelectedQuestion }
+                    { "selectedQuestion",SelectedQuestion }
                 };
-                await Shell.Current.GoToAsync($"monkeyDetails", navParam);
+                await Shell.Current.GoToAsync($"QuestionDetailsView", navParam);
                 SelectedQuestion = null;
             }
         }
