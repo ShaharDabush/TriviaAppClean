@@ -14,12 +14,9 @@ public partial class App : Application
 		LoggedInUser = null;
 		InitializeComponent();
 		Login = v;
-        this.LogoutCommand = new Command(Logout);
+
+
         MainPage = new NavigationPage(v);
     }
-    public ICommand LogoutCommand { get; set; }
-    private void Logout()
-    {
-        MainPage = new NavigationPage(Login);
-    }
+
 }

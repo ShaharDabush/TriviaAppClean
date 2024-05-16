@@ -1,5 +1,4 @@
-﻿using Java.Lang;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -28,6 +27,7 @@ namespace TriviaAppClean.ViewModels
         public ICommand SubmitCommand { get; set; }
         public AddQuestionViewModel()
         {
+            _proxy = new TriviaWebAPIProxy();
             addedQuestion = new AmericanQuestion();
             SubmitCommand = new Command(OnSubmitting);
         }

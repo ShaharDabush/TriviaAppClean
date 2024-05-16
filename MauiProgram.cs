@@ -56,6 +56,7 @@ public static class MauiProgram
     }
     public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder builder)
     {
+        builder.Services.AddSingleton<ShellViewModel>();
         builder.Services.AddSingleton<LoginViewModel>();
         builder.Services.AddSingleton<SignUpViewModel>();
         builder.Services.AddSingleton<AddQuestionViewModel>();

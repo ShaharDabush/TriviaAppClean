@@ -49,12 +49,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\add.png" />
 	  <None Remove="Resources\Images\game_icon.png" />
-	  <None Remove="Resources\Images\leaderboard_icon.png" />
 	  <None Remove="Resources\Images\list_icon.png" />
 	  <None Remove="Resources\Images\lock_icon.png" />
+	  <None Remove="Resources\Images\pending.png" />
 	  <None Remove="Resources\Images\question_mark_icon.png" />
 	  <None Remove="Resources\Images\trash_can.png" />
+	  <None Remove="Resources\Images\trophy.png" />
 	</ItemGroup>
 
 	<ItemGroup>

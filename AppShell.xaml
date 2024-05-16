@@ -8,7 +8,7 @@
 
     <FlyoutItem x:Name="PlayerItems" FlyoutDisplayOptions="AsMultipleItems" Route="tabs" Title="PlayerItems" >
         <ShellContent
-          Title="Profile" Icon="Profile_icon_new.png"
+          Title="Profile" Icon="Profile_icon.png"
           ContentTemplate="{DataTemplate views:ProfileView}"
           Route="Profile" />
         <ShellContent
@@ -16,22 +16,22 @@
           ContentTemplate="{DataTemplate views:GameView}"
           Route="Game" />
         <ShellContent
-          Title="Leaderboard" Icon="leaderboard_icon.png"
+          Title="Leaderboard" Icon="trophy.png"
           ContentTemplate="{DataTemplate views:LeaderboardView}"
           Route="Leaderboard" />
     </FlyoutItem>
-    <FlyoutItem x:Name="MasterItems" FlyoutDisplayOptions="AsMultipleItems" Route="tabs" Title="MasterItems"  IsEnabled="{Binding IsFlyoutEnabled}">
+    <FlyoutItem x:Name="MasterItems" FlyoutDisplayOptions="AsMultipleItems" Route="tabs" Title="MasterItems"  IsVisible="{Binding IsMaster}">
         <!-- normally no icon but if locked a locked icon-->
         <ShellContent
-          Title="{Binding FlyoutTitleName}" Icon="{Binding FlyoutIcon }"
+          Title="Add Question" Icon="add.png"
           ContentTemplate="{DataTemplate views:AddQuestionView}"
           Route="AddQuestion" />
         <ShellContent
-          Title="{Binding FlyoutTitleName}" Icon="{Binding FlyoutIcon}"
+          Title="Check Pending Questions" Icon="pending.png"
           ContentTemplate="{DataTemplate views:QuestionListView}"
-          Route="CheckDependquestion" />
+          Route="CheckPendingQuestions" />
     </FlyoutItem>
-    <FlyoutItem x:Name="AdminItems" FlyoutDisplayOptions="AsMultipleItems" Route="tabs" Title="AdminItems" IsVisible="False">
+    <FlyoutItem x:Name="AdminItems" FlyoutDisplayOptions="AsMultipleItems" Route="tabs" Title="AdminItems" IsVisible="{Binding IsAdmin}">
         <!--Not Sure about the icon-->
         <ShellContent
           Title="PlayerList" Icon="list_icon.png"
@@ -43,7 +43,7 @@
           Route="Question" />
     </FlyoutItem>
     <MenuItem
-        BindingContext="{Application}"
+        
         Command="{Binding LogoutCommand}"
         IconImageSource="logout_icon.png"
         StyleClass=""
