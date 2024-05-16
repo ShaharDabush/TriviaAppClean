@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Java.Lang;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -24,8 +25,15 @@ namespace TriviaAppClean.ViewModels
                 OnPropertyChanged("AddedQuestion");
             }
         }
+        public ICommand SubmitCommand { get; set; }
+        public AddQuestionViewModel()
+        {
+            addedQuestion = new AmericanQuestion();
+            SubmitCommand = new Command(OnSubmitting);
+        }
+       
 
-        public ICommand SubmitCommand => new Command(OnSubmitting);
+        
 
         async void OnSubmitting()
         {
@@ -40,7 +48,7 @@ namespace TriviaAppClean.ViewModels
 
                 await _proxy.PostNewQuestion(AddedQuestion);
             }
-            await Shell.Current.Navigation.PopAsync();
+
         }
     }
 }
