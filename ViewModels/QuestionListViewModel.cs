@@ -39,5 +39,14 @@ namespace TriviaAppClean.ViewModels
                 SelectedQuestion = null;
             }
         }
+        public ICommand DeleteCommand => new Command<AmericanQuestion>(RemoveQuestion);
+
+        public void RemoveQuestion(AmericanQuestion americanQuestion)
+        {
+            if (Questions.Contains(americanQuestion))
+            {
+                Questions.Remove(americanQuestion);
+            }
+        }
     }
 }
