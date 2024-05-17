@@ -97,7 +97,7 @@ namespace TriviaAppClean.Services
                     Questions q = JsonSerializer.Deserialize<Questions>(content, options);
                     if (q == null)
                         return null;
-                    else return q.questions[r.Next(0, q.questions.Count + 1)];
+                    else return q.questions[r.Next(0, q.questions.Count)];
                 }
                 else
                 {

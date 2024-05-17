@@ -9,6 +9,6 @@
             Text="Play"
             VerticalOptions="Center" 
             HorizontalOptions="Center" 
-            Command="{Binding SwichRanks}"/>
+            Command="{Binding PlayCommand}"/>
     </VerticalStackLayout>
 </ContentPage>
