@@ -7,7 +7,7 @@
     <VerticalStackLayout>
         <Entry Placeholder="Search by question text" Text="{Binding Query}"></Entry>
         <Button Text="Search" Command="{Binding SortCommand}"></Button>
-        <Button Text="Clear search" Command="{Binding GetMonkeyCommand}"></Button>
+        <Button Text="Clear search" Command="{Binding ClearSortCommand}"></Button>
 
         <CollectionView  ItemsSource="{Binding Questions}" ItemsLayout="VerticalList" x:Name="theCollectionView"
                      SelectedItem="{Binding SelectedQuestion}"
