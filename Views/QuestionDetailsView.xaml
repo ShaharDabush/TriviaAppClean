@@ -53,11 +53,6 @@
             <Entry Grid.Column="3" Grid.Row="3"
           Text="{Binding CurrentQuestion.Bad3}"
           HorizontalOptions="Center"/>
-
-            <Button Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="4"
-          Text="Submit"
-          HorizontalOptions="Center"
-          Command="{Binding SubmitCommand}"/>
         </Grid>
         <Label Style="{StaticResource LabelStyle}"
             Text="{Binding Status}"
