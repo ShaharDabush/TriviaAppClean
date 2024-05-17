@@ -5,9 +5,41 @@
              Title="CheckPendingQuestionView"
              Shell.FlyoutBehavior="Flyout">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Red"></ActivityIndicator>
+        <CollectionView  ItemsSource="{Binding Questions}" ItemsLayout="VerticalList" x:Name="theCollectionView"
+                 SelectedItem="{Binding SelectedQuestion}"
+                 SelectionMode="Single" SelectionChangedCommand="{Binding SingleSelectCommand}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView>
+                        <SwipeView.LeftItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Delete"
+                                       IconImageSource="trash_can.png"
+                                       BackgroundColor="LightPink"
+                                       Command="{Binding Source={x:Reference theCollectionView}, Path=BindingContext.DeleteCommand}"
+                                       CommandParameter= "{Binding DeleteCommand}" />
+                            </SwipeItems>
+                        </SwipeView.LeftItems>
+                        <Grid Padding="20" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"
+                       Text="{Binding UserId}"
+                        FontAttributes="Bold"/>
+                            <Label Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"
+                       Text="{Binding QText}"
+                        FontAttributes="Bold"/>
+                        </Grid>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </VerticalStackLayout>
 </ContentPage>
