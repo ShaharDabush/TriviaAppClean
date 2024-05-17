@@ -4,33 +4,36 @@
              x:Class="TriviaAppClean.Views.QuestionDetailsView"
              Title="QuestionDetailsView">
     <VerticalStackLayout>
-        <Entry 
-            Text="{Binding QText}"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-        <Label
-            Text="{Binding Bad1}"
-            VerticalOptions="Center" 
-            HorizontalOptions="Start" />
-        <Label
-     Text="{Binding Bad2}"
-     VerticalOptions="Center" 
-     HorizontalOptions="Start" />
-        <Label
-     Text="{Binding Bad3}"
-     VerticalOptions="Center" 
-     HorizontalOptions="Start" />
-        <Label
-     Text="{Binding CorrectAnswer}"
-     VerticalOptions="Center" 
-     HorizontalOptions="Start" />
-        <Label
-Text="{Binding UserId}"
-VerticalOptions="Center" 
-HorizontalOptions="Start" />
-        <Label
-Text="{Binding QuestionId}"
-VerticalOptions="Center" 
-HorizontalOptions="Start" />
+        <Grid Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="Start" RowSpacing="30">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"
+            Text="You can edit this question" HorizontalOptions="Center"
+            FontAttributes="Bold"/>
+            <Entry Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
+            Text="{Binding CurrentQuestion.QText}" 
+            FontAttributes="Bold" HorizontalOptions="Center"/>
+            <Entry Grid.Column="0" Grid.Row="2"
+            Text="{Binding CurrentQuestion.CorrectAnswer}" 
+            FontAttributes="Bold" HorizontalOptions="Center"/>
+            <Entry Grid.Column="1" Grid.Row="2"
+            Text="{Binding CurrentQuestion.Bad1}"
+            HorizontalOptions="Center"/>
+            <Entry Grid.Column="0" Grid.Row="3"
+            Text="{Binding CurrentQuestion.Bad2}"
+            HorizontalOptions="Center"/>
+            <Entry Grid.Column="1" Grid.Row="3"
+            Text="{Binding CurrentQuestion.Bad3}"
+            HorizontalOptions="Center"/>
+        </Grid>
     </VerticalStackLayout>
 </ContentPage>

@@ -16,6 +16,7 @@
             VerticalOptions="Center" 
             HorizontalOptions="Center"/>
         <Entry
+          IsPassword="True"
           Text="{Binding Pass}"
           />
         <Button Text="Submit Login" Command="{Binding LoginCommand}" IsEnabled="{Binding NotInServerCall}"></Button>

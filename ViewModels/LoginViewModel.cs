@@ -16,11 +16,10 @@ namespace TriviaAppClean.ViewModels
         private TriviaWebAPIProxy triviaService;
         private SignUpView signupView;
         private AppShell appShellView;
-        public LoginViewModel(TriviaWebAPIProxy service,SignUpView signUp,AppShell appShell) 
+        public LoginViewModel(TriviaWebAPIProxy service,SignUpView signUp) 
         {
             InServerCall = false;
             this.signupView = signUp;
-            this.appShellView = appShell;
             this.triviaService = service;
             this.LoginCommand = new Command(OnLogin);
             this.SignUpCommand = new Command(GoToSignUp);
@@ -47,7 +46,8 @@ namespace TriviaAppClean.ViewModels
             else
             {
                 await Application.Current.MainPage.DisplayAlert("Login", $"Login Succeed!", "ok");
-                 Application.Current.MainPage = this.appShellView;
+                u = null;
+                 Application.Current.MainPage = new AppShell(new ShellViewModel());
 
             }
         }

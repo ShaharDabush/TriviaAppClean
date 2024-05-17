@@ -1,18 +1,20 @@
 ﻿using TriviaAppClean.Views;
 using System.Windows.Input;
-
+using System;
+using TriviaAppClean.ViewModels;
 namespace TriviaAppClean;
 
 public partial class AppShell : Shell
 {
-	public AppShell()
+    public AppShell(ShellViewModel vm)
 	{
-		this.BindingContext = this;
+		
 		InitializeComponent();
-		RegisterRoutes();
-	}
-
-	private void RegisterRoutes()
+        this.BindingContext = vm;
+        RegisterRoutes();
+    }
+    
+    private void RegisterRoutes()
 	{
         Routing.RegisterRoute("connectingToServer", typeof(ConnectingToServerView));
     }
