@@ -56,8 +56,8 @@ namespace TriviaAppClean.ViewModels
         }
         private async void GoToSignUp()
         {
-            
             await App.Current.MainPage.Navigation.PushAsync(signupView);
+
         }
         private string pass;
         public string Pass
