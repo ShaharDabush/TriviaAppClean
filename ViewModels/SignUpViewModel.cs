@@ -244,7 +244,7 @@ namespace TriviaAppClean.ViewModels
                 u.Email = this.Email;
                 u.Password = this.Password;
                 u.Name = this.Name;
-                u.Rank = 1;
+                u.Rank = 0;
                 u.Score = 0;
                 if (await this.triviaService.RegisterUser(u))
                 {
