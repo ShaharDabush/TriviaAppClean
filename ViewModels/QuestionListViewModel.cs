@@ -26,7 +26,6 @@ namespace TriviaAppClean.ViewModels
             set { selectedQuestion = value; OnPropertyChanged(); }
         }
         public ICommand SingleSelectCommand => new Command(OnSingleSelectQuestion);
-
         async void OnSingleSelectQuestion()
         {
             if (SelectedQuestion != null)
