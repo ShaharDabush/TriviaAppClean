@@ -46,6 +46,7 @@ public static class MauiProgram
         builder.Services.AddTransient<QuestionListView>();
         builder.Services.AddTransient<QuestionDetailsView>();
         builder.Services.AddTransient<PendingQuestionDetailsView>();
+        builder.Services.AddTransient<PlayerDetailsView>();
 
         return builder;
     }
