@@ -6,7 +6,7 @@
              Shell.FlyoutBehavior="Flyout">
     <VerticalStackLayout>
         <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Red"></ActivityIndicator>
-        <CollectionView  ItemsSource="{Binding Questions}" ItemsLayout="VerticalList" x:Name="theCollectionView"
+        <CollectionView  ItemsSource="{Binding Questions}" HeightRequest="800" ItemsLayout="VerticalList" x:Name="theCollectionView"
                  SelectedItem="{Binding SelectedQuestion}"
                  SelectionMode="Single" SelectionChangedCommand="{Binding SingleSelectCommand}">
             <CollectionView.ItemTemplate>
