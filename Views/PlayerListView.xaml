@@ -4,11 +4,11 @@
              x:Class="TriviaAppClean.Views.PlayerListView"
              Title="PlayerListView">
     <VerticalStackLayout>
-        <Entry Placeholder="Search by question text" Text="{Binding Query}"></Entry>
+        <Entry Placeholder="Search by player name" Text="{Binding Name}"></Entry>
         <Button Text="Search" Command="{Binding SortCommand}"></Button>
         <Button Text="Clear search" Command="{Binding ClearSortCommand}"></Button>
         <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Red"></ActivityIndicator>
-        <CollectionView  ItemsSource="{Binding Users}" ItemsLayout="VerticalList" x:Name="theCollectionView"
+        <CollectionView  ItemsSource="{Binding Users}" HeightRequest="800" ItemsLayout="VerticalList" x:Name="theCollectionView"
                      SelectedItem="{Binding SelectedUser}"
                      SelectionMode="Single" SelectionChangedCommand="{Binding SingleSelectCommand}">
             <CollectionView.ItemTemplate>

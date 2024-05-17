@@ -32,7 +32,7 @@
                            Text="Score"
                             FontAttributes="Bold"/>
         </Grid>
-        <CollectionView  ItemsSource="{Binding LeaderboardUsers}" ItemsLayout="VerticalList" x:Name="theCollectionView" SelectionMode="Single" >
+        <CollectionView  ItemsSource="{Binding LeaderboardUsers}" HeightRequest="800" ItemsLayout="VerticalList" x:Name="theCollectionView" SelectionMode="Single" >
             <CollectionView.ItemTemplate>
             <DataTemplate>
                     <Border 
@@ -67,5 +67,6 @@
                 </DataTemplate>
         </CollectionView.ItemTemplate>
        </CollectionView>
-   </VerticalStackLayout>
+
+    </VerticalStackLayout>
 </ContentPage>
