@@ -19,5 +19,7 @@ public partial class AppShell : Shell
         Routing.RegisterRoute("connectingToServer", typeof(ConnectingToServerView));
         Routing.RegisterRoute("QuestionDetailsView", typeof(QuestionDetailsView));
         Routing.RegisterRoute("PendingQuestionDetailsView", typeof(PendingQuestionDetailsView));
+        Routing.RegisterRoute("QuestionDetailsView", typeof(QuestionDetailsView));
+
     }
 }
