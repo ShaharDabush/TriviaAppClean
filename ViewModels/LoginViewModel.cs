@@ -47,7 +47,10 @@ namespace TriviaAppClean.ViewModels
             {
                 await Application.Current.MainPage.DisplayAlert("Login", $"Login Succeed!", "ok");
                 u = null;
-                 Application.Current.MainPage = new AppShell(new ShellViewModel());
+                Mail = "";
+                Pass = "";
+
+                Application.Current.MainPage = new AppShell(new ShellViewModel());
 
             }
         }
