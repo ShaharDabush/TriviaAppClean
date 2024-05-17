@@ -98,7 +98,7 @@ namespace TriviaAppClean.ViewModels
         }
         private void ValidatePassword()
         {
-            this.ShowPasswordError = (Password == null) || Password.Length < 8 || Password.Any(x => char.IsLetter(x)); // need to inclode one letter  
+            this.ShowPasswordError = (Password == null) || Password.Length < 8 || !Password.Any(x => char.IsLetter(x)); // need to inclode one letter  
         }
         #endregion
         #region Email
@@ -248,17 +248,17 @@ namespace TriviaAppClean.ViewModels
                 u.Score = 0;
                 if (await this.triviaService.RegisterUser(u))
                 {
-                    await App.Current.MainPage.DisplayAlert("Save deta", "your deta is saved", "אישור", FlowDirection.RightToLeft);
+                    await App.Current.MainPage.DisplayAlert("Save data", "your data is saved", "אישור", FlowDirection.RightToLeft);
                     await App.Current.MainPage.Navigation.PopAsync();
                 }
                 else
                 {
-                    await App.Current.MainPage.DisplayAlert("Save deta", "there is a problem with your deta", "אישור", FlowDirection.RightToLeft);
+                    await App.Current.MainPage.DisplayAlert("Save data", "there is a problem with your data", "אישור", FlowDirection.RightToLeft);
                 }
             }
             else
             {
-                await App.Current.MainPage.DisplayAlert("Save deta", "there is a problem with your deta", "אישור", FlowDirection.RightToLeft);
+                await App.Current.MainPage.DisplayAlert("Save data", "there is a problem with your data", "אישור", FlowDirection.RightToLeft);
             }
                 
         }

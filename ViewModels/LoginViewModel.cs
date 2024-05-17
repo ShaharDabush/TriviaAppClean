@@ -15,7 +15,6 @@ namespace TriviaAppClean.ViewModels
     {
         private TriviaWebAPIProxy triviaService;
         private SignUpView signupView;
-        private AppShell appShellView;
         public LoginViewModel(TriviaWebAPIProxy service,SignUpView signUp) 
         {
             InServerCall = false;
@@ -50,6 +49,7 @@ namespace TriviaAppClean.ViewModels
                 Mail = "";
                 Pass = "";
 
+
                 Application.Current.MainPage = new AppShell(new ShellViewModel());
 
             }
@@ -57,6 +57,7 @@ namespace TriviaAppClean.ViewModels
         private async void GoToSignUp()
         {
             await App.Current.MainPage.Navigation.PushAsync(signupView);
+
         }
         private string pass;
         public string Pass
