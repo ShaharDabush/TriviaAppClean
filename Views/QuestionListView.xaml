@@ -17,11 +17,11 @@
                 <SwipeView>
                     <SwipeView.LeftItems>
                         <SwipeItems>
-                            <SwipeItem Text="Delete"
+                            <SwipeItem Text="Dismiss"
                                            IconImageSource="trash_can.png"
                                            BackgroundColor="LightPink"
-                                           Command="{Binding Source={x:Reference theCollectionView}, Path=BindingContext.DeleteCommand}"
-                                           CommandParameter= "{Binding DeleteCommand}" />
+                                           Command="{Binding Source={x:Reference theCollectionView}, Path=BindingContext.DismissCommand}"
+                                           CommandParameter= "{Binding DismissCommand}" />
                         </SwipeItems>
                     </SwipeView.LeftItems>
                     <Grid Padding="20" HorizontalOptions="FillAndExpand" VerticalOptions="Start">

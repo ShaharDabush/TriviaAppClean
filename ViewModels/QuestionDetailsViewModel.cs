@@ -26,8 +26,20 @@ namespace TriviaAppClean.ViewModels
         public QuestionDetailsViewModel()
         {
             service = new TriviaWebAPIProxy();
+            switch(currentQuestion.Status)
+            {
+                case 0:
+                    status = "Pending";
+                    break;
+                case 1:
+                    status = "Approved";
+                    break;
+                case 2:
+                    status = "Dismissed";
+                    break;
+            }
         }
-        ICommand UpdateComannd => new Command(UpdateQuestion);
+        public ICommand UpdateCommand => new Command(UpdateQuestion);
         public async void UpdateQuestion()
         {
             inServerCall = true;
@@ -62,6 +74,16 @@ namespace TriviaAppClean.ViewModels
             get
             {
                 return !this.InServerCall;
+            }
+        }
+        private string status;
+        public string Status
+        {
+            get { return status; }
+            set
+            {
+                status = value;
+                OnPropertyChanged();
             }
         }
         //private string qText;
@@ -124,15 +146,6 @@ namespace TriviaAppClean.ViewModels
         //        OnPropertyChanged();
         //    }
         //}
-        //private int id;
-        //public string Id
-        //{
-        //    get { return "Question ID:"+id; }
-        //    set
-        //    {
-        //        id = int.Parse(value);
-        //        OnPropertyChanged();
-        //    }
-        //}
+
     }
 }

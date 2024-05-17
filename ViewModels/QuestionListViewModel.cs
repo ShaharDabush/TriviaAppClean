@@ -72,15 +72,8 @@ namespace TriviaAppClean.ViewModels
         public void Sort()
         {
             GetQuestionsAsync();
-            ObservableCollection<AmericanQuestion> temp = new ObservableCollection<AmericanQuestion>();
-            foreach (AmericanQuestion question in Questions)
-            {
-                if (question.QText.Contains(query))
-                {
-                    temp.Add(question);
-                }
-            }
-            Questions = temp;
+            List<AmericanQuestion> temp = Questions.Where(q => q.QText.Contains(query)).ToList();            
+            Questions = new ObservableCollection<AmericanQuestion>(temp);
         }
         public ICommand ClearSortCommand => new Command(GetQuestionsAsync);
 
@@ -97,6 +90,21 @@ namespace TriviaAppClean.ViewModels
                 OnPropertyChanged();
             }
         }
-
+        public ICommand DismissCommand => new Command(DismissQuestion);
+        public async void DismissQuestion()
+        {
+            SelectedQuestion.Status = 2;
+            inServerCall = true;
+            bool b = await _proxy.UpdateQuestion(SelectedQuestion);
+            inServerCall = false;
+            if (!b)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "Try again later", "ok");
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Dismissed", "Question dismissed", "ok");
+            }
+        }
     }
 }
