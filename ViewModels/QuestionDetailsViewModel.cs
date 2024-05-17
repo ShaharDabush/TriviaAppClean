@@ -37,6 +37,9 @@ namespace TriviaAppClean.ViewModels
                 case 2:
                     status = "Dismissed";
                     break;
+                default:
+                    status = "Dismissed";
+                    break;
             }
         }
         public ICommand UpdateCommand => new Command(UpdateQuestion);
