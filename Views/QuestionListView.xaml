@@ -4,7 +4,9 @@
              x:Class="TriviaAppClean.Views.QuestionListView"
              Title="QuestionListView"
               Shell.FlyoutBehavior="Flyout">
-    <CollectionView  ItemsSource="{Binding Questions}" ItemsLayout="VerticalList" x:Name="theCollectionView" >
+    <CollectionView  ItemsSource="{Binding Questions}" ItemsLayout="VerticalList" x:Name="theCollectionView"
+                     SelectedItem="{Binding SelectedQuestion}"
+                     SelectionMode="Single" SelectionChangedCommand="{Binding SingleSelectCommand}">
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <SwipeView>
