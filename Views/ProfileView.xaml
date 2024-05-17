@@ -24,13 +24,13 @@
                    FontAttributes="Bold"/>
             
             <Label Grid.Column="0" Grid.Row="1"
-                   Text="{Binding CurrentUser.Email}" 
+                   Text="{Binding CurrentUser.Email}" Style="{StaticResource LabelStyle}"
                    FontAttributes="Bold" HorizontalOptions="Center"/> 
             <Label Grid.Column="0" Grid.Row="2"
-                   Text="{Binding CurrentUser.Password}" 
+                   Text="{Binding CurrentUser.Password}" Style="{StaticResource LabelStyle}"
                    FontAttributes="Bold" HorizontalOptions="Center"/>
-            
-            <Label Grid.Column="0" Grid.Row="3"
+
+            <Label Grid.Column="0" Grid.Row="3" Style="{StaticResource LabelStyle}"
                    Text="{Binding CurrentUser.AddedQuestions}"
                    HorizontalOptions="Center"/>
             
