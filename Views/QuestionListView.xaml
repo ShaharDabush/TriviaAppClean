@@ -4,7 +4,12 @@
              x:Class="TriviaAppClean.Views.QuestionListView"
              Title="QuestionListView"
               Shell.FlyoutBehavior="Flyout">
-    <CollectionView  ItemsSource="{Binding Questions}" ItemsLayout="VerticalList" x:Name="theCollectionView"
+    <VerticalStackLayout>
+        <Entry Placeholder="Search by question text" Text="{Binding Query}"></Entry>
+        <Button Text="Search" Command="{Binding SortCommand}"></Button>
+        <Button Text="Clear search" Command="{Binding GetMonkeyCommand}"></Button>
+
+        <CollectionView  ItemsSource="{Binding Questions}" ItemsLayout="VerticalList" x:Name="theCollectionView"
                      SelectedItem="{Binding SelectedQuestion}"
                      SelectionMode="Single" SelectionChangedCommand="{Binding SingleSelectCommand}">
         <CollectionView.ItemTemplate>
@@ -39,4 +44,5 @@
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>
+    </VerticalStackLayout>
 </ContentPage>

@@ -7,7 +7,7 @@ using TriviaAppClean.Models;
 
 namespace TriviaAppClean.ViewModels
 {
-    [QueryProperty(nameof(CurrentQuestion), "selctedQuestion")]
+    [QueryProperty(nameof(CurrentQuestion), "selectedQuestion")]
     public class QuestionDetailsViewModel:ViewModelBase
     {
         private AmericanQuestion currentQuestion;
