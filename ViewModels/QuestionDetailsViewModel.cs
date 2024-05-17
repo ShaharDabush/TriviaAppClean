@@ -26,7 +26,7 @@ namespace TriviaAppClean.ViewModels
         public QuestionDetailsViewModel()
         {
             service = new TriviaWebAPIProxy();
-            switch(currentQuestion.Status)
+            switch(CurrentQuestion.Status)
             {
                 case 0:
                     status = "Pending";
