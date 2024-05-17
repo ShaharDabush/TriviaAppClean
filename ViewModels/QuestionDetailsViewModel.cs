@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,23 +22,13 @@ namespace TriviaAppClean.ViewModels
             {
                 currentQuestion = value;
                 OnPropertyChanged();
+                UpdateStatus();
             }
         }
         public QuestionDetailsViewModel()
         {
             service = new TriviaWebAPIProxy();
-            switch(currentQuestion.Status)
-            {
-                case 0:
-                    status = "Pending";
-                    break;
-                case 1:
-                    status = "Approved";
-                    break;
-                case 2:
-                    status = "Dismissed";
-                    break;
-            }
+           
         }
         public ICommand UpdateCommand => new Command(UpdateQuestion);
         public async void UpdateQuestion()
@@ -84,6 +75,21 @@ namespace TriviaAppClean.ViewModels
             {
                 status = value;
                 OnPropertyChanged();
+            }
+        }
+        public void UpdateStatus()
+        {
+            switch (CurrentQuestion.Status)
+            {
+                case 0:
+                    status = "Pending";
+                    break;
+                case 1:
+                    status = "Approved";
+                    break;
+                case 2:
+                    status = "Dismissed";
+                    break;
             }
         }
         //private string qText;

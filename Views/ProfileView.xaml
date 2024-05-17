@@ -18,6 +18,7 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Grid.Row="0"
                    Text="{Binding CurrentUser.Name}" HorizontalOptions="Center" Style="{StaticResource LabelStyle}"

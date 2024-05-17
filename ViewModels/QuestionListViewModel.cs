@@ -50,16 +50,7 @@ namespace TriviaAppClean.ViewModels
                 await Shell.Current.GoToAsync($"QuestionDetailsView", navParam);
                 SelectedQuestion = null;
             }
-        }
-        public ICommand DeleteCommand => new Command<AmericanQuestion>(RemoveQuestion);
-
-        public void RemoveQuestion(AmericanQuestion americanQuestion)
-        {
-            if (Questions.Contains(americanQuestion))
-            {
-                Questions.Remove(americanQuestion);
-            }
-        }
+        }       
        
         public async void GetQuestionsAsync()
         {
@@ -90,12 +81,12 @@ namespace TriviaAppClean.ViewModels
                 OnPropertyChanged();
             }
         }
-        public ICommand DismissCommand => new Command(DismissQuestion);
-        public async void DismissQuestion()
+        public ICommand DismissCommand => new Command<AmericanQuestion>(DismissQuestion);
+        public async void DismissQuestion(AmericanQuestion currentQuestion)
         {
-            SelectedQuestion.Status = 2;
+            currentQuestion.Status = 2;
             inServerCall = true;
-            bool b = await _proxy.UpdateQuestion(SelectedQuestion);
+            bool b = await _proxy.UpdateQuestion(currentQuestion);
             inServerCall = false;
             if (!b)
             {
