@@ -169,6 +169,7 @@ namespace TriviaAppClean.ViewModels
             else
             {
                 await Shell.Current.DisplayAlert("UpdateUser", $"Update seccesful! please open the profile page again to see your new details!", "ok");
+                CurrentUser = (((App)Application.Current).LoggedInUser);
             }
 
         }
