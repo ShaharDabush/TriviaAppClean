@@ -5,22 +5,22 @@
              Title="LoginView">
     <VerticalStackLayout VerticalOptions="Center">
         <Label 
-            Text="Enter mail here:" Style="{StaticResource LabelStyle}"
+            Text="Enter mail here:"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
         <Entry
             Text="{Binding Mail}"
             />
         <Label 
-            Text="Enter password here:" Style="{StaticResource LabelStyle}"
+            Text="Enter password here:"
             VerticalOptions="Center" 
             HorizontalOptions="Center"/>
         <Entry
           IsPassword="True"
           Text="{Binding Pass}"
           />
-        <Button Text="Submit Login" Command="{Binding LoginCommand}" IsEnabled="{Binding NotInServerCall}" Style="{StaticResource ButtonStyle}"></Button>
-        <Button Text="Sign Up" Command="{Binding SignUpCommand}" Style="{StaticResource ButtonStyle}"></Button>
+        <Button Text="Submit Login" Command="{Binding LoginCommand}" IsEnabled="{Binding NotInServerCall}"></Button>
+        <Button Text="Sign Up" Command="{Binding SignUpCommand}" ></Button>
         <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Red"></ActivityIndicator> 
     </VerticalStackLayout>
 </ContentPage>

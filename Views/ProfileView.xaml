@@ -20,18 +20,18 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Grid.Row="0"
+            <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"
                    Text="{Binding CurrentUser.Name}" HorizontalOptions="Center" Style="{StaticResource LabelStyle}"
                    FontAttributes="Bold"/>
-            
-            <Label Grid.Column="0" Grid.Row="1"
+
+            <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
                    Text="{Binding CurrentUser.Email}" Style="{StaticResource LabelStyle}"
-                   FontAttributes="Bold" HorizontalOptions="Center"/> 
-            <Label Grid.Column="0" Grid.Row="2"
+                   FontAttributes="Bold" HorizontalOptions="Center"/>
+            <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"
                    Text="{Binding CurrentUser.Password}" Style="{StaticResource LabelStyle}"
                    FontAttributes="Bold" HorizontalOptions="Center"/>
 
-            <Label Grid.Column="0" Grid.Row="3" Style="{StaticResource LabelStyle}"
+            <Label Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource LabelStyle}"
                    Text="{Binding CurrentUser.AddedQuestions}"
                    HorizontalOptions="Center"/>
             
@@ -39,8 +39,8 @@
                 Placeholder="enter new email"
                 Text="{Binding NewEmail}"
                 HorizontalOptions="Center"/>
-
-            <Button Grid.Column="1" Grid.Row="4" Style="{StaticResource ButtonStyle}"
+            
+            <Button Grid.Column="1" Grid.Row="4"
                 Text="change email"
                 Command="{Binding ChangeCommand}"
                 CommandParameter="email"
@@ -51,18 +51,18 @@
                 Text="{Binding NewPass}"
                 HorizontalOptions="Center"/>
 
-            <Button Grid.Column="1" Grid.Row="5" Style="{StaticResource ButtonStyle}"
+            <Button Grid.Column="1" Grid.Row="5"
                 Text="change password"
                 Command="{Binding ChangeCommand}"
                 CommandParameter="pass"
                 />
 
-            <Entry Grid.Column="0" Grid.Row="6" 
+            <Entry Grid.Column="0" Grid.Row="6"
                 Placeholder="enter new nickname"
                 Text="{Binding NewName}"
                 HorizontalOptions="Center"/>
 
-            <Button Grid.Column="1" Grid.Row="6" Style="{StaticResource ButtonStyle}"
+            <Button Grid.Column="1" Grid.Row="6"
                 Text="change name"
                 Command="{Binding ChangeCommand}"
                 CommandParameter="name"
