@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TriviaAppClean.Models;
+using TriviaAppClean.Services;
 
 namespace TriviaAppClean.ViewModels
 {
     [QueryProperty(nameof(CurrentQuestion), "selectedQuestion")]
     public class QuestionDetailsViewModel:ViewModelBase
     {
+        TriviaWebAPIProxy service;
         private AmericanQuestion currentQuestion;
         public AmericanQuestion CurrentQuestion
         {
@@ -18,6 +20,46 @@ namespace TriviaAppClean.ViewModels
             {
                 currentQuestion = value;
                 OnPropertyChanged();
+            }
+        }
+        public QuestionDetailsViewModel()
+        {
+            service = new TriviaWebAPIProxy();
+        }
+        public async void UpdateQuestion()
+        {
+            inServerCall = true;
+          bool b = await service.UpdateQuestion(CurrentQuestion);
+            inServerCall = false;
+            if (b)
+            {
+                await Application.Current.MainPage.DisplayAlert("Update", "Update Failed!", "ok");
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Update", $"Update Succeed!", "ok");               
+            }
+        }
+        private bool inServerCall;
+        public bool InServerCall
+        {
+            get
+            {
+                return this.inServerCall;
+            }
+            set
+            {
+                this.inServerCall = value;
+                OnPropertyChanged("NotInServerCall");
+                OnPropertyChanged("InServerCall");
+            }
+        }
+
+        public bool NotInServerCall
+        {
+            get
+            {
+                return !this.InServerCall;
             }
         }
         //private string qText;

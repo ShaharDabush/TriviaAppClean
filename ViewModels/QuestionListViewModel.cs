@@ -63,8 +63,10 @@ namespace TriviaAppClean.ViewModels
        
         public async void GetQuestionsAsync()
         {
+            inServerCall = true;
             List<AmericanQuestion> qs = await _proxy.GetAllQuestions();
             Questions = new ObservableCollection<AmericanQuestion>(qs);
+            inServerCall = false;
         }
         public ICommand SortCommand => new Command(Sort);
         public void Sort()
@@ -82,6 +84,26 @@ namespace TriviaAppClean.ViewModels
         }
         public ICommand ClearSortCommand => new Command(GetQuestionsAsync);
 
-
+        private bool inServerCall;
+        public bool InServerCall
+        {
+            get
+            {
+                return this.inServerCall;
+            }
+            set
+            {
+                this.inServerCall = value;
+                OnPropertyChanged("NotInServerCall");
+                OnPropertyChanged("InServerCall");
+            }
+        }
+        public bool NotInServerCall
+        {
+            get
+            {
+                return !this.InServerCall;
+            }
+        }
     }
 }

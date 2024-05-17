@@ -8,7 +8,7 @@
         <Entry Placeholder="Search by question text" Text="{Binding Query}"></Entry>
         <Button Text="Search" Command="{Binding SortCommand}"></Button>
         <Button Text="Clear search" Command="{Binding ClearSortCommand}"></Button>
-
+        <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Red"></ActivityIndicator>
         <CollectionView  ItemsSource="{Binding Questions}" ItemsLayout="VerticalList" x:Name="theCollectionView"
                      SelectedItem="{Binding SelectedQuestion}"
                      SelectionMode="Single" SelectionChangedCommand="{Binding SingleSelectCommand}">
