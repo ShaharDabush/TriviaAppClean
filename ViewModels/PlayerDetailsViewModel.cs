@@ -15,8 +15,8 @@ namespace TriviaAppClean.ViewModels
     public class PlayerDetailsViewModel: ViewModelBase
     {
         TriviaWebAPIProxy service;
-        private AmericanQuestion currentUser;
-        public AmericanQuestion CurrentUser
+        private User currentUser;
+        public User CurrentUser
         {
             get { return currentUser; }
             set
