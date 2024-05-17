@@ -1,18 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using TriviaAppClean.Models;
+using TriviaAppClean.Services;
 
 namespace TriviaAppClean.ViewModels
-{
-    [QueryProperty(nameof(selectedQuestion), "selctedQuestion")]
+{    
     public class QuestionListViewModel : ViewModelBase
     {
-        private List<AmericanQuestion> questions;
-        public List<AmericanQuestion> Questions
+        private TriviaWebAPIProxy _proxy;
+        private ObservableCollection<AmericanQuestion> questions;
+        public ObservableCollection<AmericanQuestion> Questions
         {
             get { return questions; }
             set { questions = value;
@@ -46,6 +48,17 @@ namespace TriviaAppClean.ViewModels
             {
                 Questions.Remove(americanQuestion);
             }
+        }
+        public QuestionListViewModel()
+        {
+            GetQuestionsAsync();
+        }
+
+
+        public async void GetQuestionsAsync()
+        {
+            List<AmericanQuestion> qs = await _proxy.GetAllQuestions();
+            questions = new ObservableCollection<AmericanQuestion>(qs);
         }
     }
 }
