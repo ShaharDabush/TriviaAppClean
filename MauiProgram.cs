@@ -70,7 +70,7 @@ public static class MauiProgram
         builder.Services.AddSingleton<ProfileViewModel>();
         builder.Services.AddSingleton<QuestionListViewModel>();
         builder.Services.AddSingleton<QuestionDetailsViewModel>();
-        builder.Services.AddSingleton<QuestionDetailsViewModel>();
+        builder.Services.AddSingleton<PendingQuestionDetailsViewModel>();
 
         return builder;
     }
