@@ -9,7 +9,7 @@
         <Button Text="Clear search" Command="{Binding ClearSortCommand}"></Button>
         <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Red"></ActivityIndicator>
         <CollectionView  ItemsSource="{Binding Users}" ItemsLayout="VerticalList" x:Name="theCollectionView"
-                     SelectedItem="{Binding SelectedQuestion}"
+                     SelectedItem="{Binding SelectedUser}"
                      SelectionMode="Single" SelectionChangedCommand="{Binding SingleSelectCommand}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
@@ -23,7 +23,7 @@
                                            CommandParameter= "{Binding}" />
                             </SwipeItems>
                         </SwipeView.LeftItems>
-                        <Grid Padding="20" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                        <Grid Padding="20" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Style="{StaticResource GridStyle}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="*" />
