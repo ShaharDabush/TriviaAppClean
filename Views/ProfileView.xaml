@@ -39,8 +39,8 @@
                 Placeholder="enter new email"
                 Text="{Binding NewEmail}"
                 HorizontalOptions="Center"/>
-
-            <Button Grid.Column="1" Grid.Row="4" Style="{StaticResource ButtonStyle}"
+            
+            <Button Grid.Column="1" Grid.Row="4"
                 Text="change email"
                 Command="{Binding ChangeCommand}"
                 CommandParameter="email"
@@ -51,18 +51,18 @@
                 Text="{Binding NewPass}"
                 HorizontalOptions="Center"/>
 
-            <Button Grid.Column="1" Grid.Row="5" Style="{StaticResource ButtonStyle}"
+            <Button Grid.Column="1" Grid.Row="5"
                 Text="change password"
                 Command="{Binding ChangeCommand}"
                 CommandParameter="pass"
                 />
 
-            <Entry Grid.Column="0" Grid.Row="6" 
+            <Entry Grid.Column="0" Grid.Row="6"
                 Placeholder="enter new nickname"
                 Text="{Binding NewName}"
                 HorizontalOptions="Center"/>
 
-            <Button Grid.Column="1" Grid.Row="6" Style="{StaticResource ButtonStyle}"
+            <Button Grid.Column="1" Grid.Row="6"
                 Text="change name"
                 Command="{Binding ChangeCommand}"
                 CommandParameter="name"

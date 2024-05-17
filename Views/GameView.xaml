@@ -7,7 +7,7 @@
     <VerticalStackLayout>
         <Button
             Text="Play"
-            VerticalOptions="Center" Style="{StaticResource ButtonStyle}"
+            VerticalOptions="Center" 
             HorizontalOptions="Center" 
             Command="{Binding PlayCommand}"/>
     </VerticalStackLayout>
