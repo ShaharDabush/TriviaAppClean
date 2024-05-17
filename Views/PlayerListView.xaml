@@ -4,9 +4,44 @@
              x:Class="TriviaAppClean.Views.PlayerListView"
              Title="PlayerListView">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Entry Placeholder="Search by question text" Text="{Binding Query}"></Entry>
+        <Button Text="Search" Command="{Binding SortCommand}"></Button>
+        <Button Text="Clear search" Command="{Binding ClearSortCommand}"></Button>
+        <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Red"></ActivityIndicator>
+        <CollectionView  ItemsSource="{Binding Users}" ItemsLayout="VerticalList" x:Name="theCollectionView"
+                     SelectedItem="{Binding SelectedQuestion}"
+                     SelectionMode="Single" SelectionChangedCommand="{Binding SingleSelectCommand}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView>
+                        <SwipeView.LeftItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Dismiss"
+                                           IconImageSource="trash_can.png"
+                                           BackgroundColor="LightPink"
+                                           Command="{Binding Source={x:Reference theCollectionView}, Path=BindingContext.DismissCommand}"
+                                           CommandParameter= "{Binding}" />
+                            </SwipeItems>
+                        </SwipeView.LeftItems>
+                        <Grid Padding="20" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource LabelStyle}"
+                           Text="{Binding UserId}"
+                            FontAttributes="Bold"/>
+                            <Label Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource LabelStyle}"
+                           Text="{Binding Name}"
+                            FontAttributes="Bold"/>
+                        </Grid>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </VerticalStackLayout>
 </ContentPage>
