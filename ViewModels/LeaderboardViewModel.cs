@@ -50,7 +50,7 @@ namespace TriviaAppClean.ViewModels
         private string questionsAdded;
         public string QuestionsAdded
         {
-            get { return LeaderboardUsers.q }
+            get { return questionsAdded; }
             set
             {
                 this.questionsAdded = value;
@@ -60,8 +60,8 @@ namespace TriviaAppClean.ViewModels
         public async void GetListAsync()
         {
             List<User> list = await triviaService.GetAllUsers();
-            var OrderedUsers = list.OrderBy(x => x.Questions).ToList();
-            LeaderboardUsers = new ObservableCollection<User>(OrderedUsers);
+            list = list.OrderBy(x => x.Questions.Count).ToList();
+            LeaderboardUsers = new ObservableCollection<User>(list);
 
         }
       
