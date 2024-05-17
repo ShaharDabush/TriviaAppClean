@@ -19,43 +19,43 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4"
+            <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" Style="{StaticResource LabelStyle}"
                 Text="Add a Question and an answer!!!!!!" HorizontalOptions="Center"
                 FontAttributes="Bold"/>
             <Entry Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4"
                 Text="{Binding AddedQuestion.QText}" 
                 FontAttributes="Bold" HorizontalOptions="Center"/>
-            
-            <Label Grid.Column="0" Grid.Row="2"
+
+            <Label Grid.Column="0" Grid.Row="2" Style="{StaticResource LabelStyle}"
                 Text="Currect answer" 
                 FontAttributes="Bold" HorizontalOptions="Center"  
                 />
             <Entry Grid.Column="1" Grid.Row="2"
                 Text="{Binding AddedQuestion.CorrectAnswer}" 
                 FontAttributes="Bold" HorizontalOptions="Center"/>
-            <Label Grid.Column="2" Grid.Row="2"
+            <Label Grid.Column="2" Grid.Row="2" Style="{StaticResource LabelStyle}"
                 Text="wrong answer" 
                 FontAttributes="Bold" HorizontalOptions="Center"  
             />
             <Entry Grid.Column="3" Grid.Row="2"
                 Text="{Binding AddedQuestion.Bad1}"
                 HorizontalOptions="Center"/>
-            <Label Grid.Column="0" Grid.Row="3"
+            <Label Grid.Column="0" Grid.Row="3" Style="{StaticResource LabelStyle}"
                 Text="wrong answer" 
                 FontAttributes="Bold" HorizontalOptions="Center"  
             />
             <Entry Grid.Column="1" Grid.Row="3"
                 Text="{Binding AddedQuestion.Bad2}"
                 HorizontalOptions="Center"/>
-            <Label Grid.Column="2" Grid.Row="3"
+            <Label Grid.Column="2" Grid.Row="3" Style="{StaticResource LabelStyle}"
                 Text="wrong answer" 
                 FontAttributes="Bold" HorizontalOptions="Center"  
               />
             <Entry Grid.Column="3" Grid.Row="3"
                 Text="{Binding AddedQuestion.Bad3}"
                 HorizontalOptions="Center"/>
-            
-            <Button Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="4"
+
+            <Button Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="4" Style="{StaticResource ButtonStyle}"
                 Text="Submit"
                 HorizontalOptions="Center"
                 Command="{Binding SubmitCommand}"/>

@@ -21,7 +21,7 @@
                                            IconImageSource="trash_can.png"
                                            BackgroundColor="LightPink"
                                            Command="{Binding Source={x:Reference theCollectionView}, Path=BindingContext.DismissCommand}"
-                                           CommandParameter= "{Binding DismissCommand}" />
+                                           CommandParameter= "{Binding}" />
                         </SwipeItems>
                     </SwipeView.LeftItems>
                     <Grid Padding="20" HorizontalOptions="FillAndExpand" VerticalOptions="Start">

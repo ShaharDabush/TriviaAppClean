@@ -16,27 +16,27 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"
+            <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource LabelStyle}"
     Text="You can edit this question" HorizontalOptions="Center"
     FontAttributes="Bold"/>
-            <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
+            <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource LabelStyle}"
     Text="{Binding CurrentQuestion.QText}" 
     FontAttributes="Bold" HorizontalOptions="Center"/>
-            <Label Grid.Column="0" Grid.Row="2"
+            <Label Grid.Column="0" Grid.Row="2" Style="{StaticResource LabelStyle}"
     Text="{Binding CurrentQuestion.CorrectAnswer}" 
     FontAttributes="Bold" HorizontalOptions="Center"/>
-            <Label Grid.Column="1" Grid.Row="2"
+            <Label Grid.Column="1" Grid.Row="2" Style="{StaticResource LabelStyle}"
     Text="{Binding CurrentQuestion.Bad1}"
     HorizontalOptions="Center"/>
-            <Label Grid.Column="0" Grid.Row="3"
+            <Label Grid.Column="0" Grid.Row="3" Style="{StaticResource LabelStyle}"
     Text="{Binding CurrentQuestion.Bad2}"
     HorizontalOptions="Center"/>
-            <Label Grid.Column="1" Grid.Row="3"
+            <Label Grid.Column="1" Grid.Row="3" Style="{StaticResource LabelStyle}"
     Text="{Binding CurrentQuestion.Bad3}"
     HorizontalOptions="Center"/>
         </Grid>
-        <Button Text="approve" Command="{Binding ApproveCommand}"></Button>
-        <Button Text="dismiss" Command="{Binding DismissCommand}"></Button>
+        <Button Text="approve" Command="{Binding ApproveCommand}" Style="{StaticResource ButtonStyle}"></Button>
+        <Button Text="dismiss" Command="{Binding DismissCommand}" Style="{StaticResource ButtonStyle}"></Button>
         <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Red"></ActivityIndicator>
     </VerticalStackLayout>
 </ContentPage>
