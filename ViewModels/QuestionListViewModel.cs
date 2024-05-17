@@ -81,12 +81,12 @@ namespace TriviaAppClean.ViewModels
                 OnPropertyChanged();
             }
         }
-        public ICommand DismissCommand => new Command(DismissQuestion);
-        public async void DismissQuestion()
+        public ICommand DismissCommand => new Command<AmericanQuestion>(DismissQuestion);
+        public async void DismissQuestion(AmericanQuestion currentQuestion)
         {
-            SelectedQuestion.Status = 2;
+            currentQuestion.Status = 2;
             inServerCall = true;
-            bool b = await _proxy.UpdateQuestion(SelectedQuestion);
+            bool b = await _proxy.UpdateQuestion(currentQuestion);
             inServerCall = false;
             if (!b)
             {
