@@ -5,12 +5,6 @@
              Title="LeaderboardView"
               Shell.FlyoutBehavior="Flyout">
     <VerticalStackLayout>
-        <Label
-            Text="{Binding Name}"
-            />
-        <!--<Image
-            Source=""
-            />-->
         <CollectionView  ItemsSource="{Binding LeaderboardUsers}" ItemsLayout="VerticalList" x:Name="theCollectionView" SelectionMode="Single" >
             <CollectionView.ItemTemplate>
             <DataTemplate>

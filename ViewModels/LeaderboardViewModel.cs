@@ -15,15 +15,8 @@ namespace TriviaAppClean.ViewModels
     public class LeaderboardViewModel:ViewModelBase
     {
         private TriviaWebAPIProxy triviaService;
-        private Task<ObservableCollection<User>> leaderboardUsers;
-        public LeaderboardViewModel(TriviaWebAPIProxy triviaService)
-        {
-           this.triviaService = triviaService;
-            this.LeaderboardUsers = GetListAsync();
-           //LeaderboardUsers = triviaService.GetAllUsers();
-           // var OrderedUsers = LeaderboardUsers.toList().OrderBy(x => x.Age).ThenBy(x => x.Salary).ToList();
-        }
-        public Task<ObservableCollection<User>> LeaderboardUsers
+        private ObservableCollection<User> leaderboardUsers;
+        public ObservableCollection<User> LeaderboardUsers
         {
             get { return this.leaderboardUsers; }
             set
@@ -32,6 +25,14 @@ namespace TriviaAppClean.ViewModels
                 OnPropertyChanged();
             }
         }
+        public LeaderboardViewModel(TriviaWebAPIProxy triviaService)
+        {
+           this.triviaService = triviaService;
+           GetListAsync();
+           //LeaderboardUsers = triviaService.GetAllUsers();
+           // var OrderedUsers = LeaderboardUsers.toList().OrderBy(x => x.Age).ThenBy(x => x.Salary).ToList();
+        }
+        
 
         private string name;
         public string Name
@@ -53,12 +54,12 @@ namespace TriviaAppClean.ViewModels
                 OnPropertyChanged();
             }
         }
-        public async Task<ObservableCollection<User>> GetListAsync()
+        public async void GetListAsync()
         {
             List<User> list = await triviaService.GetAllUsers();
             var OrderedUsers = list.OrderBy(x => x.Questions).ToList();
-            ObservableCollection<User> obs = new ObservableCollection<User>(OrderedUsers);
-            return obs;
+            LeaderboardUsers = new ObservableCollection<User>(OrderedUsers);
+
         }
 
 
