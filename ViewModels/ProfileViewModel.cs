@@ -114,7 +114,7 @@ namespace TriviaAppClean.ViewModels
                             return;
                         }
                     }
-                    currentUser.Email = this.newEmail;
+                    CurrentUser.Email = this.newEmail;
                     await Shell.Current.DisplayAlert("Email", $"Email change succeeded! reload the page to loke at your new profile", "ok");
                     break;
 
@@ -124,7 +124,7 @@ namespace TriviaAppClean.ViewModels
                         await Shell.Current.DisplayAlert("Password", $"Password change failed! the password must be 8 letters log and include at least 1 letter", "ok");
                         return;
                     }
-                    currentUser.Password = this.newPass;
+                    CurrentUser.Password = this.newPass;
                     break;
                 case "name"://change name
                     foreach (User user in users)
@@ -140,10 +140,10 @@ namespace TriviaAppClean.ViewModels
                             return;
                         }
                     }
-                    currentUser.Name = this.newName;
+                    CurrentUser.Name = this.newName;
                     break;
             }
-            await triviaService.UpdateUser(currentUser);
+            await triviaService.UpdateUser(CurrentUser);
             await Shell.Current.DisplayAlert("UpdateUser", $"Update seccesful! please open the profile page again to see your new details!", "ok");
 
         }
