@@ -21,6 +21,17 @@ namespace TriviaAppClean.ViewModels
             OnPropertyChanged();
             }
         }
+        public QuestionListViewModel()
+        {            
+            _proxy = new TriviaWebAPIProxy();
+            GetQuestionsAsync();
+        }
+        private string query;
+        public string Query
+        {
+            get { return query; }
+            set {  query = value; OnPropertyChanged(); }
+        }
         private AmericanQuestion selectedQuestion;
         public AmericanQuestion SelectedQuestion
         {
@@ -49,17 +60,27 @@ namespace TriviaAppClean.ViewModels
                 Questions.Remove(americanQuestion);
             }
         }
-        public QuestionListViewModel()
-        {
-            _proxy = new TriviaWebAPIProxy();
-            GetQuestionsAsync();
-        }
-
-
+       
         public async void GetQuestionsAsync()
         {
             List<AmericanQuestion> qs = await _proxy.GetAllQuestions();
             Questions = new ObservableCollection<AmericanQuestion>(qs);
         }
+        public ICommand SortCommand => new Command(Sort);
+        public void Sort()
+        {
+            ObservableCollection<AmericanQuestion> temp = new ObservableCollection<AmericanQuestion>();
+            foreach (AmericanQuestion question in Questions)
+            {
+                if (question.QText.Contains(query))
+                {
+                    temp.Add(question);
+                }
+            }
+            Questions = temp;
+        }
+        public ICommand ClearSortCommand => new Command(GetQuestionsAsync);
+
+
     }
 }
