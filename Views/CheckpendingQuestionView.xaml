@@ -6,9 +6,9 @@
              Shell.FlyoutBehavior="Flyout">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Style x:Key="Grid" TargetType="Grid">
+            <!--<Style x:Key="Grid" TargetType="Grid">
                 <Setter Property="Border" Value="3"/>
-            </Style>
+            </Style>-->
         </ResourceDictionary>
     </ContentPage.Resources>
     <VerticalStackLayout>
