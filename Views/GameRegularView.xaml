@@ -16,19 +16,19 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
+            <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource LabelStyle}"
             Text="{Binding Qtext}"
             FontAttributes="Bold" HorizontalOptions="Center"/>
-            <Button Grid.Column="0" Grid.Row="2"
+            <Button Grid.Column="0" Grid.Row="2" Style="{StaticResource ButtonStyle}"
             Text="{Binding Answer1}" Command="{Binding AnswerCommand1}" 
             FontAttributes="Bold" HorizontalOptions="Center"/>
-            <Button Grid.Column="1" Grid.Row="2"
+            <Button Grid.Column="1" Grid.Row="2" Style="{StaticResource ButtonStyle}"
             Text="{Binding Answer2}" Command="{Binding AnswerCommand2}" 
             HorizontalOptions="Center"/>
-            <Button Grid.Column="0" Grid.Row="3"
+            <Button Grid.Column="0" Grid.Row="3" Style="{StaticResource ButtonStyle}"
             Text="{Binding Answer3}" Command="{Binding AnswerCommand3}" 
             HorizontalOptions="Center"/>
-            <Button Grid.Column="1" Grid.Row="3"
+            <Button Grid.Column="1" Grid.Row="3" Style="{StaticResource ButtonStyle}"
             Text="{Binding Answer4}" Command="{Binding AnswerCommand4}" 
             HorizontalOptions="Center"/>
         </Grid>
