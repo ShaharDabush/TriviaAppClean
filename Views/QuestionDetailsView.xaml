@@ -11,6 +11,8 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
+
+
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -21,7 +23,7 @@
             <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4"
           Text="You can edit this question" HorizontalOptions="Center"
           FontAttributes="Bold"/>
-            <Entry Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4"
+            <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4"
           Text="{Binding CurrentQuestion.QText}" 
           FontAttributes="Bold" HorizontalOptions="Center"/>
 
@@ -29,28 +31,28 @@
           Text="Correct answer" 
           FontAttributes="Bold" HorizontalOptions="Center"  
           />
-            <Entry Grid.Column="1" Grid.Row="2"
+            <Label Grid.Column="1" Grid.Row="2"
           Text="{Binding CurrentQuestion.CorrectAnswer}" 
           FontAttributes="Bold" HorizontalOptions="Center"/>
             <Label Grid.Column="2" Grid.Row="2"
           Text="wrong answer" 
           FontAttributes="Bold" HorizontalOptions="Center"  
       />
-            <Entry Grid.Column="3" Grid.Row="2"
+            <Label Grid.Column="3" Grid.Row="2"
           Text="{Binding CurrentQuestion.Bad1}"
           HorizontalOptions="Center"/>
             <Label Grid.Column="0" Grid.Row="3"
           Text="wrong answer" 
           FontAttributes="Bold" HorizontalOptions="Center"  
       />
-            <Entry Grid.Column="1" Grid.Row="3"
+            <Label Grid.Column="1" Grid.Row="3"
           Text="{Binding CurrentQuestion.Bad2}"
           HorizontalOptions="Center"/>
             <Label Grid.Column="2" Grid.Row="3"
           Text="wrong answer" 
           FontAttributes="Bold" HorizontalOptions="Center"  
         />
-            <Entry Grid.Column="3" Grid.Row="3"
+            <Label Grid.Column="3" Grid.Row="3"
           Text="{Binding CurrentQuestion.Bad3}"
           HorizontalOptions="Center"/>
         </Grid>

@@ -16,24 +16,35 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
+
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Grid.Row="0"
+                <Label Grid.Column="0" Grid.Row="0" 
+                   Text="Name:" HorizontalOptions="Center" Style="{StaticResource LabelStyle}"
+                   FontAttributes="Bold"/>
+                <Label Grid.Column="1" Grid.Row="0" 
                    Text="{Binding CurrentUser.Name}" HorizontalOptions="Center" Style="{StaticResource LabelStyle}"
                    FontAttributes="Bold"/>
-
-                <Label Grid.Column="0" Grid.Row="1"
+                <Label Grid.Column="0" Grid.Row="1" 
+                   Text="Email:" HorizontalOptions="Center" Style="{StaticResource LabelStyle}"
+                   FontAttributes="Bold"/>
+                <Label Grid.Column="1" Grid.Row="1"
                    Text="{Binding CurrentUser.Email}" Style="{StaticResource LabelStyle}"
                    FontAttributes="Bold" HorizontalOptions="Center"/>
-                <Label Grid.Column="0" Grid.Row="2"
+                <Label Grid.Column="0" Grid.Row="2" 
+                   Text="Password:" HorizontalOptions="Center" Style="{StaticResource LabelStyle}"
+                   FontAttributes="Bold"/>
+                <Label Grid.Column="1" Grid.Row="2" 
                    Text="{Binding CurrentUser.Password}" Style="{StaticResource LabelStyle}"
                    FontAttributes="Bold" HorizontalOptions="Center"/>
-
-                <Label Grid.Column="0" Grid.Row="3" Style="{StaticResource LabelStyle}"
-                   Text="{Binding CurrentUser.AddedQuestions}"
+                <Label Grid.Column="0" Grid.Row="3" 
+                   Text="Questions added:" HorizontalOptions="Center" Style="{StaticResource LabelStyle}"
+                   FontAttributes="Bold"/>
+                <Label Grid.Column="1" Grid.Row="3" Style="{StaticResource LabelStyle}"
+                   Text="{Binding CurrentUser.Questions.Count}"
                    HorizontalOptions="Center"/>
             </Grid>
         </Border>
