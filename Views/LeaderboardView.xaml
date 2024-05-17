@@ -5,6 +5,33 @@
              Title="LeaderboardView"
               Shell.FlyoutBehavior="Flyout">
     <VerticalStackLayout>
+        <Label HorizontalOptions="Center"
+                           Text="Leaderboard"
+                            FontAttributes="Bold"/>
+        <Grid Padding="20" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
+                           Text="Name"
+                            FontAttributes="Bold"/>
+            <Label Grid.Column="1" Grid.Row="0" Grid.RowSpan="3"
+                           Text="Questions added"
+                            FontAttributes="Bold"/>
+            <Label Grid.Column="2" Grid.Row="0" Grid.RowSpan="3"
+                           Text="Score"
+                            FontAttributes="Bold"/>
+        </Grid>
         <CollectionView  ItemsSource="{Binding LeaderboardUsers}" ItemsLayout="VerticalList" x:Name="theCollectionView" SelectionMode="Single" >
             <CollectionView.ItemTemplate>
             <DataTemplate>
@@ -16,14 +43,19 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+
+                        </Grid.ColumnDefinitions>
                         <Label Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"
                            Text="{Binding Name}"
                             FontAttributes="Bold"/>
                         <Label Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"
-                           Text="{Binding QuestionAdded.Count*10}"
+                           Text="{Binding Questions.Count}"
                             FontAttributes="Bold"/>
-                </Grid>
+                        <Label Grid.Column="2" Grid.Row="0" Grid.RowSpan="2"
+                           Text="{Binding Score}"
+                            FontAttributes="Bold"/>
+                    </Grid>
             </DataTemplate>
         </CollectionView.ItemTemplate>
        </CollectionView>
