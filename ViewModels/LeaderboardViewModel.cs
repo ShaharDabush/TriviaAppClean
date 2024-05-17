@@ -23,12 +23,15 @@ namespace TriviaAppClean.ViewModels
             {
                 this.leaderboardUsers = value;
                 OnPropertyChanged();
+
             }
         }
+       
         public LeaderboardViewModel(TriviaWebAPIProxy triviaService)
         {
            this.triviaService = triviaService;
            GetListAsync();
+          
            //LeaderboardUsers = triviaService.GetAllUsers();
            // var OrderedUsers = LeaderboardUsers.toList().OrderBy(x => x.Age).ThenBy(x => x.Salary).ToList();
         }
@@ -44,13 +47,13 @@ namespace TriviaAppClean.ViewModels
                 OnPropertyChanged();
             }
         }
-        private string questionAdded;
-        public string QuestionAdded
+        private string questionsAdded;
+        public string QuestionsAdded
         {
-            get { return this.questionAdded; }
+            get { return LeaderboardUsers.q }
             set
             {
-                this.questionAdded = value;
+                this.questionsAdded = value;
                 OnPropertyChanged();
             }
         }
@@ -61,8 +64,7 @@ namespace TriviaAppClean.ViewModels
             LeaderboardUsers = new ObservableCollection<User>(OrderedUsers);
 
         }
-
-
+      
 
     }
 }
