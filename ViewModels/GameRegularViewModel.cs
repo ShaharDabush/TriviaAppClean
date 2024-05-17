@@ -80,6 +80,20 @@ namespace TriviaAppClean.ViewModels
             }
         }
 
+        private bool inServerCall;
+        public bool InServerCall
+        {
+            get
+            {
+                return this.inServerCall;
+            }
+            set
+            {
+                this.inServerCall = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         private AmericanQuestion randomQuestion;
         public AmericanQuestion RandomQuestion
@@ -124,21 +138,30 @@ namespace TriviaAppClean.ViewModels
             
             if(answer == randomQuestion.CorrectAnswer)
             {
+                inServerCall = true;
+
                 ((App)Application.Current).LoggedInUser.Score =+ 10;
+                inServerCall = false;
+
                 await _proxy.UpdateUser(currentUser);
+
                 await Application.Current.MainPage.DisplayAlert("Correct!", "Your score:" + CurrentUser.Score, "ok");
             }
             else
             {
-                //if (((App)Application.Current).LoggedInUser.Score < 5)
-                //{
-                //    ((App)Application.Current).LoggedInUser.Score = 0;
-                //}
-                //else
-                //{
-                //    ((App)Application.Current).LoggedInUser.Score += -5;
-                //}
+                if (((App)Application.Current).LoggedInUser.Score < 5)
+                {
+                    ((App)Application.Current).LoggedInUser.Score = 0;
+                }
+                else
+                {
+                    ((App)Application.Current).LoggedInUser.Score += -5;
+                }
+                inServerCall = true;
+
                 await _proxy.UpdateUser(currentUser);
+                inServerCall = false;
+
                 await Application.Current.MainPage.DisplayAlert("Wrong!", "Your score:" + CurrentUser.Score, "ok");
             }
             RandomQuestion = await _proxy.GetRandomQuestion();

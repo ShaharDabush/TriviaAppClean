@@ -156,9 +156,10 @@ namespace TriviaAppClean.ViewModels
                     CurrentUser.Name = this.newName;
                     break;
             }
-
+            NewEmail = "";
+            NewName = "";
+            NewPass = "";
             inServerCall = true;
-
             bool b = await triviaService.UpdateUser(CurrentUser);
             inServerCall = false;
             if (!b)
