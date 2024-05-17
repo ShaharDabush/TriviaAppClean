@@ -4,31 +4,39 @@
              x:Class="TriviaAppClean.Views.PlayerDetailsView"
              Title="PlayerDetailsView">
     <VerticalStackLayout>
-        <Grid Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="Start" RowSpacing="30">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Grid.Row="0"
+        <Border 
+                Stroke="#00203F"
+                StrokeThickness="4"
+                StrokeShape="RoundRectangle 40,0,0,40"
+                Background="#ADEFD1"
+                Padding="16,8">
+            <Grid Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="Start" RowSpacing="30">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Grid.Row="0"
                    Text="{Binding CurrentUser.Name}" HorizontalOptions="Center" Style="{StaticResource LabelStyle}"
                    FontAttributes="Bold"/>
 
-            <Label Grid.Column="0" Grid.Row="1"
+                <Label Grid.Column="0" Grid.Row="1"
                    Text="{Binding CurrentUser.Email}" Style="{StaticResource LabelStyle}"
                    FontAttributes="Bold" HorizontalOptions="Center"/>
-            <Label Grid.Column="0" Grid.Row="2"
+                <Label Grid.Column="0" Grid.Row="2"
                    Text="{Binding CurrentUser.Password}" Style="{StaticResource LabelStyle}"
                    FontAttributes="Bold" HorizontalOptions="Center"/>
 
-            <Label Grid.Column="0" Grid.Row="3" Style="{StaticResource LabelStyle}"
+                <Label Grid.Column="0" Grid.Row="3" Style="{StaticResource LabelStyle}"
                    Text="{Binding CurrentUser.AddedQuestions}"
                    HorizontalOptions="Center"/>
             </Grid>
+        </Border>
+        </Border>
     </VerticalStackLayout>
 </ContentPage>

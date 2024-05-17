@@ -4,38 +4,44 @@
              x:Class="TriviaAppClean.Views.QuestionDetailsView"
              Title="QuestionDetailsView">
     <VerticalStackLayout>
-        <Grid Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="Start" RowSpacing="30">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource LabelStyle}"
+        <Border 
+                Stroke="#00203F"
+                StrokeThickness="4"
+                StrokeShape="RoundRectangle 40,0,0,40"
+                Background="#ADEFD1"
+                Padding="16,8">
+            <Grid Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="Start" RowSpacing="30">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource LabelStyle}"
             Text="You can edit this question" HorizontalOptions="Center"
             FontAttributes="Bold"/>
-            <Entry Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
+                <Entry Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
             Text="{Binding CurrentQuestion.QText}" 
             FontAttributes="Bold" HorizontalOptions="Center"/>
-            <Entry Grid.Column="0" Grid.Row="2"
+                <Entry Grid.Column="0" Grid.Row="2"
             Text="{Binding CurrentQuestion.CorrectAnswer}" 
             FontAttributes="Bold" HorizontalOptions="Center"/>
-            <Entry Grid.Column="1" Grid.Row="2"
+                <Entry Grid.Column="1" Grid.Row="2"
             Text="{Binding CurrentQuestion.Bad1}"
             HorizontalOptions="Center"/>
-            <Entry Grid.Column="0" Grid.Row="3"
+                <Entry Grid.Column="0" Grid.Row="3"
             Text="{Binding CurrentQuestion.Bad2}"
             HorizontalOptions="Center"/>
-            <Entry Grid.Column="1" Grid.Row="3"
+                <Entry Grid.Column="1" Grid.Row="3"
             Text="{Binding CurrentQuestion.Bad3}"
             HorizontalOptions="Center"/>
-        </Grid>
-
+            </Grid>
+        </Border>
         <Label Style="{StaticResource LabelStyle}"
             Text="{Binding Status}"
                VerticalOptions="Center"

@@ -4,37 +4,44 @@
              x:Class="TriviaAppClean.Views.PendingQuestionDetailsView"
              Title="PendingQuestionDetailsView">
     <VerticalStackLayout>
-        <Grid Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="Start" RowSpacing="30">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"
+        <Border 
+                Stroke="#00203F"
+                StrokeThickness="4"
+                StrokeShape="RoundRectangle 40,0,0,40"
+                Background="#ADEFD1"
+                Padding="16,8">
+            <Grid Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="Start" RowSpacing="30">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"
     Text="You can edit this question" HorizontalOptions="Center"
     FontAttributes="Bold"/>
-            <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
+                <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
     Text="{Binding CurrentQuestion.QText}" 
     FontAttributes="Bold" HorizontalOptions="Center"/>
-            <Label Grid.Column="0" Grid.Row="2"
+                <Label Grid.Column="0" Grid.Row="2"
     Text="{Binding CurrentQuestion.CorrectAnswer}" 
     FontAttributes="Bold" HorizontalOptions="Center"/>
-            <Label Grid.Column="1" Grid.Row="2"
+                <Label Grid.Column="1" Grid.Row="2"
     Text="{Binding CurrentQuestion.Bad1}"
     HorizontalOptions="Center"/>
-            <Label Grid.Column="0" Grid.Row="3"
+                <Label Grid.Column="0" Grid.Row="3"
     Text="{Binding CurrentQuestion.Bad2}"
     HorizontalOptions="Center"/>
-            <Label Grid.Column="1" Grid.Row="3"
+                <Label Grid.Column="1" Grid.Row="3"
     Text="{Binding CurrentQuestion.Bad3}"
     HorizontalOptions="Center"/>
-        </Grid>
+            </Grid>
+        </Border>
         <Button Text="approve" Command="{Binding ApproveCommand}"></Button>
         <Button Text="dismiss" Command="{Binding DismissCommand}"></Button>
         <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Red"></ActivityIndicator>
