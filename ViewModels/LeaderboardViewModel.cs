@@ -48,15 +48,15 @@ namespace TriviaAppClean.ViewModels
             }
         }
         private string questionsAdded;
-        public string QuestionsAdded
-        {
-            get { return LeaderboardUsers.q }
-            set
-            {
-                this.questionsAdded = value;
-                OnPropertyChanged();
-            }
-        }
+        //public string QuestionsAdded
+        //{
+        //    get { return LeaderboardUsers.q }
+        //    set
+        //    {
+        //        this.questionsAdded = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
         public async void GetListAsync()
         {
             List<User> list = await triviaService.GetAllUsers();
