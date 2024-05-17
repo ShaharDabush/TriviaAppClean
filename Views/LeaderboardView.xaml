@@ -52,13 +52,13 @@
                                 <ColumnDefinition Width="*" />
 
                             </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"
+                            <Label Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource LabelStyle}"
                            Text="{Binding Name}"
                             FontAttributes="Bold"/>
-                        <Label Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"
+                            <Label Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource LabelStyle}"
                            Text="{Binding Questions.Count}"
                             FontAttributes="Bold"/>
-                            <Label Grid.Column="2" Grid.Row="0" Grid.RowSpan="2"
+                            <Label Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource LabelStyle}"
                            Text="{Binding Score}"
                             
                             FontAttributes="Bold"/>
