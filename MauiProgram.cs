@@ -46,6 +46,7 @@ public static class MauiProgram
         builder.Services.AddTransient<QuestionListView>();
         builder.Services.AddTransient<QuestionDetailsView>();
         builder.Services.AddTransient<PendingQuestionDetailsView>();
+        builder.Services.AddTransient<PlayerDetailsView>();
 
         return builder;
     }
@@ -70,7 +71,9 @@ public static class MauiProgram
         builder.Services.AddSingleton<ProfileViewModel>();
         builder.Services.AddSingleton<QuestionListViewModel>();
         builder.Services.AddSingleton<QuestionDetailsViewModel>();
-        builder.Services.AddSingleton<QuestionDetailsViewModel>();
+        builder.Services.AddSingleton<PendingQuestionDetailsViewModel>();
+        builder.Services.AddSingleton<PlayerDetailsViewModel>();
+
 
         return builder;
     }
