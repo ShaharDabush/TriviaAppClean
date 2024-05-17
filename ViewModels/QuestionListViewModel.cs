@@ -94,16 +94,9 @@ namespace TriviaAppClean.ViewModels
             set
             {
                 this.inServerCall = value;
-                OnPropertyChanged("NotInServerCall");
-                OnPropertyChanged("InServerCall");
+                OnPropertyChanged();
             }
         }
-        public bool NotInServerCall
-        {
-            get
-            {
-                return !this.InServerCall;
-            }
-        }
+
     }
 }

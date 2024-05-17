@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using TriviaAppClean.Models;
 using TriviaAppClean.Services;
 
@@ -26,6 +27,7 @@ namespace TriviaAppClean.ViewModels
         {
             service = new TriviaWebAPIProxy();
         }
+        ICommand UpdateComannd => new Command(UpdateQuestion);
         public async void UpdateQuestion()
         {
             inServerCall = true;
