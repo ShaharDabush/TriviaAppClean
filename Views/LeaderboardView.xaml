@@ -21,7 +21,7 @@
                            Text="{Binding Name}"
                             FontAttributes="Bold"/>
                     <Label Grid.Column="2" Grid.RowSpan="1"
-                           Text="{Binding QuestionAdded}"
+                           Text="{Binding QuestionAdded.Count*10}"
                             FontAttributes="Bold"/>
                 </Grid>
             </DataTemplate>
