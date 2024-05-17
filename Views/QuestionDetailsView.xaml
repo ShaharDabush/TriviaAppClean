@@ -35,9 +35,10 @@
             Text="{Binding CurrentQuestion.Bad3}"
             HorizontalOptions="Center"/>
         </Grid>
+
         <Label 
             Text="{Binding Status}"/>
-        <Button Text="Update" Command="{Binding SortCommand}"></Button>
+        <Button Text="Update" Command="{Binding UpdateCommand}"></Button>
         <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Red"></ActivityIndicator>
     </VerticalStackLayout>
 </ContentPage>

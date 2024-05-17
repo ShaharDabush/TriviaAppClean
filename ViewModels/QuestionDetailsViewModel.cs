@@ -45,7 +45,7 @@ namespace TriviaAppClean.ViewModels
             inServerCall = true;
           bool b = await service.UpdateQuestion(CurrentQuestion);
             inServerCall = false;
-            if (b)
+            if (!b)
             {
                 await Application.Current.MainPage.DisplayAlert("Update", "Update Failed!", "ok");
             }

@@ -9,17 +9,17 @@ namespace TriviaAppClean.ViewModels
 {
     public class GameViewModel : ViewModelBase
     {
-        GameRegularView gameRegularView;
+        //GameRegularView gameRegularView;
         public ICommand PlayCommand => new Command(GoPlay);
 
-        public GameViewModel(GameRegularView gameRegularView)
-        {
-            this.gameRegularView = gameRegularView;
-        }
+        //public GameViewModel(GameRegularView gameRegularView)
+        //{
+        //    this.gameRegularView = gameRegularView;
+        //}
 
         private async void GoPlay()
         {
-            await App.Current.MainPage.Navigation.PushAsync(gameRegularView);
+            await App.Current.MainPage.Navigation.PushAsync(new GameRegularView(new GameRegularViewModel()));
         }
     }
 }
