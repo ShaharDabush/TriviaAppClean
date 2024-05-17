@@ -37,6 +37,5 @@
                    HorizontalOptions="Center"/>
             </Grid>
         </Border>
-        </Border>
     </VerticalStackLayout>
 </ContentPage>
