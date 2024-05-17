@@ -71,6 +71,19 @@ namespace TriviaAppClean.ViewModels
                 OnPropertyChanged();
             }
         }
+        private bool inServerCall;
+        public bool InServerCall
+        {
+            get
+            {
+                return this.inServerCall;
+            }
+            set
+            {
+                this.inServerCall = value;
+                OnPropertyChanged();
+            }
+        }
 
 
         #region changeUserDetails
@@ -143,8 +156,19 @@ namespace TriviaAppClean.ViewModels
                     CurrentUser.Name = this.newName;
                     break;
             }
-            await triviaService.UpdateUser(CurrentUser);
-            await Shell.Current.DisplayAlert("UpdateUser", $"Update seccesful! please open the profile page again to see your new details!", "ok");
+
+            inServerCall = true;
+
+            bool b = await triviaService.UpdateUser(CurrentUser);
+            inServerCall = false;
+            if (!b)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "Try again later", "ok");
+            }
+            else
+            {
+                await Shell.Current.DisplayAlert("UpdateUser", $"Update seccesful! please open the profile page again to see your new details!", "ok");
+            }
 
         }
         #endregion
