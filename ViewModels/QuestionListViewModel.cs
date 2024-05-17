@@ -51,6 +51,7 @@ namespace TriviaAppClean.ViewModels
         }
         public QuestionListViewModel()
         {
+            _proxy = new TriviaWebAPIProxy();
             GetQuestionsAsync();
         }
 
@@ -58,7 +59,7 @@ namespace TriviaAppClean.ViewModels
         public async void GetQuestionsAsync()
         {
             List<AmericanQuestion> qs = await _proxy.GetAllQuestions();
-            questions = new ObservableCollection<AmericanQuestion>(qs);
+            Questions = new ObservableCollection<AmericanQuestion>(qs);
         }
     }
 }
