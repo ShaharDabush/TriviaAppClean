@@ -140,12 +140,25 @@ namespace TriviaAppClean.ViewModels
             {
                 inServerCall = true;
 
-                ((App)Application.Current).LoggedInUser.Score =+ 10;
+                ((App)Application.Current).LoggedInUser.Score += 10;
+                inServerCall = false;
+                inServerCall = true;
+
+                await _proxy.UpdateUser(CurrentUser);
                 inServerCall = false;
 
-                await _proxy.UpdateUser(currentUser);
-
                 await Application.Current.MainPage.DisplayAlert("Correct!", "Your score:" + CurrentUser.Score, "ok");
+
+                if (((App)Application.Current).LoggedInUser.Score >= 100 && ((App)Application.Current).LoggedInUser.Rank==0)
+                {
+                    await Application.Current.MainPage.DisplayAlert("congratulations!", "for reaching 100 points you are promoted to master rank!", "ok");
+                    ((App)Application.Current).LoggedInUser.Rank += 1;
+                    inServerCall = true;
+
+                    await _proxy.UpdateUser(CurrentUser);
+                    inServerCall = false;
+
+                }
             }
             else
             {
@@ -159,12 +172,13 @@ namespace TriviaAppClean.ViewModels
                 }
                 inServerCall = true;
 
-                await _proxy.UpdateUser(currentUser);
+                await _proxy.UpdateUser(CurrentUser);
                 inServerCall = false;
 
                 await Application.Current.MainPage.DisplayAlert("Wrong!", "Your score:" + CurrentUser.Score, "ok");
             }
             RandomQuestion = await _proxy.GetRandomQuestion();
+            Qtext = RandomQuestion.QText;
             GetRandomAnswers();
             
  
