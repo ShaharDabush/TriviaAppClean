@@ -60,7 +60,7 @@ namespace TriviaAppClean.ViewModels
         public async void GetListAsync()
         {
             List<User> list = await triviaService.GetAllUsers();
-            list = list.OrderBy(x => x.Questions.Count).ToList();
+            list = list.OrderByDescending(x => x.Questions.Count).ToList();
             LeaderboardUsers = new ObservableCollection<User>(list);
 
         }
