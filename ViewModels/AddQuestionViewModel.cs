@@ -45,8 +45,11 @@ namespace TriviaAppClean.ViewModels
                 }
                 AddedQuestion.UserId = ((App)Application.Current).LoggedInUser.Id;
                 AddedQuestion.Status = 0;
-
+                
                 await _proxy.PostNewQuestion(AddedQuestion);
+                AddedQuestion = null;
+                await Shell.Current.DisplayAlert("UpdateUser", $"Update seccesful! please open the profile page again to see your new details!", "ok");
+
             }
 
         }
