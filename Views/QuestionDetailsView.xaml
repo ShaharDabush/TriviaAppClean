@@ -35,5 +35,6 @@
             Text="{Binding CurrentQuestion.Bad3}"
             HorizontalOptions="Center"/>
         </Grid>
+        
     </VerticalStackLayout>
 </ContentPage>

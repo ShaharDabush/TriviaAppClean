@@ -69,6 +69,7 @@ namespace TriviaAppClean.ViewModels
         public ICommand SortCommand => new Command(Sort);
         public void Sort()
         {
+            GetQuestionsAsync();
             ObservableCollection<AmericanQuestion> temp = new ObservableCollection<AmericanQuestion>();
             foreach (AmericanQuestion question in Questions)
             {
