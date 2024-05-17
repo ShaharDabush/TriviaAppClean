@@ -4,13 +4,6 @@
              x:Class="TriviaAppClean.Views.CheckPendingQuestionView"
              Title="CheckPendingQuestionView"
              Shell.FlyoutBehavior="Flyout">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Style x:Key="Grid" TargetType="Grid">
-                <Setter Property="Border" Value="3"/>
-            </Style>
-        </ResourceDictionary>
-    </ContentPage.Resources>
     <VerticalStackLayout>
         <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Red"></ActivityIndicator>
         <CollectionView  ItemsSource="{Binding Questions}" ItemsLayout="VerticalList" x:Name="theCollectionView"
