@@ -27,13 +27,13 @@ namespace TriviaAppClean.ViewModels
         {
             service = new TriviaWebAPIProxy();
         }
-        ICommand UpdateComannd => new Command(UpdateQuestion);
+        public ICommand UpdateCommand => new Command(UpdateQuestion);
         public async void UpdateQuestion()
         {
             inServerCall = true;
           bool b = await service.UpdateQuestion(CurrentQuestion);
             inServerCall = false;
-            if (b)
+            if (!b)
             {
                 await Application.Current.MainPage.DisplayAlert("Update", "Update Failed!", "ok");
             }

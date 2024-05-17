@@ -124,10 +124,24 @@ namespace TriviaAppClean.ViewModels
             
             if(answer == randomQuestion.CorrectAnswer)
             {
-                currentUser.Score =+ 10;
+                ((App)Application.Current).LoggedInUser.Score =+ 10;
+                await _proxy.UpdateUser(currentUser);
                 await Application.Current.MainPage.DisplayAlert("Correct!", "Your score:" + CurrentUser.Score, "ok");
             }
-           RandomQuestion = await _proxy.GetRandomQuestion();
+            else
+            {
+                //if (((App)Application.Current).LoggedInUser.Score < 5)
+                //{
+                //    ((App)Application.Current).LoggedInUser.Score = 0;
+                //}
+                //else
+                //{
+                //    ((App)Application.Current).LoggedInUser.Score += -5;
+                //}
+                await _proxy.UpdateUser(currentUser);
+                await Application.Current.MainPage.DisplayAlert("Wrong!", "Your score:" + CurrentUser.Score, "ok");
+            }
+            RandomQuestion = await _proxy.GetRandomQuestion();
             GetRandomAnswers();
             
  
@@ -136,6 +150,7 @@ namespace TriviaAppClean.ViewModels
         {
 
             RandomQuestion = await _proxy.GetRandomQuestion();
+            Qtext = RandomQuestion.QText;
             GetRandomAnswers();
         }
 
@@ -145,31 +160,31 @@ namespace TriviaAppClean.ViewModels
             int num = rnd.Next(1, 5);
             if(num == 1)
             {
-                answer1 = RandomQuestion.CorrectAnswer;
-                answer2 = RandomQuestion.Bad1;
-                answer3 = RandomQuestion.Bad2;
-                answer4 = RandomQuestion.Bad3;
+                Answer1 = RandomQuestion.CorrectAnswer;
+                Answer2 = RandomQuestion.Bad1;
+                Answer3 = RandomQuestion.Bad2;
+                Answer4 = RandomQuestion.Bad3;
             }
             else if(num == 2)
             {
-                answer1 = RandomQuestion.Bad3;
-                answer2 = RandomQuestion.CorrectAnswer;
-                answer3 = RandomQuestion.Bad1;
-                answer4 = RandomQuestion.Bad2;
+                Answer1 = RandomQuestion.Bad3;
+                Answer2 = RandomQuestion.CorrectAnswer;
+                Answer3 = RandomQuestion.Bad1;
+                Answer4 = RandomQuestion.Bad2;
             }
             else if (num == 3)
             {
-                answer1 = RandomQuestion.Bad2;
-                answer2 = RandomQuestion.Bad3;
-                answer3 = RandomQuestion.CorrectAnswer;
-                answer4 = RandomQuestion.Bad1;
+                Answer1 = RandomQuestion.Bad2;
+                Answer2 = RandomQuestion.Bad3;
+                Answer3 = RandomQuestion.CorrectAnswer;
+                Answer4 = RandomQuestion.Bad1;
             }
             else
             {
-                answer1 = RandomQuestion.Bad1;
-                answer2 = RandomQuestion.Bad2;
-                answer3 = RandomQuestion.Bad3;
-                answer4 = RandomQuestion.CorrectAnswer;
+                Answer1 = RandomQuestion.Bad1;
+                Answer2 = RandomQuestion.Bad2;
+                Answer3 = RandomQuestion.Bad3;
+                Answer4 = RandomQuestion.CorrectAnswer;
             }
         }
     }
