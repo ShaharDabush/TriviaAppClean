@@ -4,13 +4,6 @@
              x:Class="TriviaAppClean.Views.CheckPendingQuestionView"
              Title="CheckPendingQuestionView"
              Shell.FlyoutBehavior="Flyout">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <!--<Style x:Key="Grid" TargetType="Grid">
-                <Setter Property="Border" Value="3"/>
-            </Style>-->
-        </ResourceDictionary>
-    </ContentPage.Resources>
     <VerticalStackLayout>
         <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Red"></ActivityIndicator>
         <CollectionView  ItemsSource="{Binding Questions}" ItemsLayout="VerticalList" x:Name="theCollectionView"
@@ -28,22 +21,29 @@
                                        CommandParameter= "{Binding DeleteCommand}" />
                             </SwipeItems>
                         </SwipeView.LeftItems>
-                        <Grid Padding="20" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource LabelStyle}"
+                        <Border 
+                          Stroke="#C49B33"
+                          StrokeThickness="4"
+                          StrokeShape="RoundRectangle 40,0,0,40"
+                          Background="#2B0B98"
+                          Padding="16,8">
+                            <Grid Padding="20" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource LabelStyle}"
                        Text="{Binding UserId}"
                         FontAttributes="Bold"/>
-                            <Label Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource LabelStyle}"
+                                <Label Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource LabelStyle}"
                        Text="{Binding QText}"
                         FontAttributes="Bold"/>
-                        </Grid>
+                            </Grid>
+                        </Border>
                     </SwipeView>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
