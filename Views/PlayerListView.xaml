@@ -23,7 +23,7 @@
                                            CommandParameter= "{Binding}" />
                             </SwipeItems>
                         </SwipeView.LeftItems>
-                        <Grid Padding="20" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                        <Grid Padding="20" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Style="{StaticResource GridStyle}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="*" />
