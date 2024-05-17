@@ -16,7 +16,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"
+            <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource LabelStyle}"
             Text="You can edit this question" HorizontalOptions="Center"
             FontAttributes="Bold"/>
             <Entry Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
@@ -36,8 +36,8 @@
             HorizontalOptions="Center"/>
         </Grid>
 
-        <Label 
-            Text="{Binding Status}"/>
+        <Label Style="{StaticResource LabelStyle}"
+            Text="{Binding Status}"/> 
         <Button Text="Update" Command="{Binding UpdateCommand}"></Button>
         <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Red"></ActivityIndicator>
     </VerticalStackLayout>

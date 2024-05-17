@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,7 +21,8 @@ namespace TriviaAppClean.ViewModels
             set
             {
                 currentQuestion = value;
-                OnPropertyChanged("UpdateStatus");
+                OnPropertyChanged();
+                UpdateStatus();
             }
         }
         public QuestionDetailsViewModel()

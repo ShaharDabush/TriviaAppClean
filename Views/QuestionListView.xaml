@@ -33,10 +33,10 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"
+                            <Label Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource LabelStyle}"
                            Text="{Binding UserId}"
                             FontAttributes="Bold"/>
-                        <Label Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"
+                            <Label Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource LabelStyle}"
                            Text="{Binding QText}"
                             FontAttributes="Bold"/>
                     </Grid>

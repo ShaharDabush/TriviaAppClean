@@ -20,19 +20,18 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"
-                   Text="{Binding CurrentUser.Name}" HorizontalOptions="Center"
+            <Label Grid.Column="0" Grid.Row="0"
+                   Text="{Binding CurrentUser.Name}" HorizontalOptions="Center" Style="{StaticResource LabelStyle}"
                    FontAttributes="Bold"/>
-
-            <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
-                   Text="{Binding CurrentUser.Email}" 
+            
+            <Label Grid.Column="0" Grid.Row="1"
+                   Text="{Binding CurrentUser.Email}" Style="{StaticResource LabelStyle}"
+                   FontAttributes="Bold" HorizontalOptions="Center"/> 
+            <Label Grid.Column="0" Grid.Row="2"
+                   Text="{Binding CurrentUser.Password}" Style="{StaticResource LabelStyle}"
                    FontAttributes="Bold" HorizontalOptions="Center"/>
 
-            <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"
-                   Text="{Binding CurrentUser.Password}" 
-                   FontAttributes="Bold" HorizontalOptions="Center"/>
-
-            <Label Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"
+            <Label Grid.Column="0" Grid.Row="3" Style="{StaticResource LabelStyle}"
                    Text="{Binding CurrentUser.AddedQuestions}"
                    HorizontalOptions="Center"/>
             
