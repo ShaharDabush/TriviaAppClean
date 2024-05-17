@@ -77,7 +77,7 @@ namespace TriviaAppClean.ViewModels
         }
         public void UpdateStatus()
         {
-            switch (currentQuestion.Status)
+            switch (CurrentQuestion.Status)
             {
                 case 0:
                     status = "Pending";
