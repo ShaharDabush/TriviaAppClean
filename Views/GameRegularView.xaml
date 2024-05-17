@@ -4,9 +4,33 @@
              x:Class="TriviaAppClean.Views.GameRegularView"
              Title="GameRegularView">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Grid Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="Start" RowSpacing="30">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
+            Text="{Binding qText}"
+            FontAttributes="Bold" HorizontalOptions="Center"/>
+            <Button Grid.Column="0" Grid.Row="2"
+            Text="{Binding answer1}" Command="{Binding AnswerCommand1}" 
+            FontAttributes="Bold" HorizontalOptions="Center"/>
+            <Button Grid.Column="1" Grid.Row="2"
+            Text="{Binding answer2}" Command="{Binding AnswerCommand2}" 
+            HorizontalOptions="Center"/>
+            <Button Grid.Column="0" Grid.Row="3"
+            Text="{Binding answer3}" Command="{Binding AnswerCommand3}" 
+            HorizontalOptions="Center"/>
+            <Button Grid.Column="1" Grid.Row="3"
+            Text="{Binding answer4}" Command="{Binding AnswerCommand4}" 
+            HorizontalOptions="Center"/>
+        </Grid>
     </VerticalStackLayout>
 </ContentPage>

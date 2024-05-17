@@ -28,7 +28,7 @@
           Route="AddQuestion" />
         <ShellContent
           Title="Check Pending Questions" Icon="pending.png"
-          ContentTemplate="{DataTemplate views:QuestionListView}"
+          ContentTemplate="{DataTemplate views:CheckpendingQuestionView}"
           Route="CheckPendingQuestions" />
     </FlyoutItem>
     <FlyoutItem x:Name="AdminItems" FlyoutDisplayOptions="AsMultipleItems" Route="tabs" Title="AdminItems" IsVisible="{Binding IsAdmin}">
