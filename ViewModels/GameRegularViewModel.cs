@@ -149,16 +149,17 @@ namespace TriviaAppClean.ViewModels
 
                 await Application.Current.MainPage.DisplayAlert("Correct!", "Your score:" + CurrentUser.Score, "ok");
 
-                if (((App)Application.Current).LoggedInUser.Score >= 100 && ((App)Application.Current).LoggedInUser.Rank==0)
+                if (((App)Application.Current).LoggedInUser.Score >= 100)
                 {
-                    await Application.Current.MainPage.DisplayAlert("congratulations!", "for reaching 100 points you are promoted to master rank!", "ok");
-                    ((App)Application.Current).LoggedInUser.Rank += 1;
-                    inServerCall = true;
+                    await Application.Current.MainPage.DisplayAlert("congratulations!", "for reaching 100 points you can add a Question!", "ok");
+                    
 
-                    await _proxy.UpdateUser(CurrentUser);
-                    inServerCall = false;
+                    await Shell.Current.GoToAsync($"AddQuestionView");
+
 
                 }
+
+                
             }
             else
             {

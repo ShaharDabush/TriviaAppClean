@@ -23,10 +23,6 @@
     <FlyoutItem x:Name="MasterItems" FlyoutDisplayOptions="AsMultipleItems" Route="tabs" Title="MasterItems"  IsVisible="{Binding IsMaster}">
         <!-- normally no icon but if locked a locked icon-->
         <ShellContent
-          Title="Add Question" Icon="add.png"
-          ContentTemplate="{DataTemplate views:AddQuestionView}"
-          Route="AddQuestion" />
-        <ShellContent
           Title="Check Pending Questions" Icon="pending.png"
           ContentTemplate="{DataTemplate views:CheckPendingQuestionView}"
           Route="CheckPendingQuestions" />

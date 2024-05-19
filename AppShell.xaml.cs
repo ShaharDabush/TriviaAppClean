@@ -20,6 +20,8 @@ public partial class AppShell : Shell
         Routing.RegisterRoute("QuestionDetailsView", typeof(QuestionDetailsView));
         Routing.RegisterRoute("PendingQuestionDetailsView", typeof(PendingQuestionDetailsView));
         Routing.RegisterRoute("PlayerDetailsView", typeof(PlayerDetailsView));
+        Routing.RegisterRoute("AddQuestionView", typeof(AddQuestionView));
+
 
     }
 }

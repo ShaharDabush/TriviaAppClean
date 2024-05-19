@@ -13,7 +13,21 @@ namespace TriviaAppClean.ViewModels
 {
     public class AddQuestionViewModel:ViewModelBase
     {
+
         private TriviaWebAPIProxy _proxy;
+        private User currentUser;
+        public User CurrentUser
+        {
+            get
+            {
+                return ((App)Application.Current).LoggedInUser;
+            }
+            set
+            {
+                this.currentUser = value;
+                OnPropertyChanged();
+            }
+        }
         private AmericanQuestion addedQuestion;
         public AmericanQuestion AddedQuestion
         {
@@ -22,6 +36,20 @@ namespace TriviaAppClean.ViewModels
             {
                 addedQuestion = value;
                 OnPropertyChanged("AddedQuestion");
+            }
+        }
+
+        private bool inServerCall;
+        public bool InServerCall
+        {
+            get
+            {
+                return this.inServerCall;
+            }
+            set
+            {
+                this.inServerCall = value;
+                OnPropertyChanged();
             }
         }
         public ICommand SubmitCommand { get; set; }
@@ -45,10 +73,29 @@ namespace TriviaAppClean.ViewModels
                 }
                 AddedQuestion.UserId = ((App)Application.Current).LoggedInUser.Id;
                 AddedQuestion.Status = 0;
-                
+                CurrentUser.Score = 0;
+                inServerCall = true;
+
+                await _proxy.UpdateUser(CurrentUser);
+                inServerCall = false;
                 await _proxy.PostNewQuestion(AddedQuestion);
                 AddedQuestion = null;
-                await Shell.Current.DisplayAlert("UpdateUser", $"Update seccesful! please open the profile page again to see your new details!", "ok");
+
+                await Shell.Current.DisplayAlert("UpdateUser", $"your question has successfuly been added!", "ok");
+
+                if (((App)Application.Current).LoggedInUser.Questions.Count >= 3 && ((App)Application.Current).LoggedInUser.Rank == 0)
+                {
+                    await Application.Current.MainPage.DisplayAlert("congratulations!", "for adding 10 questions you are promoted to master rank!", "ok");
+                    ((App)Application.Current).LoggedInUser.Rank += 1;
+                    inServerCall = true;
+
+                    await _proxy.UpdateUser(CurrentUser);
+                    inServerCall = false;
+
+                }
+
+                Application.Current.MainPage = new AppShell(new ShellViewModel());
+
 
             }
 
