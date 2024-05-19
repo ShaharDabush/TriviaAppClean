@@ -13,6 +13,8 @@ namespace TriviaAppClean.ViewModels
 {
     public class GameRegularViewModel : ViewModelBase
     {
+        public static Random rnd = new Random();
+
         private TriviaWebAPIProxy _proxy;
         private User currentUser;
         public User CurrentUser
@@ -24,6 +26,20 @@ namespace TriviaAppClean.ViewModels
             set
             {
                 this.currentUser = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private List<AmericanQuestion> questionList;
+        public List<AmericanQuestion> QuestionList
+        {
+            get
+            {
+                return questionList;
+            }
+            set
+            {
+                this.questionList = value;
                 OnPropertyChanged();
             }
         }
@@ -109,7 +125,8 @@ namespace TriviaAppClean.ViewModels
         public GameRegularViewModel()
         {
             _proxy = new TriviaWebAPIProxy();
-            GetTheQuestion();
+            GetQuestionList();
+            
         }
         public ICommand AnswerCommand1 => new Command(Choice1);
         public ICommand AnswerCommand2 => new Command(Choice2);
@@ -178,21 +195,43 @@ namespace TriviaAppClean.ViewModels
 
                 await Application.Current.MainPage.DisplayAlert("Wrong!", "Your score:" + CurrentUser.Score, "ok");
             }
-            RandomQuestion = await _proxy.GetRandomQuestion();
-            Qtext = RandomQuestion.QText;
-            GetRandomAnswers();
-            
- 
+            GetTheQuestion();
+
+
         }
-        public async void GetTheQuestion()
+        public async void GetQuestionList()
         {
 
-            RandomQuestion = await _proxy.GetRandomQuestion();
-            Qtext = RandomQuestion.QText;
+            List<AmericanQuestion> QuestionListTemp = await _proxy.GetAllQuestions();
+            QuestionList = new List<AmericanQuestion>(QuestionListTemp);
+            foreach (AmericanQuestion item in QuestionListTemp)
+            {
+                if (item.Status != 1)
+                {
+                    QuestionList.Remove(item);
+                }
+            }
+            GetTheQuestion();
+        }
+
+        public async void GetTheQuestion()
+        {
+            if (QuestionList != null)
+            {
+                int num = rnd.Next(QuestionList.Count);
+
+                RandomQuestion = QuestionList[num];
+                Qtext = RandomQuestion.QText;
+            }
+            else
+            {
+                RandomQuestion = await _proxy.GetRandomQuestion();
+                Qtext = RandomQuestion.QText;
+            }
+            
             GetRandomAnswers();
         }
 
-        Random rnd = new Random();
         public void GetRandomAnswers()
         {
             int num = rnd.Next(1, 5);
