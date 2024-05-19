@@ -83,7 +83,7 @@ namespace TriviaAppClean.ViewModels
 
                 await Shell.Current.DisplayAlert("UpdateUser", $"your question has successfuly been added!", "ok");
 
-                if (((App)Application.Current).LoggedInUser.Questions.Count >= 3 && ((App)Application.Current).LoggedInUser.Rank == 0)
+                if (((App)Application.Current).LoggedInUser.Questions.Count >= 10 && ((App)Application.Current).LoggedInUser.Rank == 0)
                 {
                     await Application.Current.MainPage.DisplayAlert("congratulations!", "for adding 10 questions you are promoted to master rank!", "ok");
                     ((App)Application.Current).LoggedInUser.Rank += 1;
