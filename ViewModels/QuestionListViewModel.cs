@@ -22,9 +22,11 @@ namespace TriviaAppClean.ViewModels
             }
         }
         public QuestionListViewModel()
-        {            
+        {
+            
             _proxy = new TriviaWebAPIProxy();
             GetQuestionsAsync();
+            
         }
         private string query;
         public string Query
@@ -50,14 +52,15 @@ namespace TriviaAppClean.ViewModels
                 await Shell.Current.GoToAsync($"QuestionDetailsView", navParam);
                 SelectedQuestion = null;
             }
+            
         }       
        
         public async void GetQuestionsAsync()
         {
-            inServerCall = true;
+            InServerCall = true;
             List<AmericanQuestion> qs = await _proxy.GetAllQuestions();
             Questions = new ObservableCollection<AmericanQuestion>(qs);
-            inServerCall = false;
+            InServerCall = false;
         }
         public ICommand SortCommand => new Command(Sort);
         public void Sort()
@@ -78,7 +81,7 @@ namespace TriviaAppClean.ViewModels
             set
             {
                 this.inServerCall = value;
-                OnPropertyChanged();
+                OnPropertyChanged("InServerCall");
             }
         }
         public ICommand DismissCommand => new Command<AmericanQuestion>(DismissQuestion);

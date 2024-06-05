@@ -28,11 +28,10 @@
             <Label Grid.Column="1" Grid.Row="0" Grid.RowSpan="3"
                            Text="Questions added"
                             FontAttributes="Bold"/>
-            <Label Grid.Column="2" Grid.Row="0" Grid.RowSpan="3"
-                           Text="Score"
-                            FontAttributes="Bold"/>
+
         </Grid>
-        <CollectionView  ItemsSource="{Binding LeaderboardUsers}" HeightRequest="800" ItemsLayout="VerticalList" x:Name="theCollectionView" SelectionMode="Single" >
+        <ActivityIndicator IsVisible="{Binding InServerCall}" IsRunning="{Binding InServerCall}" Color="red"></ActivityIndicator>
+        <CollectionView  ItemsSource="{Binding LeaderboardUsers}" HeightRequest="800" ItemsLayout="VerticalList" x:Name="theCollectionView" >
             <CollectionView.ItemTemplate>
             <DataTemplate>
                     <Border 
@@ -49,8 +48,6 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource LabelStyle}"
                            Text="{Binding Name}"
@@ -58,10 +55,7 @@
                             <Label Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource LabelStyle}"
                            Text="{Binding Questions.Count}"
                             FontAttributes="Bold"/>
-                            <Label Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource LabelStyle}"
-                           Text="{Binding Score}"
-                            
-                            FontAttributes="Bold"/>
+
                         </Grid>
                     </Border>
                 </DataTemplate>

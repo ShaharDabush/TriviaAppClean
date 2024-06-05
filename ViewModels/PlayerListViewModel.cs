@@ -98,10 +98,10 @@ namespace TriviaAppClean.ViewModels
         //get all the players for the list
         public async void GetUsersAsync()
         {
-            inServerCall = true;
+            InServerCall = true;
             List<User> us = await _proxy.GetAllUsers();
             Users = new ObservableCollection<User>(us);
-            inServerCall = false;
+            InServerCall = false;
         }
 
 
@@ -119,9 +119,9 @@ namespace TriviaAppClean.ViewModels
         public async void ResetScore(User currentUser)
         {
             currentUser.Score = 0;
-            inServerCall = true;
+            InServerCall = true;
             bool b = await _proxy.UpdateUser(currentUser);
-            inServerCall = false;
+            InServerCall = false;
             if (!b)
             {
                 await Application.Current.MainPage.DisplayAlert("Error", "Try again later", "ok");
