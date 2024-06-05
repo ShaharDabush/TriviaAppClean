@@ -5,7 +5,7 @@
              Title="ProfileView"
               Shell.FlyoutBehavior="Flyout">
     <VerticalStackLayout>
-        <Grid Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="Start" RowSpacing="30">
+        <Grid Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="Start" RowSpacing="30" IsEnabled="{Binding IsEnabled}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />

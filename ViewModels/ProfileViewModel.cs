@@ -7,184 +7,13 @@ using System.Windows.Input;
 using TriviaAppClean.Models;
 using TriviaAppClean.Services;
 using System.Text.RegularExpressions;
-
 namespace TriviaAppClean.ViewModels
 {
     public class ProfileViewModel : ViewModelBase
     {
-
-        #region FormValidation
-        #region שם
-        private bool showNameError;
-
-        public bool ShowNameError
-        {
-            get => showNameError;
-            set
-            {
-                showNameError = value;
-                OnPropertyChanged("ShowNameError");
-            }
-        }
-
-        private string name;
-
-        public string Name
-        {
-            get => name;
-            set
-            {
-                name = value;
-                ValidateName();
-                OnPropertyChanged("Name");
-            }
-        }
-
-        private string nameError;
-
-        public string NameError
-        {
-            get => nameError;
-            set
-            {
-                nameError = value;
-                OnPropertyChanged("NameError");
-            }
-        }
-        private void ValidateName()
-        {
-            this.ShowNameError = string.IsNullOrEmpty(Name);
-        }
-        #endregion
-        #region password
-        private bool showPasswordError;
-
-        public bool ShowPasswordError
-        {
-            get => showPasswordError;
-            set
-            {
-                showPasswordError = value;
-                OnPropertyChanged("ShowPasswordError");
-            }
-        }
-
-        private string password;
-
-        public string Password
-        {
-            get => password;
-            set
-            {
-                password = value;
-                ValidatePassword();
-                OnPropertyChanged("Password");
-            }
-        }
-
-        private string passwordError;
-
-        public string PasswordError
-        {
-            get => passwordError;
-            set
-            {
-                passwordError = value;
-                OnPropertyChanged("PasswordError");
-            }
-        }
-        private void ValidatePassword()
-        {
-            this.ShowPasswordError = (Password == null) || Password.Length < 8 || !Password.Any(x => char.IsLetter(x)); // need to inclode one letter  
-        }
-        #endregion
-        #region Email
-        private bool showEmailError;
-
-        public bool ShowEmailError
-        {
-            get => showEmailError;
-            set
-            {
-                showEmailError = value;
-                OnPropertyChanged("ShowEmailError");
-            }
-        }
-
-        private string email;
-
-        public string Email
-        {
-            get => email;
-            set
-            {
-                email = value;
-                ValidateEmail();
-                OnPropertyChanged("Email");
-            }
-        }
-
-        private string emailError;
-
-        public string EmailError
-        {
-            get => emailError;
-            set
-            {
-                emailError = value;
-                OnPropertyChanged("EmailError");
-            }
-        }
-        private void ValidateEmail()
-        {
-            Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
-            Match match = regex.Match(Email);
-            if (match.Success)
-            {
-                ShowEmailError = false;
-            }
-            else
-            {
-                ShowEmailError = true;
-            }
-
-        }
-        #endregion
-        
-        //This function validate the entire form upon submit!
-        private bool ValidateForm()
-        {
-            //Validate all fields first
-            ValidatePassword();
-            ValidateEmail();
-            ValidateName();
-
-
-            //check if any validation failed
-            if (ShowPasswordError || ShowEmailError || ShowNameError)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-        #endregion
         #region attributes and properties
         private TriviaWebAPIProxy triviaService;
-        public ProfileViewModel(TriviaWebAPIProxy service)
-        {
-            this.triviaService = service;
-            this.NameError = "This is must";
-            this.ShowNameError = false;
-            this.PasswordError = "The password must include at least 8 digits and with at least 1 letter";
-            this.ShowPasswordError = false;
-            this.EmailError = "The email was not found";
-            this.ShowEmailError = false;
-            IsVisible = false;
-            IsEnabled = true;
-        }
+
 
         private User currentUser;
         public User CurrentUser
@@ -199,7 +28,6 @@ namespace TriviaAppClean.ViewModels
                 OnPropertyChanged();
             }
         }
-
         private string newEmail;
         public string NewEmail
         {
@@ -239,7 +67,7 @@ namespace TriviaAppClean.ViewModels
                 OnPropertyChanged();
             }
         }
-        private bool inServerCall;
+        private bool inServerCall = false;
         public bool InServerCall
         {
             get
@@ -248,30 +76,39 @@ namespace TriviaAppClean.ViewModels
             }
             set
             {
+                IsEnabled = !value;
+                IsVisible = value;
                 this.inServerCall = value;
                 OnPropertyChanged();
             }
         }
+
         private bool isVisible;
         public bool IsVisible
         {
-            get { return isVisible; }
+            get
+            {
+                return this.isVisible;
+            }
             set
             {
-                isVisible = value;
-                OnPropertyChanged("IsVisible");
+                this.isVisible = value;
+                OnPropertyChanged();
             }
         }
-        private bool isEnabled;
+
+        private bool isEnabled = true;
         public bool IsEnabled
         {
-            get { return isEnabled; }
+            get
+            {
+                return this.isEnabled;
+            }
             set
             {
-                isEnabled = value;
-                OnPropertyChanged("IsEnabled");
+                this.isEnabled = value;
+                OnPropertyChanged();
             }
-
         }
         #endregion
 
@@ -298,22 +135,20 @@ namespace TriviaAppClean.ViewModels
             {
                 return false;
             }
-
         }
         private bool ValidatePassword(string pass)
         {
-            return pass.Length > 8 && pass.Any(x => char.IsLetter(x)) ; // need to inclode one letter
+            return pass.Length > 8 && pass.Any(x => char.IsLetter(x)); // need to inclode one letter
         }
         #endregion
-
         //on ChangeCommand and getting with param (command parameter)
         //changes properties and update the DB
         async void OnChangeCommand(object param)
         {
-            IsVisible = true;
-            IsEnabled = false;
-            
+            InServerCall = true;
             List<User> users = await triviaService.GetAllUsers();
+            InServerCall = false;
+
             switch (param)
             {
                 case "email"://change email and check if the same one already esit
@@ -333,7 +168,6 @@ namespace TriviaAppClean.ViewModels
                     CurrentUser.Email = this.newEmail;
                     await Shell.Current.DisplayAlert("Email", $"Email change succeeded! reload the page to loke at your new profile", "ok");
                     break;
-
                 case "pass"://change password
                     if (!ValidatePassword(newPass))
                     {
@@ -345,7 +179,7 @@ namespace TriviaAppClean.ViewModels
                 case "name"://change name
                     foreach (User user in users)
                     {
-                        if (NewName == null)
+                        if (NewName == "" ||  NewName == null)
                         {
                             await Shell.Current.DisplayAlert("Name", $"Name change failed! the name cannot be empty", "ok");
                             return;
@@ -358,16 +192,15 @@ namespace TriviaAppClean.ViewModels
                     }
                     CurrentUser.Name = this.newName;
                     break;
-
             }
-            
+
             NewEmail = "";
             NewName = "";
             NewPass = "";
-            inServerCall = true;
+            InServerCall = true;
             //update the DB
             bool b = await triviaService.UpdateUser(CurrentUser);
-            inServerCall = false;
+            InServerCall = false;
             if (!b)
             {
                 await Application.Current.MainPage.DisplayAlert("Error", "Try again later", "ok");
@@ -376,12 +209,8 @@ namespace TriviaAppClean.ViewModels
             {
                 await Shell.Current.DisplayAlert("UpdateUser", $"Update seccesful! please open the profile page again to see your new details!", "ok");
                 CurrentUser = (((App)Application.Current).LoggedInUser);
-                IsVisible = false;
-                IsEnabled = true;
             }
-
         }
         #endregion
-
     }
 }
