@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TriviaAppClean.Views.GameRegularView"
              Title="GameRegularView">
-    <VerticalStackLayout>
-        <Grid Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="Start" RowSpacing="30">
+    <VerticalStackLayout >
+        <Grid Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="Start" RowSpacing="30" IsVisible="{Binding IsVisible}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
@@ -32,5 +32,12 @@
             Text="{Binding Answer4}" Command="{Binding AnswerCommand4}" 
             HorizontalOptions="Center"/>
         </Grid>
+        <Label 
+            IsVisible="{Binding IsVisible2}"
+            HorizontalOptions="Center"
+            VerticalOptions="FillAndExpand" 
+            FontSize="Large"
+            Text="Loading Question..."
+            />
     </VerticalStackLayout>
 </ContentPage>

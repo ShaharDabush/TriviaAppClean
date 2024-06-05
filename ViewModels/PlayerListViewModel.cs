@@ -14,7 +14,7 @@ namespace TriviaAppClean.ViewModels
 {
     public class PlayerListViewModel : ViewModelBase
     {
-        #region 
+        
         private TriviaWebAPIProxy _proxy;
         private ObservableCollection<User> users;
         public ObservableCollection<User> Users
