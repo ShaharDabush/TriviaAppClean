@@ -68,6 +68,7 @@ namespace TriviaAppClean.ViewModels
             }
         }
         private bool inServerCall = false;
+        private bool inServerCall;
         public bool InServerCall
         {
             get
@@ -114,10 +115,7 @@ namespace TriviaAppClean.ViewModels
 
         //constractor
         //initialize the service
-        public ProfileViewModel(TriviaWebAPIProxy service)
-        {
-            this.triviaService = service;
-        }
+
 
         #region changeUserDetails
         //on pressing change on any of the proparties in view
@@ -144,7 +142,6 @@ namespace TriviaAppClean.ViewModels
         //on ChangeCommand and getting with param (command parameter)
         //changes properties and update the DB
         async void OnChangeCommand(object param)
-        {
             InServerCall = true;
             List<User> users = await triviaService.GetAllUsers();
             InServerCall = false;
@@ -210,6 +207,7 @@ namespace TriviaAppClean.ViewModels
                 await Shell.Current.DisplayAlert("UpdateUser", $"Update seccesful! please open the profile page again to see your new details!", "ok");
                 CurrentUser = (((App)Application.Current).LoggedInUser);
             }
+
         }
         #endregion
     }
