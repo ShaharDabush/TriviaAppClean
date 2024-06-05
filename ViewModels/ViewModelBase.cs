@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace TriviaAppClean.ViewModels
 {
+    //this is here to enable on proparty changed in all the VMs 
     public class ViewModelBase : INotifyPropertyChanged
     {
         #region INotifyPropertyChanged
