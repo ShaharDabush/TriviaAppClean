@@ -14,10 +14,7 @@ namespace TriviaAppClean.ViewModels
     {
         #region attributes and properties
         private TriviaWebAPIProxy triviaService;
-        public ProfileViewModel(TriviaWebAPIProxy service)
-        {
-            this.triviaService = service;
-        }
+        
 
         private User currentUser;
         public User CurrentUser
@@ -86,6 +83,13 @@ namespace TriviaAppClean.ViewModels
             }
         }
         #endregion
+
+        //constractor
+        //initialize the service
+        public ProfileViewModel(TriviaWebAPIProxy service)
+        {
+            this.triviaService = service;
+        }
 
         #region changeUserDetails
         //on pressing change on any of the proparties in view
