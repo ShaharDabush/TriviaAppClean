@@ -9,9 +9,11 @@ using TriviaAppClean.Services;
 
 namespace TriviaAppClean.ViewModels
 {
+    //gets the question from pending question ViewModel
     [QueryProperty(nameof(CurrentQuestion), "selectedQuestion")]
     public class PendingQuestionDetailsViewModel:ViewModelBase
     {
+        #region attributes and proprties
         TriviaWebAPIProxy service;
         private AmericanQuestion currentQuestion;
         public AmericanQuestion CurrentQuestion
@@ -23,42 +25,7 @@ namespace TriviaAppClean.ViewModels
                 OnPropertyChanged();
             }
         }
-        public PendingQuestionDetailsViewModel()
-        {
-            service = new TriviaWebAPIProxy();
-        }
-        public ICommand ApproveCommand => new Command(ApproveQuestion);
-        public async void ApproveQuestion()
-        {
-            CurrentQuestion.Status = 1;
-            inServerCall = true;
-            bool b = await service.UpdateQuestion(CurrentQuestion);
-            inServerCall = false;
-            if (!b)
-            {
-                await Application.Current.MainPage.DisplayAlert("Error", "Try again later", "ok");
-            }
-            else
-            {
-                await Application.Current.MainPage.DisplayAlert("Approved", "Question approved!", "ok");
-            }
-        }
-        public ICommand DismissCommand => new Command(DismissQuestion);
-        public async void DismissQuestion()
-        {
-            CurrentQuestion.Status = 2;
-            inServerCall = true;
-            bool b = await service.UpdateQuestion(CurrentQuestion);
-            inServerCall = false;
-            if (!b)
-            {
-                await Application.Current.MainPage.DisplayAlert("Error", "Try again later", "ok");
-            }
-            else
-            {
-                await Application.Current.MainPage.DisplayAlert("Dismissed", "Question dismissed", "ok");
-            }
-        }
+
         private bool inServerCall;
         public bool InServerCall
         {
@@ -81,5 +48,58 @@ namespace TriviaAppClean.ViewModels
                 return !this.InServerCall;
             }
         }
+        #endregion
+
+        //constactor
+        //initialize the service
+        public PendingQuestionDetailsViewModel()
+        {
+            service = new TriviaWebAPIProxy();
+        }
+
+        //command on acceping the question
+        public ICommand ApproveCommand => new Command(ApproveQuestion);
+
+        //method
+        //activated by ApproveCommand
+        //chenges the status of the question to approved (change question status to 1)
+        public async void ApproveQuestion()
+        {
+            CurrentQuestion.Status = 1;
+            inServerCall = true;
+            bool b = await service.UpdateQuestion(CurrentQuestion);
+            inServerCall = false;
+            if (!b)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "Try again later", "ok");
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Approved", "Question approved!", "ok");
+            }
+        }
+
+        //command to disaprove the question
+        public ICommand DismissCommand => new Command(DismissQuestion);
+
+        //method
+        //activated by DismissCommand
+        //chenges the status of the question to Not Approved (Question status to 2) 
+        public async void DismissQuestion()
+        {
+            CurrentQuestion.Status = 2;
+            inServerCall = true;
+            bool b = await service.UpdateQuestion(CurrentQuestion);
+            inServerCall = false;
+            if (!b)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "Try again later", "ok");
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Dismissed", "Question dismissed", "ok");
+            }
+        }
+        
     }
 }

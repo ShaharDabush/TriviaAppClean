@@ -14,6 +14,7 @@ namespace TriviaAppClean.ViewModels
 {
     public class PlayerListViewModel : ViewModelBase
     {
+        #region 
         private TriviaWebAPIProxy _proxy;
         private ObservableCollection<User> users;
         public ObservableCollection<User> Users
@@ -85,8 +86,8 @@ namespace TriviaAppClean.ViewModels
                 OnPropertyChanged();
             }
         }
-        public ICommand DismissCommand => new Command<User>(DismissUser);
-        public async void DismissUser(User currentUser)
+        public ICommand ResetScoreCommand => new Command<User>(ResetScore);
+        public async void ResetScore(User currentUser)
         {
             currentUser.Score = 0;
             inServerCall = true;

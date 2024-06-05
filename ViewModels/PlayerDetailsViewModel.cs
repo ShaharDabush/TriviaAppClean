@@ -11,9 +11,11 @@ using TriviaAppClean.Services;
 
 namespace TriviaAppClean.ViewModels
 {
+    //get a player from PlayerListView
     [QueryProperty(nameof(CurrentUser), "selectedUser")]
     public class PlayerDetailsViewModel: ViewModelBase
     {
+        #region attributes and properties
         TriviaWebAPIProxy service;
         private User currentUser;
         public User CurrentUser
@@ -26,26 +28,6 @@ namespace TriviaAppClean.ViewModels
                 //UpdateStatus();
             }
         }
-        public PlayerDetailsViewModel()
-        {
-            service = new TriviaWebAPIProxy();
-
-        }
-        //public ICommand UpdateCommand => new Command(UpdateUser);
-        //public async void UpdateUser()
-        //{
-        //    inServerCall = true;
-        //    bool b = await service.UpdateUser(CurrentUser);
-        //    inServerCall = false;
-        //    if (!b)
-        //    {
-        //        await Application.Current.MainPage.DisplayAlert("Update", "Update Failed!", "ok");
-        //    }
-        //    else
-        //    {
-        //        await Application.Current.MainPage.DisplayAlert("Update", $"Update Succeed!", "ok");
-        //    }
-        //}
         private bool inServerCall;
         public bool InServerCall
         {
@@ -68,6 +50,28 @@ namespace TriviaAppClean.ViewModels
                 return !this.InServerCall;
             }
         }
+        #endregion
+        public PlayerDetailsViewModel()
+        {
+            service = new TriviaWebAPIProxy();
+
+        }
+        //public ICommand UpdateCommand => new Command(UpdateUser);
+        //public async void UpdateUser()
+        //{
+        //    inServerCall = true;
+        //    bool b = await service.UpdateUser(CurrentUser);
+        //    inServerCall = false;
+        //    if (!b)
+        //    {
+        //        await Application.Current.MainPage.DisplayAlert("Update", "Update Failed!", "ok");
+        //    }
+        //    else
+        //    {
+        //        await Application.Current.MainPage.DisplayAlert("Update", $"Update Succeed!", "ok");
+        //    }
+        //}
+        
         //private string status;
         //public string Status
         //{

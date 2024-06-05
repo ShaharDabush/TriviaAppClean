@@ -16,7 +16,7 @@
                     <SwipeView>
                         <SwipeView.LeftItems>
                             <SwipeItems>
-                                <SwipeItem Text="Dismiss"
+                                <SwipeItem Text="Reset Score"
                                            IconImageSource="trash_can.png"
                                            BackgroundColor="LightPink"
                                            Command="{Binding Source={x:Reference theCollectionView}, Path=BindingContext.DismissCommand}"
