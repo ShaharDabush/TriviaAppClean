@@ -14,7 +14,7 @@ namespace TriviaAppClean.ViewModels
 {
     public class PlayerListViewModel : ViewModelBase
     {
-        
+        #region attributs and properties
         private TriviaWebAPIProxy _proxy;
         private ObservableCollection<User> users;
         public ObservableCollection<User> Users
@@ -26,11 +26,7 @@ namespace TriviaAppClean.ViewModels
                 OnPropertyChanged();
             }
         }
-        public PlayerListViewModel()
-        {
-            _proxy = new TriviaWebAPIProxy();
-            GetUsersAsync();
-        }
+
         private string name;
         public string Name
         {
@@ -43,35 +39,6 @@ namespace TriviaAppClean.ViewModels
             get { return selectedUser; }
             set { selectedUser = value; OnPropertyChanged(); }
         }
-        public ICommand SingleSelectCommand => new Command(OnSingleSelectUser);
-        async void OnSingleSelectUser()
-        {
-            if (SelectedUser != null)
-            {
-                var navParam = new Dictionary<string, object>()
-                {
-                    { "selectedUser",SelectedUser }
-                };
-                await Shell.Current.GoToAsync($"PlayerDetailsView", navParam);
-                SelectedUser = null;
-            }
-        }
-
-        public async void GetUsersAsync()
-        {
-            inServerCall = true;
-            List<User> us = await _proxy.GetAllUsers();
-            Users = new ObservableCollection<User>(us);
-            inServerCall = false;
-        }
-        public ICommand SortCommand => new Command(Sort);
-        public void Sort()
-        {
-            GetUsersAsync();
-            List<User> temp = Users.Where(u => u.Name.Contains(Name)).ToList();
-            Users = new ObservableCollection<User>(temp);
-        }
-        public ICommand ClearSortCommand => new Command(GetUsersAsync);
 
         private bool inServerCall;
         public bool InServerCall
@@ -86,7 +53,69 @@ namespace TriviaAppClean.ViewModels
                 OnPropertyChanged();
             }
         }
+        #endregion
+
+        //constrator
+        //initialize the service and get all users for the list
+        public PlayerListViewModel()
+        {
+            _proxy = new TriviaWebAPIProxy();
+            GetUsersAsync();
+        }
+
+        #region commands
+        //on selecting a player
+        public ICommand SingleSelectCommand => new Command(OnSingleSelectUser);
+
+        //on searching a player by name (in view)
+        public ICommand SortCommand => new Command(Sort);
+
+        //on pressing the button to clear the sort
+        public ICommand ClearSortCommand => new Command(GetUsersAsync);
+
+        //on swiping left in the view
         public ICommand ResetScoreCommand => new Command<User>(ResetScore);
+
+        #endregion
+
+        #region methods    
+        //on SingleSelectCommand
+        //send you to PlayerDetailsView sending it the data of the player
+        async void OnSingleSelectUser()
+        {
+            if (SelectedUser != null)
+            {
+                var navParam = new Dictionary<string, object>()
+                {
+                    { "selectedUser",SelectedUser }
+                };
+                await Shell.Current.GoToAsync($"PlayerDetailsView", navParam);
+                SelectedUser = null;
+            }
+        }
+
+        //on starting the page
+        //get all the players for the list
+        public async void GetUsersAsync()
+        {
+            inServerCall = true;
+            List<User> us = await _proxy.GetAllUsers();
+            Users = new ObservableCollection<User>(us);
+            inServerCall = false;
+        }
+
+
+
+        //on SortCommand change the list and leave only the users that contain the given string
+        public void Sort()
+        {
+            GetUsersAsync();
+            List<User> temp = Users.Where(u => u.Name.Contains(Name)).ToList();
+            Users = new ObservableCollection<User>(temp);
+        }
+
+        //on ResetScoreCommand 
+        //reset the score of a user to 0 and updates the DB
         public async void ResetScore(User currentUser)
         {
             currentUser.Score = 0;
@@ -102,5 +131,6 @@ namespace TriviaAppClean.ViewModels
                 await Application.Current.MainPage.DisplayAlert("Succses", "Score Reset", "ok");
             }
         }
+        #endregion
     }
 }
