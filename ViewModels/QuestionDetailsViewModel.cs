@@ -10,9 +10,12 @@ using TriviaAppClean.Services;
 
 namespace TriviaAppClean.ViewModels
 {
+    //from question list on selecting a question
     [QueryProperty(nameof(CurrentQuestion), "selectedQuestion")]
     public class QuestionDetailsViewModel:ViewModelBase
     {
+        #region attributes and proparties
+
         TriviaWebAPIProxy service;
         private AmericanQuestion currentQuestion;
         public AmericanQuestion CurrentQuestion
@@ -25,26 +28,7 @@ namespace TriviaAppClean.ViewModels
                 UpdateStatus();
             }
         }
-        public QuestionDetailsViewModel()
-        {
-            service = new TriviaWebAPIProxy();
-           
-        }
-        public ICommand UpdateCommand => new Command(UpdateQuestion);
-        public async void UpdateQuestion()
-        {
-            inServerCall = true;
-          bool b = await service.UpdateQuestion(CurrentQuestion);
-            inServerCall = false;
-            if (!b)
-            {
-                await Application.Current.MainPage.DisplayAlert("Update", "Update Failed!", "ok");
-            }
-            else
-            {
-                await Application.Current.MainPage.DisplayAlert("Update", $"Update Succeed!", "ok");               
-            }
-        }
+
         private bool inServerCall;
         public bool InServerCall
         {
@@ -77,6 +61,40 @@ namespace TriviaAppClean.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        #endregion
+
+        //constractor
+        //initilize the servise
+        public QuestionDetailsViewModel()
+        {
+            service = new TriviaWebAPIProxy();
+           
+        }
+
+        //command
+        //on updating the questions (button in view)
+        public ICommand UpdateCommand => new Command(UpdateQuestion);
+
+        //method
+        //activated by UpdateCommand
+        //update the question in the DB to the new values
+        public async void UpdateQuestion()
+        {
+            inServerCall = true;
+          bool b = await service.UpdateQuestion(CurrentQuestion);
+            inServerCall = false;
+            if (!b)
+            {
+                await Application.Current.MainPage.DisplayAlert("Update", "Update Failed!", "ok");
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Update", $"Update Succeed!", "ok");               
+            }
+        }
+        
+        //show the different statuses not as miningless numbers but as the actual status
         public void UpdateStatus()
         {
             switch (CurrentQuestion.Status)

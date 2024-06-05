@@ -12,6 +12,7 @@ namespace TriviaAppClean.ViewModels
 {
     public class ProfileViewModel : ViewModelBase
     {
+        #region attributes and properties
         private TriviaWebAPIProxy triviaService;
         public ProfileViewModel(TriviaWebAPIProxy service)
         {
@@ -84,9 +85,10 @@ namespace TriviaAppClean.ViewModels
                 OnPropertyChanged();
             }
         }
-
+        #endregion
 
         #region changeUserDetails
+        //on pressing change on any of the proparties in view
         public ICommand ChangeCommand => new Command(OnChangeCommand);
         #region validations
         private bool ValidateEmail(string Email)
@@ -108,6 +110,9 @@ namespace TriviaAppClean.ViewModels
             return pass.Length > 8 && pass.Any(x => char.IsLetter(x)) ; // need to inclode one letter
         }
         #endregion
+
+        //on ChangeCommand and getting with param (command parameter)
+        //changes properties and update the DB
         async void OnChangeCommand(object param)
         {
             List<User> users = await triviaService.GetAllUsers();
@@ -156,10 +161,12 @@ namespace TriviaAppClean.ViewModels
                     CurrentUser.Name = this.newName;
                     break;
             }
+            
             NewEmail = "";
             NewName = "";
             NewPass = "";
             inServerCall = true;
+            //update the DB
             bool b = await triviaService.UpdateUser(CurrentUser);
             inServerCall = false;
             if (!b)
