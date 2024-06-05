@@ -203,8 +203,13 @@ namespace TriviaAppClean.ViewModels
            
         }
         #endregion
+        //on sighing up
         public Command SaveDataCommand { protected set; get; }
+
+        //the service
         private TriviaWebAPIProxy triviaService;
+
+        //constractor initializing all the errors the service and the command
         public SignUpViewModel(TriviaWebAPIProxy service)
         {
             this.NameError = "This is must";
@@ -234,8 +239,9 @@ namespace TriviaAppClean.ViewModels
                 return false;
             return true;
         }
-       
-   
+
+        //method 
+        // if the data is valid (accepted by ValidateForm) then register the user in the DB via the servise 
         private async void SaveData()
         {
             if (ValidateForm())

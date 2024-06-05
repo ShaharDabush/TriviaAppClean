@@ -13,7 +13,8 @@ public partial class AppShell : Shell
         this.BindingContext = vm;
         RegisterRoutes();
     }
-    
+
+    //all the Routing to different pages (via shell) like from QuestionList to QuestionDetailsView 
     private void RegisterRoutes()
 	{
         Routing.RegisterRoute("connectingToServer", typeof(ConnectingToServerView));

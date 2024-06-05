@@ -275,6 +275,13 @@ namespace TriviaAppClean.ViewModels
         }
         #endregion
 
+        //constractor
+        //initialize the service
+        public ProfileViewModel(TriviaWebAPIProxy service)
+        {
+            this.triviaService = service;
+        }
+
         #region changeUserDetails
         //on pressing change on any of the proparties in view
         public ICommand ChangeCommand => new Command(OnChangeCommand);

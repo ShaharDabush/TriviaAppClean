@@ -14,7 +14,7 @@ namespace TriviaAppClean.ViewModels
 {
     public class GameRegularViewModel : ViewModelBase
     {
-        #region properties
+        #region properties and attribuets
         public static Random rnd = new Random();
         private TriviaWebAPIProxy _proxy;
         private User currentUser;
@@ -145,6 +145,9 @@ namespace TriviaAppClean.ViewModels
             }
         }
         #endregion
+
+        //constractor
+        //initialize proparties and get all the approved questions in the DB
         public GameRegularViewModel()
         {
             _proxy = new TriviaWebAPIProxy();
@@ -153,13 +156,19 @@ namespace TriviaAppClean.ViewModels
             IsVisible2 = false;
 
         }
-        // Commend for evrey answer 
+        #region commands
+        // Commend for every answer on pressing the answer
         public ICommand AnswerCommand1 => new Command(Choice1);
         public ICommand AnswerCommand2 => new Command(Choice2);
         public ICommand AnswerCommand3 => new Command(Choice3);
         public ICommand AnswerCommand4 => new Command(Choice4);
+        #endregion
 
+        #region methods
 
+        //activated via the commands
+        //make the question disapear
+        //calls for AgainNewQuestion
         public void Choice1()
         {
             ChangeIsVisible();
@@ -180,6 +189,10 @@ namespace TriviaAppClean.ViewModels
             ChangeIsVisible();
             AgainNewQuestion(answer4);
         }
+
+        //activated via the method Choice1-4
+        //add or sabtract point depending on your answer
+        //lastly activate GetTheQuestion and make questions apear
         public async void AgainNewQuestion(string answer)
         {
            
@@ -228,6 +241,9 @@ namespace TriviaAppClean.ViewModels
             
 
         }
+
+        //activated on constractor
+        //get all the questions that have been approved in the DB (question status == 2)
         public async void GetQuestionList()
         {
 
@@ -243,6 +259,9 @@ namespace TriviaAppClean.ViewModels
             GetTheQuestion();
         }
 
+        
+        //get a random question from the Question list list
+        //and get any question in the DB if there are no aprroved questions
         public async void GetTheQuestion()
         {
             if (QuestionList != null)
@@ -260,6 +279,8 @@ namespace TriviaAppClean.ViewModels
             
             GetRandomAnswers();
         }
+
+        //makes the questions dispear and apear on answering a question 
         public void ChangeIsVisible()
         {
             if(IsVisible)
@@ -270,7 +291,9 @@ namespace TriviaAppClean.ViewModels
             else { IsVisible = true; IsVisible2 = false; }
         }
 
-        public void GetRandomAnswers() // method which randomize the four answers
+
+        // method which randomize the position of the four answers
+        public void GetRandomAnswers() 
         {
             isVisible = true;
             int num = rnd.Next(1, 5);
@@ -304,5 +327,6 @@ namespace TriviaAppClean.ViewModels
             }
             
         }
+        #endregion
     }
 }
