@@ -14,7 +14,7 @@ namespace TriviaAppClean.ViewModels
 {
     public class PlayerListViewModel : ViewModelBase
     {
-        #region 
+        #region attributs and properties
         private TriviaWebAPIProxy _proxy;
         private ObservableCollection<User> users;
         public ObservableCollection<User> Users
@@ -26,11 +26,7 @@ namespace TriviaAppClean.ViewModels
                 OnPropertyChanged();
             }
         }
-        public PlayerListViewModel()
-        {
-            _proxy = new TriviaWebAPIProxy();
-            GetUsersAsync();
-        }
+
         private string name;
         public string Name
         {
@@ -43,6 +39,29 @@ namespace TriviaAppClean.ViewModels
             get { return selectedUser; }
             set { selectedUser = value; OnPropertyChanged(); }
         }
+
+        private bool inServerCall;
+        public bool InServerCall
+        {
+            get
+            {
+                return this.inServerCall;
+            }
+            set
+            {
+                this.inServerCall = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+
+        //constrator
+        public PlayerListViewModel()
+        {
+            _proxy = new TriviaWebAPIProxy();
+            GetUsersAsync();
+        }
+        
         public ICommand SingleSelectCommand => new Command(OnSingleSelectUser);
         async void OnSingleSelectUser()
         {
@@ -73,19 +92,7 @@ namespace TriviaAppClean.ViewModels
         }
         public ICommand ClearSortCommand => new Command(GetUsersAsync);
 
-        private bool inServerCall;
-        public bool InServerCall
-        {
-            get
-            {
-                return this.inServerCall;
-            }
-            set
-            {
-                this.inServerCall = value;
-                OnPropertyChanged();
-            }
-        }
+        
         public ICommand ResetScoreCommand => new Command<User>(ResetScore);
         public async void ResetScore(User currentUser)
         {
