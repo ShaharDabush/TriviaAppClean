@@ -35,39 +35,51 @@
                    Text="{Binding CurrentUser.AddedQuestions}"
                    HorizontalOptions="Center"/>
             
-            <Entry Grid.Column="0" Grid.Row="4"
+            <Entry Grid.Column="0" Grid.Row="4" 
+                IsEnabled="{Binding IsEnabled}"
                 Placeholder="enter new email"
                 Text="{Binding NewEmail}"
                 HorizontalOptions="Center"/>
             
-            <Button Grid.Column="1" Grid.Row="4"
+            <Button Grid.Column="1" Grid.Row="4" 
+                IsEnabled="{Binding IsEnabled}"
                 Text="change email"
                 Command="{Binding ChangeCommand}"
                 CommandParameter="email"
             />
             
             <Entry Grid.Column="0" Grid.Row="5"
+                IsEnabled="{Binding IsEnabled}"
                 Placeholder="enter new password"
                 Text="{Binding NewPass}"
                 HorizontalOptions="Center"/>
 
             <Button Grid.Column="1" Grid.Row="5"
+                IsEnabled="{Binding IsEnabled}"
                 Text="change password"
                 Command="{Binding ChangeCommand}"
                 CommandParameter="pass"
                 />
 
             <Entry Grid.Column="0" Grid.Row="6"
+                IsEnabled="{Binding IsEnabled}"
                 Placeholder="enter new nickname"
                 Text="{Binding NewName}"
                 HorizontalOptions="Center"/>
 
             <Button Grid.Column="1" Grid.Row="6"
+                IsEnabled="{Binding IsEnabled}"
                 Text="change name"
                 Command="{Binding ChangeCommand}"
                 CommandParameter="name"
                 />
         </Grid>
-        
+        <Label 
+            IsVisible="{Binding IsVisible}"
+            HorizontalOptions="Center"
+            VerticalOptions="FillAndExpand" 
+            FontSize="Large"
+            Text="Updating Data..."
+            />
     </VerticalStackLayout>
 </ContentPage>

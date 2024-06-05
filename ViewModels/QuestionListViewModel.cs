@@ -23,13 +23,6 @@ namespace TriviaAppClean.ViewModels
             OnPropertyChanged();
             }
         }
-        public QuestionListViewModel()
-        {
-            
-            _proxy = new TriviaWebAPIProxy();
-            GetQuestionsAsync();
-            
-        }
         private string query;
         public string Query
         {
@@ -119,20 +112,7 @@ namespace TriviaAppClean.ViewModels
             Questions = new ObservableCollection<AmericanQuestion>(temp);
         }
 
-        private bool inServerCall;
-        public bool InServerCall
-        {
-            get
-            {
-                return this.inServerCall;
-            }
-            set
-            {
-                this.inServerCall = value;
-                OnPropertyChanged("InServerCall");
-            }
-        }
-        public ICommand DismissCommand => new Command<AmericanQuestion>(DismissQuestion);
+        
         public async void DismissQuestion(AmericanQuestion currentQuestion)
         {
             currentQuestion.Status = 2;
