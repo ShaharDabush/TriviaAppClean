@@ -4,63 +4,74 @@
              x:Class="TriviaAppClean.Views.LeaderboardView"
              Title="LeaderboardView"
               Shell.FlyoutBehavior="Flyout">
-    <VerticalStackLayout>
-        <Label HorizontalOptions="Center"
+    <Border 
+           Stroke="gold"
+           StrokeThickness="4"
+           StrokeShape="RoundRectangle 20,20,20,20"
+           Background="Black"
+           Padding="16,8">
+        <VerticalStackLayout>
+            <Label HorizontalOptions="Center"
                            Text="Leaderboard"
-                            FontAttributes="Bold"/>
-        <Grid Padding="20" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
+                           TextColor="White"
+                           FontSize="Large"
+                           FontAttributes="Bold"/>
+            <Grid Padding="20" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
 
 
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
 
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
+                           TextColor="White"
                            Text="Name"
                             FontAttributes="Bold"/>
-            <Label Grid.Column="1" Grid.Row="0" Grid.RowSpan="3"
+                <Label Grid.Column="1" Grid.Row="0" Grid.RowSpan="3"
+                           TextColor="White"
                            Text="Questions added"
                             FontAttributes="Bold"/>
 
-        </Grid>
-        <ActivityIndicator IsVisible="{Binding InServerCall}" IsRunning="{Binding InServerCall}" Color="red"></ActivityIndicator>
-        <CollectionView  ItemsSource="{Binding LeaderboardUsers}" HeightRequest="800" ItemsLayout="VerticalList" x:Name="theCollectionView" >
-            <CollectionView.ItemTemplate>
-            <DataTemplate>
-                    <Border 
+            </Grid>
+            <ActivityIndicator IsVisible="{Binding InServerCall}" IsRunning="{Binding InServerCall}" Color="red"></ActivityIndicator>
+            <CollectionView  ItemsSource="{Binding LeaderboardUsers}" HeightRequest="800" ItemsLayout="VerticalList" x:Name="theCollectionView" >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border 
                           Stroke="#C49B33"
                           StrokeThickness="4"
                           StrokeShape="RoundRectangle 40,0,0,40"
                           Background="#2B0B98"
                           Padding="16,8">
-                        <Grid Padding="20" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource LabelStyle}"
+                            <Grid Padding="20" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource LabelStyle}"
                            Text="{Binding Name}"
                             FontAttributes="Bold"/>
-                            <Label Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource LabelStyle}"
+                                <Label Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource LabelStyle}"
                            Text="{Binding Questions.Count}"
                             FontAttributes="Bold"/>
 
-                        </Grid>
-                    </Border>
-                </DataTemplate>
-        </CollectionView.ItemTemplate>
-       </CollectionView>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
-    </VerticalStackLayout>
+        </VerticalStackLayout>
+    </Border>
 </ContentPage>
