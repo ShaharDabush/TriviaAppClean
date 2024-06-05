@@ -8,13 +8,14 @@ using TriviaAppClean.ViewModels;
 using TriviaAppClean.Services;
 using TriviaAppClean.Models;
 using System.Windows.Input;
+using Microsoft.Maui.Layouts;
 
 namespace TriviaAppClean.ViewModels
 {
     public class GameRegularViewModel : ViewModelBase
     {
+        #region properties
         public static Random rnd = new Random();
-
         private TriviaWebAPIProxy _proxy;
         private User currentUser;
         public User CurrentUser
@@ -122,12 +123,37 @@ namespace TriviaAppClean.ViewModels
             }
         }
 
+
+        private bool isVisible;
+        public bool IsVisible
+        {
+            get { return isVisible; }
+            set
+            {
+                isVisible = value;
+                OnPropertyChanged("IsVisible");
+            }
+        }
+        private bool isVisible2;
+        public bool IsVisible2
+        {
+            get { return isVisible2; }
+            set
+            {
+                isVisible2 = value;
+                OnPropertyChanged("IsVisible2");
+            }
+        }
+        #endregion
         public GameRegularViewModel()
         {
             _proxy = new TriviaWebAPIProxy();
             GetQuestionList();
-            
+            IsVisible = true;
+            IsVisible2 = false;
+
         }
+        // Commend for evrey answer 
         public ICommand AnswerCommand1 => new Command(Choice1);
         public ICommand AnswerCommand2 => new Command(Choice2);
         public ICommand AnswerCommand3 => new Command(Choice3);
@@ -136,22 +162,27 @@ namespace TriviaAppClean.ViewModels
 
         public void Choice1()
         {
+            ChangeIsVisible();
             AgainNewQuestion(answer1);
         }
         public void Choice2()
         {
+            ChangeIsVisible();
             AgainNewQuestion(answer2);
         }
         public void Choice3()
         {
+            ChangeIsVisible();
             AgainNewQuestion(answer3);
         }
         public void Choice4()
         {
+            ChangeIsVisible();
             AgainNewQuestion(answer4);
         }
         public async void AgainNewQuestion(string answer)
         {
+           
             
             if(answer == randomQuestion.CorrectAnswer)
             {
@@ -164,6 +195,7 @@ namespace TriviaAppClean.ViewModels
                 await _proxy.UpdateUser(CurrentUser);
                 inServerCall = false;
 
+                // refresh the score
                 await Application.Current.MainPage.DisplayAlert("Correct!", "Your score:" + CurrentUser.Score, "ok");
 
                 if (((App)Application.Current).LoggedInUser.Score >= 100)
@@ -175,8 +207,6 @@ namespace TriviaAppClean.ViewModels
 
 
                 }
-
-                
             }
             else
             {
@@ -195,8 +225,9 @@ namespace TriviaAppClean.ViewModels
 
                 await Application.Current.MainPage.DisplayAlert("Wrong!", "Your score:" + CurrentUser.Score, "ok");
             }
+            ChangeIsVisible();
             GetTheQuestion();
-
+            
 
         }
         public async void GetQuestionList()
@@ -231,9 +262,19 @@ namespace TriviaAppClean.ViewModels
             
             GetRandomAnswers();
         }
-
-        public void GetRandomAnswers()
+        public void ChangeIsVisible()
         {
+            if(IsVisible)
+            {
+                IsVisible = false;
+                IsVisible2 = true;
+            }
+            else { IsVisible = true; IsVisible2 = false; }
+        }
+
+        public void GetRandomAnswers() // method which randomize the four answers
+        {
+            isVisible = true;
             int num = rnd.Next(1, 5);
             if(num == 1)
             {
@@ -263,6 +304,7 @@ namespace TriviaAppClean.ViewModels
                 Answer3 = RandomQuestion.Bad3;
                 Answer4 = RandomQuestion.CorrectAnswer;
             }
+            
         }
     }
 }

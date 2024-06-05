@@ -4,9 +4,20 @@
              x:Class="TriviaAppClean.Views.GameView"
              Title="GameView"
              Shell.FlyoutBehavior="Flyout">
-    <VerticalStackLayout>
+    <ContentPage.Resources>
+        <Style x:Key="ButtomPlayStyle"
+               TargetType="Button">
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="FontSize" Value="45" />
+            <Setter Property="TextColor" Value="Gold" />
+        </Style>
+    </ContentPage.Resources>
+    <VerticalStackLayout VerticalOptions="Center">
+        
         <Button
             Text="Play"
+            Style="{StaticResource ButtomPlayStyle}"
             VerticalOptions="Center" 
             HorizontalOptions="Center" 
             Command="{Binding PlayCommand}"/>
