@@ -13,7 +13,7 @@ namespace TriviaAppClean.ViewModels
 {
     public class AddQuestionViewModel:ViewModelBase
     {
-
+        #region Attributes and properties
         private TriviaWebAPIProxy _proxy;
         private User currentUser;
         public User CurrentUser
@@ -38,7 +38,7 @@ namespace TriviaAppClean.ViewModels
                 OnPropertyChanged("AddedQuestion");
             }
         }
-
+        //while we commune with the DB this is true
         private bool inServerCall;
         public bool InServerCall
         {
@@ -52,17 +52,24 @@ namespace TriviaAppClean.ViewModels
                 OnPropertyChanged();
             }
         }
+        #endregion
+
+        //command when submitting the new question
         public ICommand SubmitCommand { get; set; }
-        public AddQuestionViewModel()
+
+        
+        public AddQuestionViewModel() 
         {
             _proxy = new TriviaWebAPIProxy();
             addedQuestion = new AmericanQuestion();
             SubmitCommand = new Command(OnSubmitting);
         }
-       
 
-        
 
+        //activated by command SubmitCommand
+        //This method checks if any field is null ==>
+        //send the new question to the DataBase ==>
+        //increase the score of the user
         async void OnSubmitting()
         {
             if (AddedQuestion != null)

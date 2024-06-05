@@ -14,7 +14,10 @@ namespace TriviaAppClean.ViewModels
 {
     public class LeaderboardViewModel:ViewModelBase
     {
+        #region attributes and properties
+        //using this attribute to contact the database
         private TriviaWebAPIProxy triviaService;
+        //list of all the users that we will sort by questions added
         private ObservableCollection<User> leaderboardUsers;
         public ObservableCollection<User> LeaderboardUsers
         {
@@ -26,16 +29,6 @@ namespace TriviaAppClean.ViewModels
 
             }
         }
-       
-        public LeaderboardViewModel(TriviaWebAPIProxy triviaService)
-        {
-           this.triviaService = triviaService;
-           GetListAsync();
-          
-           //LeaderboardUsers = triviaService.GetAllUsers();
-           // var OrderedUsers = LeaderboardUsers.toList().OrderBy(x => x.Age).ThenBy(x => x.Salary).ToList();
-        }
-        
 
         private string name;
         public string Name
@@ -47,6 +40,7 @@ namespace TriviaAppClean.ViewModels
                 OnPropertyChanged();
             }
         }
+
         private string questionsAdded;
         public string QuestionsAdded
         {
@@ -57,6 +51,21 @@ namespace TriviaAppClean.ViewModels
                 OnPropertyChanged();
             }
         }
+        #endregion
+
+        //constractor
+        //initialize the properties and attrebuets and call for GetListAsync to get the kist of users
+        public LeaderboardViewModel(TriviaWebAPIProxy triviaService)
+        {
+           this.triviaService = triviaService;
+           GetListAsync();
+          
+           //LeaderboardUsers = triviaService.GetAllUsers();
+           // var OrderedUsers = LeaderboardUsers.toList().OrderBy(x => x.Age).ThenBy(x => x.Salary).ToList();
+        }
+
+        //method
+        //create the list of users and sort them by questions added
         public async void GetListAsync()
         {
             List<User> list = await triviaService.GetAllUsers();
