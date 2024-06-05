@@ -12,6 +12,7 @@ namespace TriviaAppClean.ViewModels
 {
     public class ProfileViewModel : ViewModelBase
     {
+        #region attributes and proparties
         private TriviaWebAPIProxy triviaService;
         public ProfileViewModel(TriviaWebAPIProxy service)
         {
@@ -84,9 +85,10 @@ namespace TriviaAppClean.ViewModels
                 OnPropertyChanged();
             }
         }
-
+        #endregion
 
         #region changeUserDetails
+        //on pressig
         public ICommand ChangeCommand => new Command(OnChangeCommand);
         #region validations
         private bool ValidateEmail(string Email)
