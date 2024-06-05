@@ -10,6 +10,7 @@
             <Setter Property="HorizontalOptions" Value="Center" />
             <Setter Property="VerticalOptions" Value="Center" />
             <Setter Property="FontSize" Value="45" />
+            
             <Setter Property="TextColor" Value="Gold" />
         </Style>
     </ContentPage.Resources>
