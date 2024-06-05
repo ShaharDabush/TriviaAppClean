@@ -74,6 +74,7 @@ namespace TriviaAppClean.ViewModels
         {
             if (AddedQuestion != null)
             {
+                //check if any field is null
                 if (AddedQuestion.QText ==null||AddedQuestion.CorrectAnswer==null|| AddedQuestion.Bad1 == null || AddedQuestion.Bad2 == null || AddedQuestion.Bad3 == null)
                 {
                     return;
@@ -82,7 +83,7 @@ namespace TriviaAppClean.ViewModels
                 AddedQuestion.Status = 0;
                 CurrentUser.Score = 0;
                 inServerCall = true;
-
+                //update the DB
                 await _proxy.UpdateUser(CurrentUser);
                 inServerCall = false;
                 await _proxy.PostNewQuestion(AddedQuestion);
@@ -90,6 +91,7 @@ namespace TriviaAppClean.ViewModels
 
                 await Shell.Current.DisplayAlert("UpdateUser", $"your question has successfuly been added!", "ok");
 
+                //update the rank of the user if they are eligablwe to become a master (added 10 questions)
                 if (((App)Application.Current).LoggedInUser.Questions.Count >= 10 && ((App)Application.Current).LoggedInUser.Rank == 0)
                 {
                     await Application.Current.MainPage.DisplayAlert("congratulations!", "for adding 10 questions you are promoted to master rank!", "ok");

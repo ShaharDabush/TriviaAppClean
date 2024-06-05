@@ -186,10 +186,8 @@ namespace TriviaAppClean.ViewModels
             
             if(answer == randomQuestion.CorrectAnswer)
             {
-                inServerCall = true;
 
                 ((App)Application.Current).LoggedInUser.Score += 10;
-                inServerCall = false;
                 inServerCall = true;
 
                 await _proxy.UpdateUser(CurrentUser);
