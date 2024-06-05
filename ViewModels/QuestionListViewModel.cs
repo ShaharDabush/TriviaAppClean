@@ -23,7 +23,13 @@ namespace TriviaAppClean.ViewModels
             OnPropertyChanged();
             }
         }
-
+        public QuestionListViewModel()
+        {
+            
+            _proxy = new TriviaWebAPIProxy();
+            GetQuestionsAsync();
+            
+        }
         private string query;
         public string Query
         {
@@ -91,16 +97,17 @@ namespace TriviaAppClean.ViewModels
                 await Shell.Current.GoToAsync($"QuestionDetailsView", navParam);
                 SelectedQuestion = null;
             }
+            
         }       
        
         //on constractor and on clearing sort
         //initilize list of questions
         public async void GetQuestionsAsync()
         {
-            inServerCall = true;
+            InServerCall = true;
             List<AmericanQuestion> qs = await _proxy.GetAllQuestions();
             Questions = new ObservableCollection<AmericanQuestion>(qs);
-            inServerCall = false;
+            InServerCall = false;
         }
 
         //on SortCommand
@@ -112,8 +119,20 @@ namespace TriviaAppClean.ViewModels
             Questions = new ObservableCollection<AmericanQuestion>(temp);
         }
 
-        //on DismissCommand
-        //change status of question to not approved (question status 2) 
+        private bool inServerCall;
+        public bool InServerCall
+        {
+            get
+            {
+                return this.inServerCall;
+            }
+            set
+            {
+                this.inServerCall = value;
+                OnPropertyChanged("InServerCall");
+            }
+        }
+        public ICommand DismissCommand => new Command<AmericanQuestion>(DismissQuestion);
         public async void DismissQuestion(AmericanQuestion currentQuestion)
         {
             currentQuestion.Status = 2;

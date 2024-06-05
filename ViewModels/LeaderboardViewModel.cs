@@ -51,6 +51,19 @@ namespace TriviaAppClean.ViewModels
                 OnPropertyChanged();
             }
         }
+        private bool inServerCall;
+        public bool InServerCall
+        {
+            get
+            {
+                return this.inServerCall;
+            }
+            set
+            {
+                this.inServerCall = value;
+                OnPropertyChanged("InServerCall");
+            }
+        }
         #endregion
 
         //constractor
@@ -68,10 +81,11 @@ namespace TriviaAppClean.ViewModels
         //create the list of users and sort them by questions added
         public async void GetListAsync()
         {
+            InServerCall = true; 
             List<User> list = await triviaService.GetAllUsers();
             list = list.OrderByDescending(x => x.Questions.Count).ToList();
             LeaderboardUsers = new ObservableCollection<User>(list);
-
+            InServerCall = false;
         }
       
 

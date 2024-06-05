@@ -79,11 +79,11 @@ namespace TriviaAppClean.ViewModels
         //to the property Questions
         public async void GetQuestionsAsync()
         {
-            inServerCall = true;
+            InServerCall = true;
             List<AmericanQuestion> qs = await _proxy.GetAllQuestions();
             qs = qs.Where(q => q.Status == 0).ToList();
             Questions = new ObservableCollection<AmericanQuestion>(qs);
-            inServerCall = false;
+            InServerCall = false;
         }
         
         
