@@ -12,7 +12,7 @@ namespace TriviaAppClean.ViewModels
     public class ProfileViewModel : ViewModelBase
     {
         #region attributes and properties
-        private TriviaWebAPIProxy triviaService;
+        private TriviaWebAPIProxy triviaService = new TriviaWebAPIProxy();
 
 
         private User currentUser;
