@@ -13,13 +13,21 @@
             <Setter Property="TextColor" Value="Gold" />
         </Style>
     </ContentPage.Resources>
-    <VerticalStackLayout VerticalOptions="Center">
-        
-        <Button
+    <Border 
+            Stroke="gold"
+            StrokeThickness="6"
+            StrokeShape="RoundRectangle 40,10,10,40"
+            Background="Black"
+            Padding="2,10">
+        <VerticalStackLayout VerticalOptions="Center">
+            <Button
             Text="Play"
+            FontAttributes="Bold"
             Style="{StaticResource ButtomPlayStyle}"
             VerticalOptions="Center" 
             HorizontalOptions="Center" 
             Command="{Binding PlayCommand}"/>
+        
     </VerticalStackLayout>
+    </Border>
 </ContentPage>
