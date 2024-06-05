@@ -27,16 +27,17 @@ namespace TriviaAppClean.ViewModels
             }
         }
 
-        private string name;
-
-        public string Name
+        private string newName;
+        public string NewName
         {
-            get => name;
+            get
+            {
+                return newName;
+            }
             set
             {
-                name = value;
-                ValidateName();
-                OnPropertyChanged("Name");
+                this.newName = value;
+                OnPropertyChanged();
             }
         }
 
@@ -53,7 +54,7 @@ namespace TriviaAppClean.ViewModels
         }
         private void ValidateName()
         {
-            this.ShowNameError = string.IsNullOrEmpty(Name);
+            this.ShowNameError = string.IsNullOrEmpty(NewName);
         }
         #endregion
         #region password
@@ -69,16 +70,17 @@ namespace TriviaAppClean.ViewModels
             }
         }
 
-        private string password;
-
-        public string Password
+        private string newPass;
+        public string NewPass
         {
-            get => password;
+            get
+            {
+                return newPass;
+            }
             set
             {
-                password = value;
-                ValidatePassword();
-                OnPropertyChanged("Password");
+                this.newPass = value;
+                OnPropertyChanged();
             }
         }
 
@@ -95,7 +97,7 @@ namespace TriviaAppClean.ViewModels
         }
         private void ValidatePassword()
         {
-            this.ShowPasswordError = (Password == null) || Password.Length < 8 || !Password.Any(x => char.IsLetter(x)); // need to inclode one letter  
+            this.ShowPasswordError = (NewPass == null) || NewPass.Length < 8 || !NewPass.Any(x => char.IsLetter(x)); // need to inclode one letter  
         }
         #endregion
         #region Email
@@ -111,16 +113,17 @@ namespace TriviaAppClean.ViewModels
             }
         }
 
-        private string email;
-
-        public string Email
+        private string newEmail;
+        public string NewEmail
         {
-            get => email;
+            get
+            {
+                return newEmail;
+            }
             set
             {
-                email = value;
-                ValidateEmail();
-                OnPropertyChanged("Email");
+                this.newEmail = value;
+                OnPropertyChanged();
             }
         }
 
@@ -138,7 +141,7 @@ namespace TriviaAppClean.ViewModels
         private void ValidateEmail()
         {
             Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
-            Match match = regex.Match(Email);
+            Match match = regex.Match(NewEmail);
             if (match.Success)
             {
                 ShowEmailError = false;
@@ -200,45 +203,7 @@ namespace TriviaAppClean.ViewModels
             }
         }
 
-        private string newEmail;
-        public string NewEmail
-        {
-            get
-            {
-                return newEmail;
-            }
-            set
-            {
-                this.newEmail = value;
-                OnPropertyChanged();
-            }
-        }
-        private string newPass;
-        public string NewPass
-        {
-            get
-            {
-                return newPass;
-            }
-            set
-            {
-                this.newPass = value;
-                OnPropertyChanged();
-            }
-        }
-        private string newName;
-        public string NewName
-        {
-            get
-            {
-                return newName;
-            }
-            set
-            {
-                this.newName = value;
-                OnPropertyChanged();
-            }
-        }
+       
         private bool inServerCall;
         public bool InServerCall
         {
@@ -277,10 +242,7 @@ namespace TriviaAppClean.ViewModels
 
         //constractor
         //initialize the service
-        public ProfileViewModel(TriviaWebAPIProxy service)
-        {
-            this.triviaService = service;
-        }
+
 
         #region changeUserDetails
         //on pressing change on any of the proparties in view
@@ -312,70 +274,78 @@ namespace TriviaAppClean.ViewModels
         {
             IsVisible = true;
             IsEnabled = false;
-            
-            List<User> users = await triviaService.GetAllUsers();
-            switch (param)
+            if (ValidateForm())
             {
-                case "email"://change email and check if the same one already esit
-                    foreach (User user in users)
-                    {
-                        if (!ValidateEmail(newEmail))
+                List<User> users = await triviaService.GetAllUsers();
+                switch (param)
+                {
+                    case "email"://change email and check if the same one already esit
+                        foreach (User user in users)
                         {
-                            await Shell.Current.DisplayAlert("Email", $"Email change failed! there is a problem with the email", "ok");
-                            return;
+                            if (!ValidateEmail(newEmail))
+                            {
+                                await Shell.Current.DisplayAlert("Email", $"Email change failed! there is a problem with the email", "ok");
+                                return;
+                            }
+                            if (user.Email == this.newEmail)
+                            {
+                                await Shell.Current.DisplayAlert("Email", $"Email change failed! A user in the system already uses this mail", "ok");
+                                return;
+                            }
                         }
-                        if (user.Email == this.newEmail)
-                        {
-                            await Shell.Current.DisplayAlert("Email", $"Email change failed! A user in the system already uses this mail", "ok");
-                            return;
-                        }
-                    }
-                    CurrentUser.Email = this.newEmail;
-                    await Shell.Current.DisplayAlert("Email", $"Email change succeeded! reload the page to loke at your new profile", "ok");
-                    break;
+                        CurrentUser.Email = this.newEmail;
+                        await Shell.Current.DisplayAlert("Email", $"Email change succeeded! reload the page to loke at your new profile", "ok");
+                        break;
 
-                case "pass"://change password
-                    if (!ValidatePassword(newPass))
-                    {
-                        await Shell.Current.DisplayAlert("Password", $"Password change failed! the password must be 8 letters log and include at least 1 letter", "ok");
-                        return;
-                    }
-                    CurrentUser.Password = this.newPass;
-                    break;
-                case "name"://change name
-                    foreach (User user in users)
-                    {
-                        if (NewName == null)
+                    case "pass"://change password
+                        if (!ValidatePassword(newPass))
                         {
-                            await Shell.Current.DisplayAlert("Name", $"Name change failed! the name cannot be empty", "ok");
+                            await Shell.Current.DisplayAlert("Password", $"Password change failed! the password must be 8 letters log and include at least 1 letter", "ok");
                             return;
                         }
-                        if (user.Name == this.NewName)
+                        CurrentUser.Password = this.newPass;
+                        break;
+                    case "name"://change name
+                        foreach (User user in users)
                         {
-                            await Shell.Current.DisplayAlert("Name", $"Name change failed! The name already exist please chose a different name", "ok");
-                            return;
+                            if (NewName == null)
+                            {
+                                await Shell.Current.DisplayAlert("Name", $"Name change failed! the name cannot be empty", "ok");
+                                return;
+                            }
+                            if (user.Name == this.NewName)
+                            {
+                                await Shell.Current.DisplayAlert("Name", $"Name change failed! The name already exist please chose a different name", "ok");
+                                return;
+                            }
                         }
-                    }
-                    CurrentUser.Name = this.newName;
-                    break;
+                        CurrentUser.Name = this.newName;
+                        break;
 
-            }
-            
-            NewEmail = "";
-            NewName = "";
-            NewPass = "";
-            inServerCall = true;
-            //update the DB
-            bool b = await triviaService.UpdateUser(CurrentUser);
-            inServerCall = false;
-            if (!b)
-            {
-                await Application.Current.MainPage.DisplayAlert("Error", "Try again later", "ok");
+                }
+
+                NewEmail = "";
+                NewName = "";
+                NewPass = "";
+                inServerCall = true;
+                //update the DB
+                bool b = await triviaService.UpdateUser(CurrentUser);
+                inServerCall = false;
+                if (!b)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Error", "Try again later", "ok");
+                }
+                else
+                {
+                    await Shell.Current.DisplayAlert("UpdateUser", $"Update seccesful! please open the profile page again to see your new details!", "ok");
+                    CurrentUser = (((App)Application.Current).LoggedInUser);
+                    IsVisible = false;
+                    IsEnabled = true;
+                }
             }
             else
             {
-                await Shell.Current.DisplayAlert("UpdateUser", $"Update seccesful! please open the profile page again to see your new details!", "ok");
-                CurrentUser = (((App)Application.Current).LoggedInUser);
+                await App.Current.MainPage.DisplayAlert("Save data", "there is a problem with your data", "אישור", FlowDirection.RightToLeft);
                 IsVisible = false;
                 IsEnabled = true;
             }
