@@ -68,7 +68,6 @@ namespace TriviaAppClean.ViewModels
             }
         }
         private bool inServerCall = false;
-        private bool inServerCall;
         public bool InServerCall
         {
             get
@@ -142,6 +141,7 @@ namespace TriviaAppClean.ViewModels
         //on ChangeCommand and getting with param (command parameter)
         //changes properties and update the DB
         async void OnChangeCommand(object param)
+        {
             InServerCall = true;
             List<User> users = await triviaService.GetAllUsers();
             InServerCall = false;
