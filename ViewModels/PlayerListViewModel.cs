@@ -56,13 +56,31 @@ namespace TriviaAppClean.ViewModels
         #endregion
 
         //constrator
+        //initialize the service and get all users for the list
         public PlayerListViewModel()
         {
             _proxy = new TriviaWebAPIProxy();
             GetUsersAsync();
         }
-        
+
+        #region commands
+        //on selecting a player
         public ICommand SingleSelectCommand => new Command(OnSingleSelectUser);
+
+        //on searching a player by name (in view)
+        public ICommand SortCommand => new Command(Sort);
+
+        //on pressing the button to clear the sort
+        public ICommand ClearSortCommand => new Command(GetUsersAsync);
+
+        //on swiping left in the view
+        public ICommand ResetScoreCommand => new Command<User>(ResetScore);
+
+        #endregion
+
+        #region methods    
+        //on SingleSelectCommand
+        //send you to PlayerDetailsView sending it the data of the player
         async void OnSingleSelectUser()
         {
             if (SelectedUser != null)
@@ -76,6 +94,8 @@ namespace TriviaAppClean.ViewModels
             }
         }
 
+        //on starting the page
+        //get all the players for the list
         public async void GetUsersAsync()
         {
             inServerCall = true;
@@ -83,17 +103,19 @@ namespace TriviaAppClean.ViewModels
             Users = new ObservableCollection<User>(us);
             inServerCall = false;
         }
-        public ICommand SortCommand => new Command(Sort);
+
+
+
+        //on SortCommand change the list and leave only the users that contain the given string
         public void Sort()
         {
             GetUsersAsync();
             List<User> temp = Users.Where(u => u.Name.Contains(Name)).ToList();
             Users = new ObservableCollection<User>(temp);
         }
-        public ICommand ClearSortCommand => new Command(GetUsersAsync);
 
-        
-        public ICommand ResetScoreCommand => new Command<User>(ResetScore);
+        //on ResetScoreCommand 
+        //reset the score of a user to 0 and updates the DB
         public async void ResetScore(User currentUser)
         {
             currentUser.Score = 0;
@@ -109,5 +131,6 @@ namespace TriviaAppClean.ViewModels
                 await Application.Current.MainPage.DisplayAlert("Succses", "Score Reset", "ok");
             }
         }
+        #endregion
     }
 }
