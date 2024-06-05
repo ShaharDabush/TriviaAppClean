@@ -12,8 +12,10 @@ namespace TriviaAppClean.ViewModels
 {    
     public class QuestionListViewModel : ViewModelBase
     {
+        #region attributes and proparties
         private TriviaWebAPIProxy _proxy;
         private ObservableCollection<AmericanQuestion> questions;
+
         public ObservableCollection<AmericanQuestion> Questions
         {
             get { return questions; }
@@ -21,16 +23,12 @@ namespace TriviaAppClean.ViewModels
             OnPropertyChanged();
             }
         }
-        public QuestionListViewModel()
-        {            
-            _proxy = new TriviaWebAPIProxy();
-            GetQuestionsAsync();
-        }
+
         private string query;
         public string Query
         {
             get { return query; }
-            set {  query = value; OnPropertyChanged(); }
+            set { query = value; OnPropertyChanged(); }
         }
         private AmericanQuestion selectedQuestion;
         public AmericanQuestion SelectedQuestion
@@ -38,35 +36,6 @@ namespace TriviaAppClean.ViewModels
             get { return selectedQuestion; }
             set { selectedQuestion = value; OnPropertyChanged(); }
         }
-        public ICommand SingleSelectCommand => new Command(OnSingleSelectQuestion);
-        async void OnSingleSelectQuestion()
-        {
-            if (SelectedQuestion != null)
-            {
-                var navParam = new Dictionary<string, object>()
-                {
-                    { "selectedQuestion",SelectedQuestion }
-                };
-                await Shell.Current.GoToAsync($"QuestionDetailsView", navParam);
-                SelectedQuestion = null;
-            }
-        }       
-       
-        public async void GetQuestionsAsync()
-        {
-            inServerCall = true;
-            List<AmericanQuestion> qs = await _proxy.GetAllQuestions();
-            Questions = new ObservableCollection<AmericanQuestion>(qs);
-            inServerCall = false;
-        }
-        public ICommand SortCommand => new Command(Sort);
-        public void Sort()
-        {
-            GetQuestionsAsync();
-            List<AmericanQuestion> temp = Questions.Where(q => q.QText.Contains(query)).ToList();            
-            Questions = new ObservableCollection<AmericanQuestion>(temp);
-        }
-        public ICommand ClearSortCommand => new Command(GetQuestionsAsync);
 
         private bool inServerCall;
         public bool InServerCall
@@ -81,7 +50,70 @@ namespace TriviaAppClean.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        #endregion
+
+        //constractor
+        //initialise the service and the list of questions
+        public QuestionListViewModel()
+        {            
+            _proxy = new TriviaWebAPIProxy();
+            GetQuestionsAsync();
+        }
+
+        #region commands
+        //on filtering the list
+        public ICommand SortCommand => new Command(Sort);
+
+        //on selecting a question
+        public ICommand SingleSelectCommand => new Command(OnSingleSelectQuestion);
+
+        //on presing to clear the sort/filter
+        public ICommand ClearSortCommand => new Command(GetQuestionsAsync);
+
+        //on swiping left
         public ICommand DismissCommand => new Command<AmericanQuestion>(DismissQuestion);
+
+
+        #endregion
+
+        #region methods
+        //activated with SingleSelectCommand
+        //send to QuestionDetailsView of the current question
+        async void OnSingleSelectQuestion()
+        {
+            if (SelectedQuestion != null)
+            {
+                var navParam = new Dictionary<string, object>()
+                {
+                    { "selectedQuestion",SelectedQuestion }
+                };
+                await Shell.Current.GoToAsync($"QuestionDetailsView", navParam);
+                SelectedQuestion = null;
+            }
+        }       
+       
+        //on constractor and on clearing sort
+        //initilize list of questions
+        public async void GetQuestionsAsync()
+        {
+            inServerCall = true;
+            List<AmericanQuestion> qs = await _proxy.GetAllQuestions();
+            Questions = new ObservableCollection<AmericanQuestion>(qs);
+            inServerCall = false;
+        }
+
+        //on SortCommand
+        //sort questions by a string they contain
+        public void Sort()
+        {
+            GetQuestionsAsync();
+            List<AmericanQuestion> temp = Questions.Where(q => q.QText.Contains(query)).ToList();            
+            Questions = new ObservableCollection<AmericanQuestion>(temp);
+        }
+
+        //on DismissCommand
+        //change status of question to not approved (question status 2) 
         public async void DismissQuestion(AmericanQuestion currentQuestion)
         {
             currentQuestion.Status = 2;
@@ -97,5 +129,7 @@ namespace TriviaAppClean.ViewModels
                 await Application.Current.MainPage.DisplayAlert("Dismissed", "Question dismissed", "ok");
             }
         }
+
+        #endregion
     }
 }
